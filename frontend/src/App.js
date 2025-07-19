@@ -1,6 +1,4 @@
-<file>
-      <absolute_file_name>/app/frontend/src/App.js</absolute_file_name>
-      <content">import React from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { Toaster } from './components/ui/toaster';
@@ -32,5 +30,3 @@ function App() {
 }
 
 export default App;
-</content>
-    </file>
