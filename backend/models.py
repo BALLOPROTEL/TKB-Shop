@@ -22,7 +22,7 @@ class PyObjectId(str):
 
 # User Models
 class User(BaseModel):
-    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    id: Optional[str] = Field(default=None, alias="_id")
     firstName: str
     lastName: str
     email: str
