@@ -308,16 +308,11 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Homepage Display"
-    - "Admin Authentication"
-    - "Admin Dashboard Access"
-    - "Admin Dashboard CRUD - Products"
-    - "Admin Dashboard CRUD - Users"
-    - "Footer Display"
-    - "Product Detail Page"
-    - "Add to Cart Functionality"
-    - "Cart Page Display"
-  stuck_tasks: []
+    - "Backend Authentication Integration"
+    - "Product Detail Backend Integration"
+  stuck_tasks:
+    - "Backend Authentication Integration"
+    - "Product Detail Backend Integration"
   test_all: true
   test_priority: "high_first"
 
