@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { CartProvider } from './context/CartContext';
+import { CartProvider } from './context/CartProvider';
 import { AuthProvider } from './context/AuthContext';
 import { Toaster } from './components/ui/toaster';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import ProductDetail from './pages/ProductDetail';
 import CartPage from './pages/CartPage';
@@ -43,32 +44,35 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
 
 function AppContent() {
   return (
-    <div className="App">
+    <div className="App flex flex-col min-h-screen">
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/checkout" element={
-            <ProtectedRoute>
-              <CheckoutPage />
-            </ProtectedRoute>
-          } />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/profile" element={
-            <ProtectedRoute>
-              <ProfilePage />
-            </ProtectedRoute>
-          } />
-          <Route path="/admin" element={
-            <ProtectedRoute adminOnly={true}>
-              <AdminDashboard />
-            </ProtectedRoute>
-          } />
-          <Route path="/category/:slug" element={<HomePage />} />
-        </Routes>
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={
+              <ProtectedRoute>
+                <CheckoutPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/profile" element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin" element={
+              <ProtectedRoute adminOnly={true}>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/category/:slug" element={<HomePage />} />
+          </Routes>
+        </main>
+        <Footer />
         <Toaster />
       </BrowserRouter>
     </div>
