@@ -190,7 +190,7 @@ const AdminDashboard = () => {
     totalUsers: allUsers.length,
     totalOrders: allOrders.length,
     totalProducts: allProducts.length,
-    totalRevenue: allOrders.reduce((sum, order) => sum + order.total, 0)
+    totalRevenue: allOrders.length > 0 ? allOrders.reduce((sum, order) => sum + (order.total || 0), 0) : 0
   };
 
   const tabs = [
