@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowLeft, Users, ShoppingBag, Package, TrendingUp, 
   Eye, Edit3, Trash2, Plus, Search, Filter, BarChart3 
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import { mockProducts } from '../data/mock';
+import { useAdmin } from '../hooks/useAdmin';
+import { useProducts } from '../hooks/useProducts';
 import { useToast } from '../hooks/use-toast';
 import ProductModal from '../components/admin/ProductModal';
 import UserModal from '../components/admin/UserModal';
