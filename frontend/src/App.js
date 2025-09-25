@@ -1,31 +1,87 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
+import { AuthProvider } from './context/AuthContext';
 import { Toaster } from './components/ui/toaster';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import ProductDetail from './pages/ProductDetail';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ProfilePage from './pages/ProfilePage';
+import AdminDashboard from './pages/AdminDashboard';
+import { useAuth } from './context/AuthContext';
 import './App.css';
+
+// Protected Route Component
+const ProtectedRoute = ({ children, adminOnly = false }) => {
+  const { isAuthenticated, user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-500 mb-4"></div>
+          <p className="text-gray-600">Chargement...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (adminOnly && user?.role !== 'admin') {
+    return <Navigate to="/" replace />;
+  }
+
+  return children;
+};
+
+function AppContent() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={
+            <ProtectedRoute>
+              <CheckoutPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/profile" element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin" element={
+            <ProtectedRoute adminOnly={true}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/category/:slug" element={<HomePage />} />
+        </Routes>
+        <Toaster />
+      </BrowserRouter>
+    </div>
+  );
+}
 
 function App() {
   return (
-    <CartProvider>
-      <div className="App">
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/category/:slug" element={<HomePage />} />
-          </Routes>
-          <Toaster />
-        </BrowserRouter>
-      </div>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <AppContent />
+      </CartProvider>
+    </AuthProvider>
   );
 }
 
