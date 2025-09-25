@@ -45,9 +45,77 @@ const AdminDashboard = () => {
     );
   }
 
-  const allUsers = getAllUsers();
-  const allOrders = getAllOrders();
-  const products = mockProducts;
+  const allUsers = users;
+  const allOrders = orders;
+
+  // CRUD Functions
+  const handleSaveProduct = (productData) => {
+    if (selectedProduct) {
+      // Update existing product
+      setProducts(prev => prev.map(p => p.id === selectedProduct.id ? productData : p));
+    } else {
+      // Add new product
+      setProducts(prev => [...prev, productData]);
+    }
+    setSelectedProduct(null);
+  };
+
+  const handleDeleteProduct = (product) => {
+    setProducts(prev => prev.filter(p => p.id !== product.id));
+    toast({
+      title: "Produit supprimé",
+      description: `${product.name} a été supprimé avec succès`,
+    });
+  };
+
+  const handleSaveUser = (userData) => {
+    if (selectedUser) {
+      // Update existing user
+      setUsers(prev => prev.map(u => u.id === selectedUser.id ? userData : u));
+    } else {
+      // Add new user
+      setUsers(prev => [...prev, userData]);
+    }
+    setSelectedUser(null);
+  };
+
+  const handleDeleteUser = (user) => {
+    setUsers(prev => prev.filter(u => u.id !== user.id));
+    toast({
+      title: "Utilisateur supprimé",
+      description: `${user.firstName} ${user.lastName} a été supprimé avec succès`,
+    });
+  };
+
+  const handleDeleteOrder = (order) => {
+    setOrders(prev => prev.filter(o => o.id !== order.id));
+    toast({
+      title: "Commande supprimée",
+      description: `La commande ${order.id} a été supprimée avec succès`,
+    });
+  };
+
+  const openDeleteModal = (type, item) => {
+    setDeleteTarget({ type, item });
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    const { type, item } = deleteTarget;
+    switch (type) {
+      case 'product':
+        handleDeleteProduct(item);
+        break;
+      case 'user':
+        handleDeleteUser(item);
+        break;
+      case 'order':
+        handleDeleteOrder(item);
+        break;
+      default:
+        break;
+    }
+  };
 
   // Statistics
   const stats = {
