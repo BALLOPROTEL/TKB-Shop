@@ -570,6 +570,49 @@ const AdminDashboard = () => {
         {activeTab === 'orders' && renderOrders()}
         {activeTab === 'users' && renderUsers()}
       </div>
+
+      {/* Modals */}
+      <ProductModal
+        isOpen={isProductModalOpen}
+        onClose={() => {
+          setIsProductModalOpen(false);
+          setSelectedProduct(null);
+        }}
+        product={selectedProduct}
+        onSave={handleSaveProduct}
+      />
+
+      <UserModal
+        isOpen={isUserModalOpen}
+        onClose={() => {
+          setIsUserModalOpen(false);
+          setSelectedUser(null);
+        }}
+        user={selectedUser}
+        onSave={handleSaveUser}
+      />
+
+      <DeleteConfirmModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => {
+          setIsDeleteModalOpen(false);
+          setDeleteTarget({ type: '', item: null });
+        }}
+        onConfirm={handleConfirmDelete}
+        title={`Supprimer ${deleteTarget.type === 'product' ? 'le produit' : 
+                             deleteTarget.type === 'user' ? 'l\'utilisateur' : 
+                             'la commande'}`}
+        message={`Êtes-vous sûr de vouloir supprimer cet(te) ${
+          deleteTarget.type === 'product' ? 'produit' : 
+          deleteTarget.type === 'user' ? 'utilisateur' : 
+          'commande'
+        } ? Cette action ne peut pas être annulée.`}
+        itemName={
+          deleteTarget.type === 'product' ? deleteTarget.item?.name :
+          deleteTarget.type === 'user' ? `${deleteTarget.item?.firstName} ${deleteTarget.item?.lastName}` :
+          deleteTarget.item?.id
+        }
+      />
     </div>
   );
 };
