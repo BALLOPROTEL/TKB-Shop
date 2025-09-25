@@ -42,6 +42,7 @@ async def get_user(email: str) -> Optional[User]:
     user_data = await users.find_one({"email": email})
     if user_data:
         user_data["id"] = str(user_data["_id"])
+        del user_data["_id"]
         return User(**user_data)
     return None
 
@@ -51,6 +52,7 @@ async def get_user_by_id(user_id: str) -> Optional[User]:
     user_data = await users.find_one({"_id": ObjectId(user_id)})
     if user_data:
         user_data["id"] = str(user_data["_id"])
+        del user_data["_id"]
         return User(**user_data)
     return None
 
