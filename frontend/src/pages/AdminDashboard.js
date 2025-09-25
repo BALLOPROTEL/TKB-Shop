@@ -272,7 +272,7 @@ const AdminDashboard = () => {
             </div>
             <div className="ml-4">
               <p className="text-sm text-gray-600">Chiffre d'affaires</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.totalRevenue.toFixed(2)}€</p>
+              <p className="text-2xl font-bold text-gray-900">{localStats.totalRevenue.toFixed(2)}€</p>
             </div>
           </div>
         </div>
