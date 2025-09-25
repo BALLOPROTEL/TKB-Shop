@@ -254,7 +254,13 @@ const AdminDashboard = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-bold text-gray-900">Gestion des produits</h3>
-        <button className="flex items-center space-x-2 bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-colors duration-200">
+        <button 
+          onClick={() => {
+            setSelectedProduct(null);
+            setIsProductModalOpen(true);
+          }}
+          className="flex items-center space-x-2 bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-colors duration-200"
+        >
           <Plus className="h-4 w-4" />
           <span>Nouveau produit</span>
         </button>
@@ -295,13 +301,21 @@ const AdminDashboard = () => {
                   </td>
                   <td className="py-4 px-6">
                     <div className="flex items-center justify-end space-x-2">
-                      <button className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200">
-                        <Eye className="h-4 w-4" />
-                      </button>
-                      <button className="p-2 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors duration-200">
+                      <button 
+                        onClick={() => {
+                          setSelectedProduct(product);
+                          setIsProductModalOpen(true);
+                        }}
+                        className="p-2 text-gray-600 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors duration-200"
+                        title="Modifier"
+                      >
                         <Edit3 className="h-4 w-4" />
                       </button>
-                      <button className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200">
+                      <button 
+                        onClick={() => openDeleteModal('product', product)}
+                        className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
+                        title="Supprimer"
+                      >
                         <Trash2 className="h-4 w-4" />
                       </button>
                     </div>
