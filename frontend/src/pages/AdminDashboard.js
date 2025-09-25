@@ -147,12 +147,20 @@ const AdminDashboard = () => {
     }
   };
 
-  const handleDeleteOrder = (order) => {
-    setOrders(prev => prev.filter(o => o.id !== order.id));
-    toast({
-      title: "Commande supprimée",
-      description: `La commande ${order.id} a été supprimée avec succès`,
-    });
+  const handleDeleteOrder = async (order) => {
+    try {
+      await deleteOrder(order.id);
+      toast({
+        title: "Commande supprimée",
+        description: `La commande ${order.id} a été supprimée avec succès`,
+      });
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de la suppression de la commande",
+        variant: "destructive"
+      });
+    }
   };
 
   const openDeleteModal = (type, item) => {
