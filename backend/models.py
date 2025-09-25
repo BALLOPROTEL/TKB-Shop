@@ -3,7 +3,7 @@ from typing import Optional, List, Dict
 from datetime import datetime
 from bson import ObjectId
 
-# Custom ObjectId type for Pydantic
+# Custom ObjectId type for Pydantic v2
 class PyObjectId(ObjectId):
     @classmethod
     def __get_validators__(cls):
@@ -16,8 +16,9 @@ class PyObjectId(ObjectId):
         return ObjectId(v)
 
     @classmethod
-    def __modify_schema__(cls, field_schema):
+    def __get_pydantic_json_schema__(cls, field_schema):
         field_schema.update(type="string")
+        return field_schema
 
 # User Models
 class User(BaseModel):
