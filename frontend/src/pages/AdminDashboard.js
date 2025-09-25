@@ -13,8 +13,22 @@ import DeleteConfirmModal from '../components/admin/DeleteConfirmModal';
 
 const AdminDashboard = () => {
   const { user, getAllUsers, getAllOrders } = useAuth();
+  const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('overview');
   const [searchTerm, setSearchTerm] = useState('');
+  
+  // Modal states
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+  const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [deleteTarget, setDeleteTarget] = useState({ type: '', item: null });
+  
+  // Data states
+  const [products, setProducts] = useState(mockProducts);
+  const [users, setUsers] = useState(getAllUsers());
+  const [orders, setOrders] = useState(getAllOrders());
   
   // Redirect if not admin
   if (user?.role !== 'admin') {
