@@ -41,35 +41,35 @@ const HomePage = () => {
       <Hero />
 
       {/* Categories Section */}
-      <section className="py-16 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               Nos Catégories
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
               Explorez notre large gamme de produits sélectionnés avec soin
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {categories.slice(1).map((category, index) => (
               <Link
                 key={category.id}
                 to={`/category/${category.slug}`}
-                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 aspect-[4/3] sm:aspect-auto"
               >
-                <div className="aspect-w-16 aspect-h-12 bg-gradient-to-br from-pink-100 to-rose-100 p-8 flex items-center justify-center">
+                <div className="bg-gradient-to-br from-pink-100 to-rose-100 p-6 sm:p-8 flex items-center justify-center h-full min-h-[200px] sm:min-h-[240px]">
                   <div className="text-center">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors duration-300">
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors duration-300">
                       {category.name}
                     </h3>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-sm sm:text-base text-gray-600 mb-4">
                       {index === 0 ? 'Élégance et praticité' : 
                        index === 1 ? 'Confort et style' : 
                        'Couleur et amusement'}
                     </p>
-                    <div className="inline-flex items-center text-pink-600 font-medium">
+                    <div className="inline-flex items-center text-pink-600 font-medium text-sm sm:text-base">
                       Découvrir
                       <ChevronRight className="ml-1 h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
@@ -83,18 +83,18 @@ const HomePage = () => {
       </section>
 
       {/* Featured Products */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-12 sm:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               Produits Vedettes
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base sm:text-lg text-gray-600">
               Nos coups de cœur sélectionnés pour vous
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {featuredProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -103,29 +103,29 @@ const HomePage = () => {
           <div className="text-center">
             <Link
               to="/category/tous"
-              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-semibold rounded-lg hover:from-pink-700 hover:to-rose-700 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg"
+              className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-semibold rounded-lg hover:from-pink-700 hover:to-rose-700 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg text-sm sm:text-base"
             >
               Voir Tous les Produits
-              <ChevronRight className="ml-2 h-5 w-5" />
+              <ChevronRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
             </Link>
           </div>
         </div>
       </section>
 
       {/* All Products */}
-      <section className="py-16 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 sm:mb-8 gap-4">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">
               Tous nos Produits
             </h2>
             
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               {/* Category Filter */}
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+                className="px-3 sm:px-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white"
               >
                 {categories.map(category => (
                   <option key={category.id} value={category.id}>
@@ -138,7 +138,7 @@ const HomePage = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+                className="px-3 sm:px-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 bg-white"
               >
                 <option value="featured">Recommandés</option>
                 <option value="price-low">Prix croissant</option>
@@ -149,7 +149,7 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {sortedProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -157,7 +157,7 @@ const HomePage = () => {
 
           {sortedProducts.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">Aucun produit trouvé dans cette catégorie.</p>
+              <p className="text-gray-500 text-base sm:text-lg">Aucun produit trouvé dans cette catégorie.</p>
             </div>
           )}
         </div>
