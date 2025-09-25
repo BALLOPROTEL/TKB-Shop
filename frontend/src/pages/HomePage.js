@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, Filter, SortAsc } from 'lucide-react';
+import { ChevronRight, Loader } from 'lucide-react';
 import Hero from '../components/Hero';
 import ProductCard from '../components/ProductCard';
-import { mockProducts, categories } from '../data/mock';
+import { useProducts } from '../context/ProductsContext';
 
 const HomePage = () => {
+  const { products, categories, loading, error } = useProducts();
   const [selectedCategory, setSelectedCategory] = useState('tous');
   const [sortBy, setSortBy] = useState('featured');
 
   // Filter products by category
   const filteredProducts = selectedCategory === 'tous' 
-    ? mockProducts 
-    : mockProducts.filter(product => product.category === selectedCategory);
+    ? products 
+    : products.filter(product => product.category === selectedCategory);
 
   // Sort products
   const sortedProducts = [...filteredProducts].sort((a, b) => {
@@ -31,9 +32,36 @@ const HomePage = () => {
   });
 
   // Get featured products (highest rated)
-  const featuredProducts = mockProducts
+  const featuredProducts = products
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 4);
+
+  if (loading && products.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <Loader className="animate-spin h-12 w-12 text-pink-500 mx-auto mb-4" />
+          <p className="text-gray-600">Chargement des produits...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error && products.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 mb-4">Erreur: {error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700"
+          >
+            Réessayer
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -83,34 +111,36 @@ const HomePage = () => {
       </section>
 
       {/* Featured Products */}
-      <section className="py-12 sm:py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Produits Vedettes
-            </h2>
-            <p className="text-base sm:text-lg text-gray-600">
-              Nos coups de cœur sélectionnés pour vous
-            </p>
-          </div>
+      {featuredProducts.length > 0 && (
+        <section className="py-12 sm:py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                Produits Vedettes
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600">
+                Nos coups de cœur sélectionnés pour vous
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
-            {featuredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+            <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
+              {featuredProducts.map(product => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
 
-          <div className="text-center">
-            <Link
-              to="/category/tous"
-              className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-semibold rounded-lg hover:from-pink-700 hover:to-rose-700 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg text-sm sm:text-base"
-            >
-              Voir Tous les Produits
-              <ChevronRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-            </Link>
+            <div className="text-center">
+              <Link
+                to="/category/tous"
+                className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-semibold rounded-lg hover:from-pink-700 hover:to-rose-700 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg text-sm sm:text-base"
+              >
+                Voir Tous les Produits
+                <ChevronRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* All Products */}
       <section className="py-12 sm:py-16 bg-white">
@@ -149,15 +179,27 @@ const HomePage = () => {
             </div>
           </div>
 
+          {loading && (
+            <div className="text-center py-8">
+              <Loader className="animate-spin h-8 w-8 text-pink-500 mx-auto mb-2" />
+              <p className="text-gray-600">Chargement...</p>
+            </div>
+          )}
+
           <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {sortedProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
 
-          {sortedProducts.length === 0 && (
+          {sortedProducts.length === 0 && !loading && (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-base sm:text-lg">Aucun produit trouvé dans cette catégorie.</p>
+              <p className="text-gray-500 text-base sm:text-lg">
+                {selectedCategory === 'tous' 
+                  ? 'Aucun produit disponible pour le moment.' 
+                  : 'Aucun produit trouvé dans cette catégorie.'
+                }
+              </p>
             </div>
           )}
         </div>
