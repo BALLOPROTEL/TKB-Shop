@@ -122,8 +122,8 @@ class OrderItem(BaseModel):
     image: str
 
 class Order(BaseModel):
-    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
-    userId: PyObjectId
+    id: Optional[str] = Field(default=None, alias="_id")
+    userId: str
     orderId: str  # Human readable order ID like CMD001
     items: List[OrderItem]
     status: str = "processing"  # processing, shipped, delivered, cancelled
@@ -146,10 +146,10 @@ class OrderCreate(BaseModel):
 
 # Payment Models
 class PaymentTransaction(BaseModel):
-    id: Optional[PyObjectId] = Field(default_factory=PyObjectId, alias="_id")
+    id: Optional[str] = Field(default=None, alias="_id")
     sessionId: str  # Stripe checkout session ID
     paymentId: Optional[str] = None
-    userId: Optional[PyObjectId] = None
+    userId: Optional[str] = None
     email: Optional[str] = None
     orderId: Optional[str] = None
     amount: float
