@@ -69,23 +69,43 @@ const AdminDashboard = () => {
   const allProducts = products || [];
 
   // CRUD Functions
-  const handleSaveProduct = (productData) => {
-    if (selectedProduct) {
-      // Update existing product
-      setProducts(prev => prev.map(p => p.id === selectedProduct.id ? productData : p));
-    } else {
-      // Add new product
-      setProducts(prev => [...prev, productData]);
+  const handleSaveProduct = async (productData) => {
+    try {
+      if (selectedProduct) {
+        // Update existing product
+        await updateProduct(selectedProduct.id, productData);
+      } else {
+        // Add new product
+        await createProduct(productData);
+      }
+      setSelectedProduct(null);
+      toast({
+        title: selectedProduct ? "Produit modifié" : "Produit créé",
+        description: `${productData.name} a été ${selectedProduct ? 'modifié' : 'créé'} avec succès`,
+      });
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de la sauvegarde du produit",
+        variant: "destructive"
+      });
     }
-    setSelectedProduct(null);
   };
 
-  const handleDeleteProduct = (product) => {
-    setProducts(prev => prev.filter(p => p.id !== product.id));
-    toast({
-      title: "Produit supprimé",
-      description: `${product.name} a été supprimé avec succès`,
-    });
+  const handleDeleteProduct = async (product) => {
+    try {
+      await deleteProduct(product.id);
+      toast({
+        title: "Produit supprimé",
+        description: `${product.name} a été supprimé avec succès`,
+      });
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de la suppression du produit",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleSaveUser = (userData) => {
