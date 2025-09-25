@@ -137,11 +137,11 @@ const AdminDashboard = () => {
     }
   };
 
-  // Statistics
-  const stats = {
+  // Use stats from useAdmin hook or calculate locally if not available
+  const localStats = stats || {
     totalUsers: allUsers.length,
     totalOrders: allOrders.length,
-    totalProducts: products.length,
+    totalProducts: allProducts.length,
     totalRevenue: allOrders.reduce((sum, order) => sum + order.total, 0)
   };
 
