@@ -14,8 +14,18 @@ router = APIRouter()
 
 # Initialize Stripe
 stripe_api_key = os.environ.get('STRIPE_API_KEY')
-if not stripe_api_key:
-    raise RuntimeError("STRIPE_API_KEY environment variable is not set")
+print(f"Stripe API Key loaded: {'Yes' if stripe_api_key else 'No'}")
+
+def get_stripe_checkout():
+    """Get Stripe checkout instance"""
+    if not stripe_api_key:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Stripe payment service not configured"
+        )
+    host_url = "http://localhost:8001"
+    webhook_url = f"{host_url}/api/webhook/stripe" 
+    return StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
 
 @router.post("/checkout/session", response_model=dict)
 async def create_checkout_session(
