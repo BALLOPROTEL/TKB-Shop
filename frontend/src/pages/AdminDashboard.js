@@ -6,6 +6,10 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { mockProducts } from '../data/mock';
+import { useToast } from '../hooks/use-toast';
+import ProductModal from '../components/admin/ProductModal';
+import UserModal from '../components/admin/UserModal';
+import DeleteConfirmModal from '../components/admin/DeleteConfirmModal';
 
 const AdminDashboard = () => {
   const { user, getAllUsers, getAllOrders } = useAuth();
