@@ -105,10 +105,8 @@ async def get_checkout_status(session_id: str):
     """Get checkout session status"""
     
     try:
-        # Initialize Stripe checkout
-        host_url = "http://localhost:8001"  # This will be replaced in production
-        webhook_url = f"{host_url}/api/webhook/stripe"
-        stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
+        # Get Stripe checkout
+        stripe_checkout = get_stripe_checkout()
         
         # Get checkout status from Stripe
         checkout_status = await stripe_checkout.get_checkout_status(session_id)
