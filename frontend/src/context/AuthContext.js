@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import { authAPI } from '../services/api';
 
 const AuthContext = createContext();
 
@@ -33,84 +34,6 @@ const authReducer = (state, action) => {
   }
 };
 
-// Mock users data
-export const mockUsers = [
-  {
-    id: 1,
-    email: "admin@chicboutique.com",
-    password: "admin123",
-    firstName: "Admin",
-    lastName: "ChicBoutique", 
-    role: "admin",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
-    phone: "01 23 45 67 89",
-    address: "123 Rue de la Mode, 75001 Paris",
-    joinDate: "2023-01-15"
-  },
-  {
-    id: 2,
-    email: "marie@email.com",
-    password: "marie123",
-    firstName: "Marie",
-    lastName: "Dupont",
-    role: "customer",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
-    phone: "06 12 34 56 78",
-    address: "456 Avenue des Champs, 75008 Paris",
-    joinDate: "2024-03-20"
-  },
-  {
-    id: 3,
-    email: "sophie@email.com", 
-    password: "sophie123",
-    firstName: "Sophie",
-    lastName: "Martin",
-    role: "customer",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
-    phone: "07 98 76 54 32",
-    address: "789 Boulevard Saint-Germain, 75007 Paris",
-    joinDate: "2024-06-10"
-  }
-];
-
-export const mockOrders = [
-  {
-    id: "CMD001",
-    userId: 2,
-    date: "2024-07-15",
-    status: "delivered",
-    total: 159.98,
-    items: [
-      { productId: "1", name: "Sac à Main Élégant Noir", quantity: 1, price: 89.99 },
-      { productId: "5", name: "Escarpins Classiques Noirs", quantity: 1, price: 79.99 }
-    ],
-    address: "456 Avenue des Champs, 75008 Paris"
-  },
-  {
-    id: "CMD002",
-    userId: 2,
-    date: "2024-07-10",
-    status: "processing",
-    total: 65.99,
-    items: [
-      { productId: "2", name: "Sac Bandoulière Rose", quantity: 1, price: 65.99 }
-    ],
-    address: "456 Avenue des Champs, 75008 Paris"
-  },
-  {
-    id: "CMD003",
-    userId: 3,
-    date: "2024-07-18",
-    status: "shipped", 
-    total: 135.98,
-    items: [
-      { productId: "6", name: "Baskets Blanches Tendance", quantity: 1, price: 69.99 },
-      { productId: "2", name: "Sac Bandoulière Rose", quantity: 1, price: 65.99 }
-    ],
-    address: "789 Boulevard Saint-Germain, 75007 Paris"
-  }
-];
-
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
     user: null,
@@ -118,85 +41,114 @@ export const AuthProvider = ({ children }) => {
     isLoading: true
   });
 
-  // Load user from localStorage on mount
+  // Load user from localStorage and verify with backend on mount
   useEffect(() => {
-    const savedUser = localStorage.getItem('chicboutique_user');
-    if (savedUser) {
-      const user = JSON.parse(savedUser);
-      dispatch({ type: 'LOGIN', payload: { user } });
-    } else {
-      dispatch({ type: 'SET_LOADING', payload: false });
-    }
+    const checkAuthStatus = async () => {
+      const savedToken = localStorage.getItem('chicboutique_token');
+      const savedUser = localStorage.getItem('chicboutique_user');
+      
+      if (savedToken && savedUser) {
+        try {
+          // Verify token with backend
+          const response = await authAPI.getProfile();
+          dispatch({ type: 'LOGIN', payload: { user: response.data } });
+        } catch (error) {
+          // Token invalid, clear storage
+          localStorage.removeItem('chicboutique_token');
+          localStorage.removeItem('chicboutique_user');
+          dispatch({ type: 'SET_LOADING', payload: false });
+        }
+      } else {
+        dispatch({ type: 'SET_LOADING', payload: false });
+      }
+    };
+
+    checkAuthStatus();
   }, []);
 
   const login = async (email, password) => {
     dispatch({ type: 'SET_LOADING', payload: true });
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const user = mockUsers.find(u => u.email === email && u.password === password);
-    if (user) {
-      const { password: _, ...userWithoutPassword } = user;
-      localStorage.setItem('chicboutique_user', JSON.stringify(userWithoutPassword));
-      dispatch({ type: 'LOGIN', payload: { user: userWithoutPassword } });
+    try {
+      const response = await authAPI.login({ email, password });
+      const { access_token, user } = response.data;
+      
+      // Save to localStorage
+      localStorage.setItem('chicboutique_token', access_token);
+      localStorage.setItem('chicboutique_user', JSON.stringify(user));
+      
+      dispatch({ type: 'LOGIN', payload: { user } });
       return { success: true };
+    } catch (error) {
+      dispatch({ type: 'SET_LOADING', payload: false });
+      return { 
+        success: false, 
+        error: error.response?.data?.detail || 'Erreur de connexion' 
+      };
     }
-    
-    dispatch({ type: 'SET_LOADING', payload: false });
-    return { success: false, error: 'Email ou mot de passe incorrect' };
   };
 
   const register = async (userData) => {
     dispatch({ type: 'SET_LOADING', payload: true });
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Check if user already exists
-    const existingUser = mockUsers.find(u => u.email === userData.email);
-    if (existingUser) {
+    try {
+      const response = await authAPI.register(userData);
+      const { access_token, user } = response.data;
+      
+      // Save to localStorage
+      localStorage.setItem('chicboutique_token', access_token);
+      localStorage.setItem('chicboutique_user', JSON.stringify(user));
+      
+      dispatch({ type: 'LOGIN', payload: { user } });
+      return { success: true };
+    } catch (error) {
       dispatch({ type: 'SET_LOADING', payload: false });
-      return { success: false, error: 'Un compte avec cet email existe déjà' };
+      return { 
+        success: false, 
+        error: error.response?.data?.detail || 'Erreur lors de l\'inscription' 
+      };
     }
-    
-    // Create new user
-    const newUser = {
-      id: Date.now(),
-      ...userData,
-      role: 'customer',
-      avatar: `https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face`,
-      joinDate: new Date().toISOString().split('T')[0]
-    };
-    
-    mockUsers.push(newUser);
-    const { password: _, ...userWithoutPassword } = newUser;
-    localStorage.setItem('chicboutique_user', JSON.stringify(userWithoutPassword));
-    dispatch({ type: 'LOGIN', payload: { user: userWithoutPassword } });
-    return { success: true };
   };
 
   const logout = () => {
+    localStorage.removeItem('chicboutique_token');
     localStorage.removeItem('chicboutique_user');
     dispatch({ type: 'LOGOUT' });
   };
 
-  const updateProfile = (updates) => {
-    const updatedUser = { ...state.user, ...updates };
-    localStorage.setItem('chicboutique_user', JSON.stringify(updatedUser));
-    dispatch({ type: 'UPDATE_PROFILE', payload: updates });
+  const updateProfile = async (updates) => {
+    try {
+      const response = await authAPI.updateProfile(updates);
+      const updatedUser = response.data;
+      
+      localStorage.setItem('chicboutique_user', JSON.stringify(updatedUser));
+      dispatch({ type: 'UPDATE_PROFILE', payload: updates });
+      return { success: true };
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error.response?.data?.detail || 'Erreur lors de la mise à jour' 
+      };
+    }
   };
 
-  const getUserOrders = (userId) => {
-    return mockOrders.filter(order => order.userId === userId);
+  const getUserOrders = async () => {
+    try {
+      const response = await authAPI.getProfile(); // This will be replaced with orders API
+      return [];
+    } catch (error) {
+      return [];
+    }
   };
 
-  const getAllOrders = () => {
-    return mockOrders;
+  const getAllOrders = async () => {
+    // This will be moved to admin context
+    return [];
   };
 
-  const getAllUsers = () => {
-    return mockUsers.map(({ password, ...user }) => user);
+  const getAllUsers = async () => {
+    // This will be moved to admin context
+    return [];
   };
 
   return (
