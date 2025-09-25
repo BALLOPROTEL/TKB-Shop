@@ -260,7 +260,7 @@ const AdminDashboard = () => {
             </div>
             <div className="ml-4">
               <p className="text-sm text-gray-600">Produits</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.totalProducts}</p>
+              <p className="text-2xl font-bold text-gray-900">{localStats.totalProducts}</p>
             </div>
           </div>
         </div>
