@@ -82,6 +82,74 @@ const Header = () => {
               )}
             </Link>
 
+            {/* User Menu */}
+            {isAuthenticated ? (
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center space-x-2 p-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
+                >
+                  <img
+                    src={user?.avatar}
+                    alt={user?.firstName}
+                    className="h-8 w-8 rounded-full object-cover"
+                  />
+                  <span className="hidden md:inline font-medium">{user?.firstName}</span>
+                </button>
+
+                {showUserMenu && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                    <div className="py-1">
+                      <Link
+                        to="/profile"
+                        className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50"
+                        onClick={() => setShowUserMenu(false)}
+                      >
+                        <User className="h-4 w-4 mr-3" />
+                        Mon profil
+                      </Link>
+                      {user?.role === 'admin' && (
+                        <Link
+                          to="/admin"
+                          className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50"
+                          onClick={() => setShowUserMenu(false)}
+                        >
+                          <ShoppingBag className="h-4 w-4 mr-3" />
+                          Dashboard Admin
+                        </Link>
+                      )}
+                      <hr className="my-1" />
+                      <button
+                        onClick={() => {
+                          logout();
+                          setShowUserMenu(false);
+                        }}
+                        className="w-full text-left flex items-center px-4 py-2 text-red-600 hover:bg-red-50"
+                      >
+                        <LogIn className="h-4 w-4 mr-3" />
+                        Se déconnecter
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="flex items-center space-x-2">
+                <Link
+                  to="/login"
+                  className="px-4 py-2 text-pink-600 hover:text-pink-700 font-medium"
+                >
+                  Connexion
+                </Link>
+                <Link
+                  to="/register"
+                  className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors duration-200"
+                >
+                  Inscription
+                </Link>
+              </div>
+            )}
+
             {/* Mobile Menu Button */}
             <button
               className="md:hidden p-2 text-gray-600"
