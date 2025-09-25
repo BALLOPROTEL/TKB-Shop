@@ -1,9 +1,16 @@
 """Initialize database with mock data"""
 import asyncio
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 from database import connect_to_mongo, get_users_collection, get_products_collection, get_orders_collection
 from auth import get_password_hash
 from datetime import datetime
 from bson import ObjectId
+
+# Load environment variables
+ROOT_DIR = Path(__file__).parent
+load_dotenv(ROOT_DIR / '.env')
 
 # Mock data
 mock_users = [
