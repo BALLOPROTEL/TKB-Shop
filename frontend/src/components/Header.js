@@ -8,7 +8,9 @@ import { categories } from '../data/mock';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const { getTotalItems } = useCart();
+  const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
