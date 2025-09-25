@@ -440,15 +440,21 @@ const AdminDashboard = () => {
                     <td className="py-4 px-6">
                       <select
                         value={order.status}
-                        onChange={(e) => {
+                        onChange={async (e) => {
                           const newStatus = e.target.value;
-                          setOrders(prev => prev.map(o => 
-                            o.id === order.id ? { ...o, status: newStatus } : o
-                          ));
-                          toast({
-                            title: "Statut mis à jour",
-                            description: `Le statut de la commande ${order.id} a été modifié`,
-                          });
+                          try {
+                            await updateOrderStatus(order.id, newStatus);
+                            toast({
+                              title: "Statut mis à jour",
+                              description: `Le statut de la commande ${order.id} a été modifié`,
+                            });
+                          } catch (error) {
+                            toast({
+                              title: "Erreur",
+                              description: "Une erreur est survenue lors de la mise à jour du statut",
+                              variant: "destructive"
+                            });
+                          }
                         }}
                         className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border-0 focus:ring-2 focus:ring-pink-500 ${getStatusColor(order.status)}`}
                       >
