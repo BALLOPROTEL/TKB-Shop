@@ -344,6 +344,7 @@ const AdminDashboard = () => {
                 <th className="text-left py-3 px-6 font-semibold text-gray-900">Articles</th>
                 <th className="text-left py-3 px-6 font-semibold text-gray-900">Statut</th>
                 <th className="text-right py-3 px-6 font-semibold text-gray-900">Total</th>
+                <th className="text-right py-3 px-6 font-semibold text-gray-900">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -369,11 +370,38 @@ const AdminDashboard = () => {
                       </div>
                     </td>
                     <td className="py-4 px-6">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}>
-                        {getStatusText(order.status)}
-                      </span>
+                      <select
+                        value={order.status}
+                        onChange={(e) => {
+                          const newStatus = e.target.value;
+                          setOrders(prev => prev.map(o => 
+                            o.id === order.id ? { ...o, status: newStatus } : o
+                          ));
+                          toast({
+                            title: "Statut mis à jour",
+                            description: `Le statut de la commande ${order.id} a été modifié`,
+                          });
+                        }}
+                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border-0 focus:ring-2 focus:ring-pink-500 ${getStatusColor(order.status)}`}
+                      >
+                        <option value="processing">En cours</option>
+                        <option value="shipped">Expédié</option>
+                        <option value="delivered">Livré</option>
+                        <option value="cancelled">Annulé</option>
+                      </select>
                     </td>
                     <td className="py-4 px-6 text-right font-bold">{order.total.toFixed(2)}€</td>
+                    <td className="py-4 px-6">
+                      <div className="flex items-center justify-end space-x-2">
+                        <button 
+                          onClick={() => openDeleteModal('order', order)}
+                          className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
+                          title="Supprimer"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </td>
                   </tr>
                 );
               })}
