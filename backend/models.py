@@ -1,22 +1,22 @@
-from pydantic import BaseModel, Field
-from typing import Optional, List, Dict
+from pydantic import BaseModel, Field, field_validator
+from typing import Optional, List, Dict, Any
 from datetime import datetime
 from bson import ObjectId
 
 # Custom ObjectId type for Pydantic v2
-class PyObjectId(ObjectId):
+class PyObjectId(str):
     @classmethod
     def __get_validators__(cls):
         yield cls.validate
 
-    @classmethod
-    def validate(cls, v):
+    @classmethod  
+    def validate(cls, v, info=None):
         if not ObjectId.is_valid(v):
             raise ValueError("Invalid objectid")
-        return ObjectId(v)
+        return str(v)
 
     @classmethod
-    def __get_pydantic_json_schema__(cls, field_schema):
+    def __get_pydantic_json_schema__(cls, field_schema, handler):
         field_schema.update(type="string")
         return field_schema
 
