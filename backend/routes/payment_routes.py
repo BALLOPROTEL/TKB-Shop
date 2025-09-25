@@ -43,13 +43,12 @@ async def create_checkout_session(
     # Get host URL from request
     host_url = str(request.base_url).rstrip('/')
     
+    # Initialize Stripe checkout
+    stripe_checkout = get_stripe_checkout()
+    
     # Build URLs
     success_url = f"{host_url}/#/checkout-success?session_id={{CHECKOUT_SESSION_ID}}"
     cancel_url = f"{host_url}/#/checkout-cancel"
-    
-    # Initialize Stripe checkout
-    webhook_url = f"{host_url}/api/webhook/stripe"
-    stripe_checkout = StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
     
     # Create checkout session request
     metadata = {
