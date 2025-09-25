@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
+import { ProductsProvider } from './context/ProductsContext';
+import { AdminProvider } from './context/AdminContext';
 import { Toaster } from './components/ui/toaster';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -66,7 +68,9 @@ function AppContent() {
             } />
             <Route path="/admin" element={
               <ProtectedRoute adminOnly={true}>
-                <AdminDashboard />
+                <AdminProvider>
+                  <AdminDashboard />
+                </AdminProvider>
               </ProtectedRoute>
             } />
             <Route path="/category/:slug" element={<HomePage />} />
@@ -82,9 +86,11 @@ function AppContent() {
 function App() {
   return (
     <AuthProvider>
-      <CartProvider>
-        <AppContent />
-      </CartProvider>
+      <ProductsProvider>
+        <CartProvider>
+          <AppContent />
+        </CartProvider>
+      </ProductsProvider>
     </AuthProvider>
   );
 }
