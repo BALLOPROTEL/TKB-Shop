@@ -5,8 +5,8 @@ import {
   Eye, Edit3, Trash2, Plus, Search, Filter, BarChart3 
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import { useAdmin } from '../hooks/useAdmin';
-import { useProducts } from '../hooks/useProducts';
+import { useAdmin } from '../context/AdminContext';
+import { useProducts } from '../context/ProductsContext';
 import { useToast } from '../hooks/use-toast';
 import ProductModal from '../components/admin/ProductModal';
 import UserModal from '../components/admin/UserModal';
