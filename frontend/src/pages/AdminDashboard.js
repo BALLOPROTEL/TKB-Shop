@@ -347,7 +347,7 @@ const AdminDashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {products.map(product => (
+              {allProducts.map(product => (
                 <tr key={product.id} className="border-b border-gray-100">
                   <td className="py-4 px-6">
                     <div className="flex items-center">
