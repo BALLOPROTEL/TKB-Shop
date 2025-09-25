@@ -108,23 +108,43 @@ const AdminDashboard = () => {
     }
   };
 
-  const handleSaveUser = (userData) => {
-    if (selectedUser) {
-      // Update existing user
-      setUsers(prev => prev.map(u => u.id === selectedUser.id ? userData : u));
-    } else {
-      // Add new user
-      setUsers(prev => [...prev, userData]);
+  const handleSaveUser = async (userData) => {
+    try {
+      if (selectedUser) {
+        // Update existing user
+        await updateUser(selectedUser.id, userData);
+      } else {
+        // Add new user
+        await createUser(userData);
+      }
+      setSelectedUser(null);
+      toast({
+        title: selectedUser ? "Utilisateur modifié" : "Utilisateur créé",
+        description: `${userData.firstName} ${userData.lastName} a été ${selectedUser ? 'modifié' : 'créé'} avec succès`,
+      });
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de la sauvegarde de l'utilisateur",
+        variant: "destructive"
+      });
     }
-    setSelectedUser(null);
   };
 
-  const handleDeleteUser = (user) => {
-    setUsers(prev => prev.filter(u => u.id !== user.id));
-    toast({
-      title: "Utilisateur supprimé",
-      description: `${user.firstName} ${user.lastName} a été supprimé avec succès`,
-    });
+  const handleDeleteUser = async (user) => {
+    try {
+      await deleteUser(user.id);
+      toast({
+        title: "Utilisateur supprimé",
+        description: `${user.firstName} ${user.lastName} a été supprimé avec succès`,
+      });
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de la suppression de l'utilisateur",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleDeleteOrder = (order) => {
