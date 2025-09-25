@@ -236,7 +236,7 @@ const AdminDashboard = () => {
             </div>
             <div className="ml-4">
               <p className="text-sm text-gray-600">Utilisateurs</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.totalUsers}</p>
+              <p className="text-2xl font-bold text-gray-900">{localStats.totalUsers}</p>
             </div>
           </div>
         </div>
