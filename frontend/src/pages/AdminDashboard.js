@@ -42,11 +42,13 @@ const AdminDashboard = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [deleteTarget, setDeleteTarget] = useState({ type: '', item: null });
   
-  // Data states
-  const [products, setProducts] = useState(mockProducts);
-  const [users, setUsers] = useState(getAllUsers());
-  const [orders, setOrders] = useState(getAllOrders());
-  
+  // Load data on mount
+  useEffect(() => {
+    fetchStats();
+    fetchUsers();
+    fetchOrders();
+  }, []);
+
   // Redirect if not admin
   if (user?.role !== 'admin') {
     return (
