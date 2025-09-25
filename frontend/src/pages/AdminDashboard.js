@@ -64,8 +64,9 @@ const AdminDashboard = () => {
     );
   }
 
-  const allUsers = users;
-  const allOrders = orders;
+  const allUsers = users || [];
+  const allOrders = orders || [];
+  const allProducts = products || [];
 
   // CRUD Functions
   const handleSaveProduct = (productData) => {
