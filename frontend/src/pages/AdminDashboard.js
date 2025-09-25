@@ -13,7 +13,23 @@ import UserModal from '../components/admin/UserModal';
 import DeleteConfirmModal from '../components/admin/DeleteConfirmModal';
 
 const AdminDashboard = () => {
-  const { user, getAllUsers, getAllOrders } = useAuth();
+  const { user } = useAuth();
+  const { 
+    stats, 
+    users = [], 
+    orders = [], 
+    fetchStats, 
+    fetchUsers, 
+    fetchOrders,
+    createUser,
+    updateUser,
+    deleteUser,
+    updateOrderStatus,
+    deleteOrder,
+    loading,
+    error
+  } = useAdmin();
+  const { products, createProduct, updateProduct, deleteProduct } = useProducts();
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('overview');
   const [searchTerm, setSearchTerm] = useState('');
