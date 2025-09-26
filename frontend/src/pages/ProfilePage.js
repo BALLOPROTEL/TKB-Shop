@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Edit3, Save, X, Package, MapPin, Phone, Mail, Calendar } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import { useToast } from '../hooks/use-toast';
+import { useToast } from '../components/Toast';
 
 const ProfilePage = () => {
   const { user, updateProfile, getUserOrders, logout } = useAuth();
