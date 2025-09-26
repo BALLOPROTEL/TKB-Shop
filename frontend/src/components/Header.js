@@ -59,7 +59,7 @@ const Header = () => {
 
             {/* Sacs Menu */}
             <div 
-              className="relative"
+              className="relative group"
               onMouseEnter={() => setShowSacsMenu(true)}
               onMouseLeave={() => setShowSacsMenu(false)}
             >
@@ -68,13 +68,17 @@ const Header = () => {
                 <ChevronDown className="h-4 w-4" />
               </button>
               {showSacsMenu && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                     style={{ opacity: 1 }}
+                     onMouseEnter={() => setShowSacsMenu(true)}
+                     onMouseLeave={() => setShowSacsMenu(false)}
+                >
                   <div className="py-2">
                     {categories.find(cat => cat.id === 'sacs')?.subcategories.map(sub => (
                       <Link
                         key={sub.id}
                         to={`/category/sacs/${sub.slug}`}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600"
+                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600 transition-colors duration-200"
                         onClick={closeMenus}
                       >
                         {sub.name}
