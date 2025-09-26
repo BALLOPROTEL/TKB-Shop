@@ -56,6 +56,7 @@ function AppContent() {
             <Route path="/" element={<HomePage />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="/checkout" element={
               <ProtectedRoute>
                 <CheckoutPage />
