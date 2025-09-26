@@ -253,14 +253,14 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6">
           <div className="flex items-center">
-            <div className="p-3 bg-purple-100 rounded-lg">
-              <Package className="h-6 w-6 text-purple-600" />
+            <div className="p-2 sm:p-3 bg-purple-100 rounded-lg">
+              <Package className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600" />
             </div>
-            <div className="ml-4">
-              <p className="text-sm text-gray-600">Produits</p>
-              <p className="text-2xl font-bold text-gray-900">{localStats.totalProducts}</p>
+            <div className="ml-3 sm:ml-4">
+              <p className="text-xs sm:text-sm text-gray-600">Produits</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900">{localStats.totalProducts}</p>
             </div>
           </div>
         </div>
