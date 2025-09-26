@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingBag, Search, Menu, X, Heart, User, LogIn } from 'lucide-react';
+import { ShoppingBag, Search, Menu, X, Heart, User, LogIn, ChevronDown } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { categories } from '../data/mock';
@@ -9,6 +9,8 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showSacsMenu, setShowSacsMenu] = useState(false);
+  const [showChaussuresMenu, setShowChaussuresMenu] = useState(false);
   const { getTotalItems } = useCart();
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
@@ -25,6 +27,8 @@ const Header = () => {
   const closeMenus = () => {
     setIsMenuOpen(false);
     setShowUserMenu(false);
+    setShowSacsMenu(false);
+    setShowChaussuresMenu(false);
   };
 
   return (
@@ -36,22 +40,78 @@ const Header = () => {
             <div className="bg-gradient-to-r from-pink-500 to-rose-500 p-2 rounded-lg">
               <ShoppingBag className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
             </div>
-            <span className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
-              ChicBoutique
-            </span>
+            <div className="flex flex-col">
+              <span className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+                TKB'Shop
+              </span>
+              <span className="text-xs text-gray-500 hidden sm:block">Tanou Karidja Ballo</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-            {categories.map(category => (
-              <Link
-                key={category.id}
-                to={category.id === 'tous' ? '/' : `/category/${category.slug}`}
-                className="text-gray-700 hover:text-pink-600 font-medium transition-colors duration-200 text-sm xl:text-base"
-              >
-                {category.name}
-              </Link>
-            ))}
+            <Link
+              to="/"
+              className="text-gray-700 hover:text-pink-600 font-medium transition-colors duration-200 text-sm xl:text-base"
+            >
+              Accueil
+            </Link>
+
+            {/* Sacs Menu */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setShowSacsMenu(true)}
+              onMouseLeave={() => setShowSacsMenu(false)}
+            >
+              <button className="flex items-center space-x-1 text-gray-700 hover:text-pink-600 font-medium transition-colors duration-200 text-sm xl:text-base">
+                <span>Sacs</span>
+                <ChevronDown className="h-4 w-4" />
+              </button>
+              {showSacsMenu && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                  <div className="py-2">
+                    {categories.find(cat => cat.id === 'sacs')?.subcategories.map(sub => (
+                      <Link
+                        key={sub.id}
+                        to={`/category/sacs/${sub.slug}`}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600"
+                        onClick={closeMenus}
+                      >
+                        {sub.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Chaussures Menu */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setShowChaussuresMenu(true)}
+              onMouseLeave={() => setShowChaussuresMenu(false)}
+            >
+              <button className="flex items-center space-x-1 text-gray-700 hover:text-pink-600 font-medium transition-colors duration-200 text-sm xl:text-base">
+                <span>Chaussures</span>
+                <ChevronDown className="h-4 w-4" />
+              </button>
+              {showChaussuresMenu && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                  <div className="py-2">
+                    {categories.find(cat => cat.id === 'chaussures')?.subcategories.map(sub => (
+                      <Link
+                        key={sub.id}
+                        to={`/category/chaussures/${sub.slug}`}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600"
+                        onClick={closeMenus}
+                      >
+                        {sub.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Desktop Search */}
@@ -276,16 +336,51 @@ const Header = () => {
 
                 {/* Mobile Navigation */}
                 <nav className="space-y-4">
-                  {categories.map(category => (
-                    <Link
-                      key={category.id}
-                      to={category.id === 'tous' ? '/' : `/category/${category.slug}`}
-                      className="block py-3 px-2 text-lg text-gray-700 hover:text-pink-600 font-medium transition-colors duration-200 border-b border-gray-100"
-                      onClick={closeMenus}
-                    >
-                      {category.name}
-                    </Link>
-                  ))}
+                  <Link
+                    to="/"
+                    className="block py-3 px-2 text-lg text-gray-700 hover:text-pink-600 font-medium transition-colors duration-200 border-b border-gray-100"
+                    onClick={closeMenus}
+                  >
+                    Accueil
+                  </Link>
+
+                  {/* Mobile Sacs Menu */}
+                  <div>
+                    <div className="py-3 px-2 text-lg text-gray-700 font-medium border-b border-gray-100">
+                      Sacs
+                    </div>
+                    <div className="pl-4 space-y-2 mt-2">
+                      {categories.find(cat => cat.id === 'sacs')?.subcategories.map(sub => (
+                        <Link
+                          key={sub.id}
+                          to={`/category/sacs/${sub.slug}`}
+                          className="block py-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
+                          onClick={closeMenus}
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Mobile Chaussures Menu */}
+                  <div>
+                    <div className="py-3 px-2 text-lg text-gray-700 font-medium border-b border-gray-100">
+                      Chaussures
+                    </div>
+                    <div className="pl-4 space-y-2 mt-2">
+                      {categories.find(cat => cat.id === 'chaussures')?.subcategories.map(sub => (
+                        <Link
+                          key={sub.id}
+                          to={`/category/chaussures/${sub.slug}`}
+                          className="block py-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
+                          onClick={closeMenus}
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 </nav>
 
                 {/* Mobile Auth Links */}
