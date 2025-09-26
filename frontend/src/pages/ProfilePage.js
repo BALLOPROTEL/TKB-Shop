@@ -35,13 +35,15 @@ const ProfilePage = () => {
     });
   };
 
-  const handleSave = () => {
-    updateProfile(formData);
+  const handleSave = async () => {
+    const result = await updateProfile(formData);
     setIsEditing(false);
-    toast({
-      title: "Profil mis à jour",
-      description: "Vos informations ont été sauvegardées avec succès",
-    });
+    
+    if (result.success) {
+      addToast("Profil mis à jour avec succès", "success");
+    } else {
+      addToast(result.error || "Erreur lors de la mise à jour", "error");
+    }
   };
 
   const handleCancel = () => {
