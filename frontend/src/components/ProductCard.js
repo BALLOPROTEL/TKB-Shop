@@ -6,6 +6,7 @@ import { useFavorites } from '../context/FavoritesContext';
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   const handleQuickAdd = (e) => {
     e.preventDefault();
