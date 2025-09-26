@@ -10,7 +10,7 @@ class PyObjectId(str):
         yield cls.validate
 
     @classmethod  
-    def validate(cls, v, info=None):
+    def validate(cls, v):
         if not ObjectId.is_valid(v):
             raise ValueError("Invalid objectid")
         return str(v)
