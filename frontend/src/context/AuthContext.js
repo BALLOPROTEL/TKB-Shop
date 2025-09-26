@@ -132,11 +132,17 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const getUserOrders = async () => {
+  const getUserOrders = async (userId) => {
     try {
-      const response = await authAPI.getProfile(); // This will be replaced with orders API
-      return [];
+      // TODO: Replace with real API call when orders backend is ready
+      // const response = await authAPI.getUserOrders(userId);
+      // return response.data;
+      
+      // For now, return mock data
+      const { mockUserOrders } = await import('../data/mock');
+      return mockUserOrders;
     } catch (error) {
+      console.error('Error fetching user orders:', error);
       return [];
     }
   };
