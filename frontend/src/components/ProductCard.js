@@ -50,8 +50,16 @@ const ProductCard = ({ product }) => {
 
           {/* Quick Actions - Desktop only */}
           <div className="hidden sm:flex absolute top-2 sm:top-3 right-2 sm:right-3 flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-            <button className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors duration-200">
-              <Heart className="h-4 w-4 text-gray-600 hover:text-red-500" />
+            <button 
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                // TODO: Add to favorites logic
+                console.log('Added to favorites:', product.name);
+              }}
+              className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors duration-200 hover:scale-110"
+            >
+              <Heart className="h-4 w-4 text-gray-600 hover:text-red-500 transition-colors duration-200" />
             </button>
           </div>
 
