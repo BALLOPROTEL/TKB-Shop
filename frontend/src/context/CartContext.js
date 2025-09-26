@@ -93,6 +93,14 @@ export const CartProvider = ({ children }) => {
         quantity
       }
     });
+
+    // Show toast notification
+    addToast('Produit ajouté au panier !', 'cart', {
+      name: product.name,
+      image: product.image,
+      selectedColor,
+      selectedSize
+    });
   };
 
   const removeFromCart = (cartId) => {
