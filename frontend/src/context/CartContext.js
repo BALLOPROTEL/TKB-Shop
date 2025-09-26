@@ -65,6 +65,7 @@ const cartReducer = (state, action) => {
 
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, { items: [] });
+  const { addToast } = useToast();
 
   // Load cart from localStorage on mount
   useEffect(() => {
