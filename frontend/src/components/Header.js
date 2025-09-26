@@ -146,6 +146,7 @@ const Header = () => {
             {/* Cart */}
             <Link 
               to="/cart"
+              onClick={() => window.scrollTo(0, 0)}
               className="relative p-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
             >
               <ShoppingBag className="h-5 w-5 lg:h-6 lg:w-6" />
