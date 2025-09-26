@@ -320,14 +320,14 @@ const AdminDashboard = () => {
 
   const renderProducts = () => (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <h3 className="text-lg font-bold text-gray-900">Gestion des produits</h3>
         <button 
           onClick={() => {
             setSelectedProduct(null);
             setIsProductModalOpen(true);
           }}
-          className="flex items-center space-x-2 bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-colors duration-200"
+          className="flex items-center justify-center space-x-2 bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-colors duration-200 text-sm sm:text-base"
         >
           <Plus className="h-4 w-4" />
           <span>Nouveau produit</span>
