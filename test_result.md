@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test complet du site e-commerce ChicBoutique - vérifier page d'accueil, authentification admin, dashboard admin CRUD, footer, et fonctionnalités e-commerce (détail produit, panier)"
+user_problem_statement: "Améliorer TKB'Shop avec : 1) Carousel dynamique homepage (remplace image statique), 2) Notifications toast ajout panier, 3) Système favoris complet, 4) Dashboard admin responsive, 5) Fix menus déroulants, 6) Fix navigation panier depuis footer, 7) Animations fluides"
 
 frontend:
   - task: "Homepage Display"
