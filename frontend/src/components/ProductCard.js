@@ -56,12 +56,17 @@ const ProductCard = ({ product }) => {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                // TODO: Add to favorites logic
-                console.log('Added to favorites:', product.name);
+                toggleFavorite(product);
               }}
-              className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors duration-200 hover:scale-110"
+              className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-all duration-200 hover:scale-110"
             >
-              <Heart className="h-4 w-4 text-gray-600 hover:text-red-500 transition-colors duration-200" />
+              <Heart 
+                className={`h-4 w-4 transition-colors duration-200 ${
+                  isFavorite(product.id) 
+                    ? 'text-red-500 fill-current' 
+                    : 'text-gray-600 hover:text-red-500'
+                }`} 
+              />
             </button>
           </div>
 
