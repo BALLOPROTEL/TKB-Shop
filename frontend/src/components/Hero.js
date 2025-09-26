@@ -62,27 +62,23 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Image */}
+          {/* Dynamic Product Carousel */}
           <div className="relative order-1 lg:order-2">
             <div className="relative z-10">
-              <img
-                src="https://images.unsplash.com/photo-1608060434411-0c3fa9049e7b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwxfHxoYW5kYmFnc3xlbnwwfHx8fDE3NTI5NTIzODl8MA&ixlib=rb-4.1.0&q=85"
-                alt="Collection de sacs élégants"
-                className="w-full h-64 sm:h-80 lg:h-auto object-cover rounded-2xl shadow-2xl"
-              />
+              <ProductCarousel />
             </div>
             
             {/* Decorative Elements - Hidden on mobile for performance */}
-            <div className="hidden sm:block absolute top-4 -right-4 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-pink-300 to-rose-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse" />
-            <div className="hidden sm:block absolute -bottom-8 -left-8 w-48 sm:w-64 h-48 sm:h-64 bg-gradient-to-br from-rose-300 to-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse animation-delay-2000" />
+            <div className="hidden sm:block absolute top-4 -right-4 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-pink-300 to-rose-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" />
+            <div className="hidden sm:block absolute -bottom-8 -left-8 w-48 sm:w-64 h-48 sm:h-64 bg-gradient-to-br from-rose-300 to-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000" />
             
             {/* Floating Cards */}
-            <div className="hidden sm:block absolute -top-4 sm:-top-6 -left-4 sm:-left-6 bg-white p-3 sm:p-4 rounded-lg shadow-xl transform rotate-3 hover:rotate-6 transition-transform duration-300">
+            <div className="hidden lg:block absolute -top-4 sm:-top-6 -left-4 sm:-left-6 bg-white p-3 sm:p-4 rounded-lg shadow-xl transform rotate-3 hover:rotate-6 transition-all duration-300 hover:shadow-2xl">
               <div className="text-sm font-semibold text-gray-900">Livraison Gratuite</div>
               <div className="text-xs text-gray-600">Dès 50€ d'achat</div>
             </div>
             
-            <div className="hidden sm:block absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 bg-white p-3 sm:p-4 rounded-lg shadow-xl transform -rotate-3 hover:-rotate-6 transition-transform duration-300">
+            <div className="hidden lg:block absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 bg-white p-3 sm:p-4 rounded-lg shadow-xl transform -rotate-3 hover:-rotate-6 transition-all duration-300 hover:shadow-2xl">
               <div className="text-sm font-semibold text-gray-900">Retour 30J</div>
               <div className="text-xs text-gray-600">Satisfait ou remboursé</div>
             </div>
