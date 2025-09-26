@@ -88,9 +88,11 @@ function App() {
     <AuthProvider>
       <ProductsProvider>
         <ToastProvider>
-          <CartProvider>
-            <AppContent />
-          </CartProvider>
+          <FavoritesProvider>
+            <CartProvider>
+              <AppContent />
+            </CartProvider>
+          </FavoritesProvider>
         </ToastProvider>
       </ProductsProvider>
     </AuthProvider>
