@@ -4,7 +4,7 @@ import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import { ProductsProvider } from './context/ProductsContext';
 import { AdminProvider } from './context/AdminContext';
-import { Toaster } from './components/ui/toaster';
+import { ToastProvider } from './components/Toast';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
