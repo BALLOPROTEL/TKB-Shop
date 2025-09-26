@@ -384,6 +384,18 @@ frontend:
         agent: "testing"
         comment: "✅ VERIFIED - Product detail API fully functional. GET /api/products/68d59c8326f2400d13ac6122 returns complete product data: 'Sac à Main Élégant Noir', 89.99€, colors ['Noir', 'Marron', 'Beige'], sizes ['Petit', 'Moyen', 'Grand']. All product endpoints working correctly."
 
+  - task: "General API Routes Testing"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ COMPREHENSIVE TESTING COMPLETED - All general API routes fully functional: GET /api/health (status: healthy), GET /api/products (13 products retrieved), POST /api/auth/login (JWT authentication working), JWT token validation working, error handling proper (400 for invalid IDs, 404 for non-existent products, 401 for invalid credentials). Backend is 100% functional."
+
 metadata:
   created_by: "testing_agent"
   version: "2.0"
