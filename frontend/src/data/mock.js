@@ -253,3 +253,37 @@ export const mockUser = {
   name: "Tanou Karidja Ballo",
   email: "tanou@tkbshop.com"
 };
+
+// Mock orders data for profile page
+export const mockUserOrders = [
+  {
+    id: "CMD001",
+    date: "2024-01-15",
+    status: "delivered",
+    total: 189.99,
+    items: [
+      { name: "Sac à Main Élégant Noir", quantity: 1, price: 89.99 },
+      { name: "Pochette de Soirée Dorée", quantity: 1, price: 100.00 }
+    ]
+  },
+  {
+    id: "CMD002", 
+    date: "2024-01-08",
+    status: "processing",
+    total: 95.99,
+    items: [
+      { name: "Bottes à Talons Marron", quantity: 1, price: 95.99 }
+    ]
+  },
+  {
+    id: "CMD003",
+    date: "2023-12-20",
+    status: "shipped",
+    total: 135.98,
+    items: [
+      { name: "Baskets Enfant Colorées", quantity: 1, price: 35.99 },
+      { name: "Sac École Rose", quantity: 1, price: 49.99 },
+      { name: "Pochette de Soirée Dorée", quantity: 1, price: 50.00 }
+    ]
+  }
+];
