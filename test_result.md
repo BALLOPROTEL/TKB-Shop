@@ -406,9 +406,8 @@ test_plan:
   current_focus:
     - "Backend Authentication Integration"
     - "Product Detail Backend Integration"
-  stuck_tasks:
-    - "Backend Authentication Integration"
-    - "Product Detail Backend Integration"
+    - "General API Routes Testing"
+  stuck_tasks: []
   test_all: true
   test_priority: "high_first"
 
