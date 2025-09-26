@@ -77,7 +77,6 @@ function AppContent() {
           </Routes>
         </main>
         <Footer />
-        <Toaster />
       </BrowserRouter>
     </div>
   );
