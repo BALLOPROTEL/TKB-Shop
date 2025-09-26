@@ -270,6 +270,78 @@ frontend:
         agent: "testing"
         comment: "✅ PASSED - Mobile responsive design works perfectly. Hamburger menu found and functional, mobile navigation toggles correctly, product cards adapt to mobile layout, footer visible and accessible on mobile viewport."
 
+  - task: "Dynamic Homepage Carousel"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/ProductCarousel.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "✅ IMPLEMENTED - Created ProductCarousel component with 6 high-quality images (bags and shoes), auto-advance every 4s, navigation arrows, dot indicators, progress bar. Replaced static image in Hero section. Screenshot confirms working carousel."
+
+  - task: "Toast Notifications System"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Toast.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "✅ IMPLEMENTED - Complete Toast system with ToastProvider, animations, product info display for cart additions. Integrated with CartContext to show notifications when adding products to cart."
+
+  - task: "Favorites System Complete"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/context/FavoritesContext.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "✅ IMPLEMENTED - Full favorites system with FavoritesContext, localStorage persistence, ProductCard integration (heart button fixed), FavoritesPage, header counter. Favorites button no longer redirects to product page."
+
+  - task: "Admin Dashboard Responsive Design"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/AdminDashboard.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "✅ IMPROVED - Enhanced dashboard responsive design with better mobile layout for header, navigation tabs, stats cards, buttons, and search functionality. Improved mobile breakpoints and touch targets."
+
+  - task: "Dropdown Menu Fix"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Header.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "✅ FIXED - Enhanced dropdown menus for Sacs and Chaussures with better hover behavior, reduced margin-top, added group classes, improved mouse event handling to prevent premature closing."
+
+  - task: "Cart Navigation Scroll Fix"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Header.js"
+    stuck_count: 0
+    priority: "low"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "✅ FIXED - Added window.scrollTo(0, 0) to cart links in both desktop and mobile header to ensure cart page navigation always scrolls to top regardless of current page position."
+
   - task: "Backend Authentication Integration"
     implemented: true
     working: true
