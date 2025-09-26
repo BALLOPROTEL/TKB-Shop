@@ -598,20 +598,21 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-8 gap-4">
           <div className="flex items-center">
             <Link
               to="/"
-              className="inline-flex items-center text-pink-600 hover:text-pink-700 font-medium mr-8"
+              className="inline-flex items-center text-pink-600 hover:text-pink-700 font-medium mr-4 sm:mr-8"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Retour à l'accueil
+              <span className="hidden sm:inline">Retour à l'accueil</span>
+              <span className="sm:hidden">Retour</span>
             </Link>
-            <h1 className="text-3xl font-bold text-gray-900">Dashboard Admin</h1>
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">Dashboard Admin</h1>
           </div>
           <div className="text-right">
-            <p className="text-sm text-gray-600">Connecté en tant que</p>
-            <p className="font-semibold text-gray-900">{user?.firstName} {user?.lastName}</p>
+            <p className="text-xs sm:text-sm text-gray-600">Connecté en tant que</p>
+            <p className="font-semibold text-gray-900 text-sm sm:text-base">{user?.firstName} {user?.lastName}</p>
           </div>
         </div>
 
