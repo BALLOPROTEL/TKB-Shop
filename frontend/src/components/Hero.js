@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import ProductCarousel from './ProductCarousel';
 
 const Hero = () => {
   return (
