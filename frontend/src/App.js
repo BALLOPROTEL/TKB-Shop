@@ -86,9 +86,11 @@ function App() {
   return (
     <AuthProvider>
       <ProductsProvider>
-        <CartProvider>
-          <AppContent />
-        </CartProvider>
+        <ToastProvider>
+          <CartProvider>
+            <AppContent />
+          </CartProvider>
+        </ToastProvider>
       </ProductsProvider>
     </AuthProvider>
   );
