@@ -6,8 +6,9 @@ import { useToast } from '../components/Toast';
 
 const ProfilePage = () => {
   const { user, updateProfile, getUserOrders, logout } = useAuth();
-  const { toast } = useToast();
+  const { addToast } = useToast();
   const [isEditing, setIsEditing] = useState(false);
+  const [orders, setOrders] = useState([]);
   const [formData, setFormData] = useState({
     firstName: user?.firstName || '',
     lastName: user?.lastName || '',
@@ -16,7 +17,16 @@ const ProfilePage = () => {
     address: user?.address || ''
   });
 
-  const orders = getUserOrders(user?.id);
+  // Load user orders
+  useEffect(() => {
+    const loadOrders = async () => {
+      if (user?.id) {
+        const userOrders = await getUserOrders(user.id);
+        setOrders(Array.isArray(userOrders) ? userOrders : []);
+      }
+    };
+    loadOrders();
+  }, [user?.id, getUserOrders]);
 
   const handleChange = (e) => {
     setFormData({
