@@ -140,7 +140,7 @@ const CheckoutPage = () => {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Panier vide</h1>
-          <Link to="/" className="text-pink-600 hover:text-pink-700">
+          <Link to="/" className="text-orange-600 hover:text-orange-700">
             Retourner aux produits
           </Link>
         </div>
