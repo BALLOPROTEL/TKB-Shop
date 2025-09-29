@@ -28,10 +28,11 @@ const ProductCard = ({ product }) => {
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 group-hover:shadow-lg group-hover:-translate-y-1 h-full flex flex-col">
         {/* Image Container */}
         <div className="relative overflow-hidden bg-gray-50 aspect-square">
-          <img
+          <Image
             src={product.image}
             alt={product.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
           />
           
           {/* Overlay Actions */}
