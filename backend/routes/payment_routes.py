@@ -141,7 +141,7 @@ async def get_checkout_status(session_id: str, request: Request):
     
     try:
         # Get Stripe checkout
-        stripe_checkout = get_stripe_checkout()
+        stripe_checkout = get_stripe_checkout(request)
         
         # Get checkout status from Stripe
         checkout_status = await stripe_checkout.get_checkout_status(session_id)
