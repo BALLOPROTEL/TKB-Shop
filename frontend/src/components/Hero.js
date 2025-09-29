@@ -5,7 +5,7 @@ import ProductCarousel from './ProductCarousel';
 
 const Hero = () => {
   return (
-    <section className="relative bg-gradient-to-br from-pink-50 via-white to-rose-50 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-orange-50 via-white to-orange-100 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[500px] sm:min-h-[600px] py-8 sm:py-12 lg:py-20">
           {/* Content */}
