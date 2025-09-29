@@ -159,7 +159,7 @@ const CheckoutPage = () => {
         <div className="flex items-center mb-8">
           <Link
             to="/cart"
-            className="inline-flex items-center text-pink-600 hover:text-pink-700 font-medium mr-8"
+            className="inline-flex items-center text-orange-600 hover:text-orange-700 font-medium mr-8 transition-colors duration-200"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Retour au panier
