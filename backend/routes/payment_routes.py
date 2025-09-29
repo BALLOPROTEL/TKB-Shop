@@ -49,9 +49,10 @@ async def create_checkout_session(
     # Initialize Stripe checkout
     stripe_checkout = get_stripe_checkout(request)
     
-    # Build URLs
-    success_url = f"{host_url}/#/checkout-success?session_id={{CHECKOUT_SESSION_ID}}"
-    cancel_url = f"{host_url}/#/checkout-cancel"
+    # Build URLs (get frontend URL from request header or use default)
+    frontend_url = request.headers.get("Origin") or host_url
+    success_url = f"{frontend_url}/checkout-success?session_id={{CHECKOUT_SESSION_ID}}"
+    cancel_url = f"{frontend_url}/checkout"
     
     # Create checkout session request
     metadata = {
