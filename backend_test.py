@@ -20,6 +20,7 @@ class APITester:
         self.base_url = BASE_URL
         self.session = requests.Session()
         self.admin_token = None
+        self.stripe_session_id = None
         self.test_results = []
         
     def log_test(self, test_name: str, success: bool, details: str = "", response_data: Any = None):
