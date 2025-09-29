@@ -78,7 +78,7 @@ async def create_checkout_session(
         # Save payment transaction to database
         payment_transaction = PaymentTransaction(
             sessionId=session.session_id,
-            userId=ObjectId(current_user.id) if current_user else None,
+            userId=current_user.id if current_user else None,
             email=current_user.email if current_user else None,
             amount=total,
             currency="eur",
