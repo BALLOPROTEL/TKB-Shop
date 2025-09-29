@@ -347,11 +347,11 @@ class APITester:
             self.log_test("Stripe Checkout Status", False, f"Request failed: {str(e)}")
 
     def test_stripe_webhook_endpoint(self):
-        """Test POST /api/webhook/stripe endpoint structure"""
+        """Test POST /api/payments/webhook/stripe endpoint structure"""
         try:
             # Test webhook endpoint without signature (should fail gracefully)
             response = self.session.post(
-                f"{self.base_url}/webhook/stripe",
+                f"{self.base_url}/payments/webhook/stripe",
                 json={"test": "data"},
                 headers={"Content-Type": "application/json"},
                 timeout=10
