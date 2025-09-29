@@ -21,7 +21,7 @@ const Toast = ({ message, type = 'success', isVisible, onClose, duration = 3000,
       case 'error':
         return <AlertCircle className="h-5 w-5 text-red-400" />;
       case 'cart':
-        return <ShoppingBag className="h-5 w-5 text-pink-400" />;
+        return <ShoppingBag className="h-5 w-5 text-orange-500" />;
       default:
         return <CheckCircle className="h-5 w-5 text-green-400" />;
     }
