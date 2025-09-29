@@ -186,7 +186,7 @@ const CheckoutPage = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-300 transition-all duration-200 hover:border-orange-200"
                   />
                   
                   <div className="grid grid-cols-2 gap-4">
@@ -216,7 +216,7 @@ const CheckoutPage = () => {
                     placeholder="Téléphone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-300 transition-all duration-200 hover:border-orange-200"
                   />
                 </div>
               </div>
@@ -236,7 +236,7 @@ const CheckoutPage = () => {
                     value={formData.address}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-300 transition-all duration-200 hover:border-orange-200"
                   />
                   
                   <div className="grid grid-cols-2 gap-4">
@@ -264,7 +264,7 @@ const CheckoutPage = () => {
                     name="country"
                     value={formData.country}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-300 transition-all duration-200 hover:border-orange-200"
                   >
                     <option value="France">France</option>
                     <option value="Belgique">Belgique</option>
