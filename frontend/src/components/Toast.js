@@ -79,7 +79,7 @@ const Toast = ({ message, type = 'success', isVisible, onClose, duration = 3000,
             </div>
             <div className="ml-4 flex-shrink-0 flex">
               <button
-                className="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                className="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors duration-200"
                 onClick={onClose}
               >
                 <span className="sr-only">Fermer</span>
