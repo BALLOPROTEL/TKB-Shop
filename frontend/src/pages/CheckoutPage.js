@@ -299,17 +299,22 @@ const CheckoutPage = () => {
               </div>
 
               {/* Submit Button */}
-              <button
+              <Button
                 type="submit"
                 disabled={isProcessing}
-                className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 ${
-                  isProcessing
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-pink-600 to-rose-600 text-white hover:from-pink-700 hover:to-rose-700 transform hover:-translate-y-0.5 hover:shadow-lg'
-                }`}
+                loading={isProcessing}
+                size="xl"
+                className="w-full py-4 px-6 text-lg"
               >
-                {isProcessing ? 'Traitement en cours...' : `Payer ${total.toFixed(2)}€`}
-              </button>
+                {isProcessing ? (
+                  <div className="flex items-center justify-center">
+                    <Loader className="w-5 h-5 mr-2 animate-spin" />
+                    Redirection vers Stripe...
+                  </div>
+                ) : (
+                  `Payer ${total.toFixed(2)}€`
+                )}
+              </Button>
             </form>
           </div>
 
