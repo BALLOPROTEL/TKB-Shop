@@ -63,6 +63,7 @@ function AppContent() {
                 <CheckoutPage />
               </ProtectedRoute>
             } />
+            <Route path="/checkout-success" element={<CheckoutSuccessPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/profile" element={
