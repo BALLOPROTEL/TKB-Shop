@@ -8,21 +8,23 @@ import Button from '../components/ui/Button';
 
 const CheckoutPage = () => {
   const { items, getTotalPrice, clearCart } = useCart();
-  const { toast } = useToast();
+  const { addToast } = useToast();
+  const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    email: '',
-    firstName: '',
-    lastName: '',
-    address: '',
+    email: user?.email || '',
+    firstName: user?.firstName || '',
+    lastName: user?.lastName || '',
+    address: user?.address || '',
     city: '',
     postalCode: '',
     country: 'France',
-    phone: ''
+    phone: user?.phone || ''
   });
 
   const [isProcessing, setIsProcessing] = useState(false);
+  const [validationErrors, setValidationErrors] = useState({});
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
