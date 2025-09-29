@@ -99,6 +99,36 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
         isActive=user.isActive
     )
 
+async def get_current_user_optional(token: Optional[str] = Depends(oauth2_scheme_optional)) -> Optional[UserResponse]:
+    """Get current user if authenticated, otherwise return None"""
+    if not token:
+        return None
+    
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id: str = payload.get("sub")
+        if user_id is None:
+            return None
+    except JWTError:
+        return None
+    
+    user = await get_user_by_id(user_id)
+    if user is None:
+        return None
+    
+    return UserResponse(
+        id=str(user.id),
+        firstName=user.firstName,
+        lastName=user.lastName,
+        email=user.email,
+        role=user.role,
+        phone=user.phone,
+        address=user.address,
+        avatar=user.avatar,
+        joinDate=user.joinDate,
+        isActive=user.isActive
+    )
+
 async def get_current_admin_user(current_user: UserResponse = Depends(get_current_user)) -> UserResponse:
     """Get current user and verify admin role"""
     if current_user.role != "admin":
