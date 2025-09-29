@@ -1,14 +1,17 @@
 from fastapi import APIRouter, HTTPException, status, Depends, Request
-from fastapi.responses import RedirectResponse
-from typing import Optional
-from models import CheckoutRequest, PaymentTransaction, UserResponse
-from auth import get_current_user
+from typing import List, Dict, Any, Optional
+from models import PaymentTransaction, CheckoutRequest, UserResponse, OrderCreate, OrderItem
+from auth import get_current_user, get_current_user_optional
 from database import get_payment_transactions_collection, get_orders_collection
-from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionResponse, CheckoutStatusResponse, CheckoutSessionRequest
-from bson import ObjectId
 from datetime import datetime
 import os
-import json
+from dotenv import load_dotenv
+from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionResponse, CheckoutStatusResponse, CheckoutSessionRequest
+from bson import ObjectId
+import uuid
+
+# Load environment variables
+load_dotenv()
 
 router = APIRouter()
 
