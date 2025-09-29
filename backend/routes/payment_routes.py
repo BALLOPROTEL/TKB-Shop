@@ -184,9 +184,13 @@ async def stripe_webhook(request: Request):
             
             if transaction and transaction.get("userId"):
                 # Create order from successful payment
-                # Note: In production, you'd store cart items in the transaction metadata
-                # or in a separate cart collection to recreate the order
-                pass
+                await create_order_from_payment(transaction, webhook_response)
+                
+                # Mark order as created in transaction
+                await transactions.update_one(
+                    {"sessionId": webhook_response.session_id},
+                    {"$set": {"orderId": f"CMD{str(uuid.uuid4())[:8].upper()}"}}
+                )
         
         return {"received": True}
         
