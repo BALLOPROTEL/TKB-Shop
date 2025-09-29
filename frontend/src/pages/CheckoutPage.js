@@ -281,16 +281,16 @@ const CheckoutPage = () => {
                 </h2>
                 
                 <div className="space-y-4">
-                  <div className="border-2 border-pink-500 bg-pink-50 rounded-lg p-4">
+                  <div className="border-2 border-orange-500 bg-orange-50 rounded-lg p-4 transition-all duration-200 hover:shadow-orange">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <CreditCard className="h-6 w-6 text-pink-600 mr-3" />
+                        <CreditCard className="h-6 w-6 text-orange-600 mr-3" />
                         <div>
                           <p className="font-semibold text-gray-900">Carte bancaire</p>
                           <p className="text-sm text-gray-600">Paiement sécurisé via Stripe</p>
                         </div>
                       </div>
-                      <div className="w-5 h-5 bg-pink-500 rounded-full flex items-center justify-center">
+                      <div className="w-5 h-5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-orange">
                         <Check className="h-3 w-3 text-white" />
                       </div>
                     </div>
