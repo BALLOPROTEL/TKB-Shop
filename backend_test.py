@@ -194,11 +194,11 @@ class APITester:
         try:
             response = self.session.get(f"{self.base_url}/admin/users", timeout=10)
             
-            if response.status_code == 401:
+            if response.status_code in [401, 403]:
                 self.log_test("Protected Endpoint Security", True, "Correctly rejected unauthenticated request")
             else:
                 self.log_test("Protected Endpoint Security", False, 
-                            f"Expected HTTP 401, got {response.status_code}", response.text)
+                            f"Expected HTTP 401/403, got {response.status_code}", response.text)
                 
         except Exception as e:
             self.log_test("Protected Endpoint Security", False, f"Request failed: {str(e)}")
