@@ -74,7 +74,7 @@ const ProductCard = ({ product }) => {
           {product.inStock && (
             <button
               onClick={handleQuickAdd}
-              className="hidden sm:flex absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 bg-pink-600 text-white py-2 rounded-lg font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 hover:bg-pink-700 items-center justify-center space-x-2 text-sm"
+              className="hidden sm:flex absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-lg font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 hover:from-orange-600 hover:to-orange-700 items-center justify-center space-x-2 text-sm shadow-orange"
             >
               <ShoppingBag className="h-4 w-4" />
               <span>Ajout rapide</span>
