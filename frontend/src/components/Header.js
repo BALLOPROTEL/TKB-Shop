@@ -39,11 +39,11 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 flex-shrink-0" onClick={closeMenus}>
-            <div className="bg-gradient-to-r from-pink-500 to-rose-500 p-2 rounded-lg">
+            <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-2 rounded-lg shadow-orange transition-all duration-300 hover:shadow-orange-lg">
               <ShoppingBag className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
+              <span className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
                 TKB'Shop
               </span>
               <span className="text-xs text-gray-500 hidden sm:block">Tanou Karidja Ballo</span>
