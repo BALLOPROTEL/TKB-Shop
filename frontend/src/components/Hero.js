@@ -32,15 +32,15 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
                 to="/category/sacs-a-main"
-                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-semibold rounded-lg hover:from-pink-700 hover:to-rose-700 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg text-sm sm:text-base"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-orange-lg text-sm sm:text-base group"
               >
                 Découvrir la Collection
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
               
               <Link
                 to="/category/chaussures-femmes"
-                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-pink-200 text-pink-700 font-semibold rounded-lg hover:bg-pink-50 transition-all duration-300 text-sm sm:text-base"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-orange-200 text-orange-700 font-semibold rounded-lg hover:bg-orange-50 hover:border-orange-300 transition-all duration-300 text-sm sm:text-base"
               >
                 Voir les Chaussures
               </Link>
