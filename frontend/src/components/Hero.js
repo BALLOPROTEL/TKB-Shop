@@ -69,8 +69,8 @@ const Hero = () => {
             </div>
             
             {/* Decorative Elements - Hidden on mobile for performance */}
-            <div className="hidden sm:block absolute top-4 -right-4 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-pink-300 to-rose-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" />
-            <div className="hidden sm:block absolute -bottom-8 -left-8 w-48 sm:w-64 h-48 sm:h-64 bg-gradient-to-br from-rose-300 to-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000" />
+            <div className="hidden sm:block absolute top-4 -right-4 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-orange-300 to-orange-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" />
+            <div className="hidden sm:block absolute -bottom-8 -left-8 w-48 sm:w-64 h-48 sm:h-64 bg-gradient-to-br from-orange-400 to-orange-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000" />
             
             {/* Floating Cards */}
             <div className="hidden lg:block absolute -top-4 sm:-top-6 -left-4 sm:-left-6 bg-white p-3 sm:p-4 rounded-lg shadow-xl transform rotate-3 hover:rotate-6 transition-all duration-300 hover:shadow-2xl">
