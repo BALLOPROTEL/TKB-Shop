@@ -256,6 +256,223 @@ class APITester:
         except Exception as e:
             self.log_test("Customer Authentication", False, f"Request failed: {str(e)}")
 
+    def test_stripe_checkout_session(self):
+        """Test POST /api/payments/checkout/session - Stripe integration"""
+        if not self.admin_token:
+            self.log_test("Stripe Checkout Session", False, "No admin token available")
+            return
+            
+        try:
+            # Sample checkout data
+            checkout_data = {
+                "items": [
+                    {
+                        "productId": TEST_PRODUCT_ID,
+                        "name": "Sac à Main Élégant Noir",
+                        "price": 89.99,
+                        "quantity": 1,
+                        "selectedColor": "Noir",
+                        "selectedSize": "Moyen",
+                        "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3"
+                    }
+                ]
+            }
+            
+            headers = {
+                "Authorization": f"Bearer {self.admin_token}",
+                "Content-Type": "application/json",
+                "Origin": "https://tkbshop-market.preview.emergentagent.com"
+            }
+            
+            response = self.session.post(
+                f"{self.base_url}/payments/checkout/session",
+                json=checkout_data,
+                headers=headers,
+                timeout=15
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                required_fields = ["url", "session_id", "message"]
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if missing_fields:
+                    self.log_test("Stripe Checkout Session", False, f"Missing fields: {missing_fields}", data)
+                else:
+                    # Store session_id for status test
+                    self.stripe_session_id = data["session_id"]
+                    self.log_test("Stripe Checkout Session", True, 
+                                f"Session created: {data['session_id'][:20]}... URL: {data['url'][:50]}...")
+            else:
+                self.log_test("Stripe Checkout Session", False, f"HTTP {response.status_code}", response.text)
+                
+        except Exception as e:
+            self.log_test("Stripe Checkout Session", False, f"Request failed: {str(e)}")
+
+    def test_stripe_checkout_status(self):
+        """Test GET /api/payments/checkout/status/{session_id}"""
+        if not hasattr(self, 'stripe_session_id'):
+            self.log_test("Stripe Checkout Status", False, "No session_id from previous test")
+            return
+            
+        try:
+            response = self.session.get(
+                f"{self.base_url}/payments/checkout/status/{self.stripe_session_id}",
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                required_fields = ["status", "payment_status", "amount_total", "currency"]
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if missing_fields:
+                    self.log_test("Stripe Checkout Status", False, f"Missing fields: {missing_fields}", data)
+                else:
+                    self.log_test("Stripe Checkout Status", True, 
+                                f"Status: {data['status']}, Payment: {data['payment_status']}, Amount: {data['amount_total']} {data['currency']}")
+            else:
+                self.log_test("Stripe Checkout Status", False, f"HTTP {response.status_code}", response.text)
+                
+        except Exception as e:
+            self.log_test("Stripe Checkout Status", False, f"Request failed: {str(e)}")
+
+    def test_stripe_webhook_endpoint(self):
+        """Test POST /api/webhook/stripe endpoint structure"""
+        try:
+            # Test webhook endpoint without signature (should fail gracefully)
+            response = self.session.post(
+                f"{self.base_url}/webhook/stripe",
+                json={"test": "data"},
+                headers={"Content-Type": "application/json"},
+                timeout=10
+            )
+            
+            # Should return 400 for missing signature
+            if response.status_code == 400:
+                data = response.json()
+                if "Missing Stripe signature" in data.get("detail", ""):
+                    self.log_test("Stripe Webhook Endpoint", True, "Correctly validates Stripe signature requirement")
+                else:
+                    self.log_test("Stripe Webhook Endpoint", False, f"Unexpected error message: {data}", data)
+            else:
+                self.log_test("Stripe Webhook Endpoint", False, f"Expected HTTP 400, got {response.status_code}", response.text)
+                
+        except Exception as e:
+            self.log_test("Stripe Webhook Endpoint", False, f"Request failed: {str(e)}")
+
+    def test_payment_transactions_collection(self):
+        """Test payment transactions endpoint"""
+        if not self.admin_token:
+            self.log_test("Payment Transactions", False, "No admin token available")
+            return
+            
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}"}
+            response = self.session.get(
+                f"{self.base_url}/payments/transactions",
+                headers=headers,
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                if isinstance(data, list):
+                    self.log_test("Payment Transactions", True, f"Retrieved {len(data)} payment transactions")
+                else:
+                    self.log_test("Payment Transactions", False, f"Expected list, got {type(data)}", data)
+            else:
+                self.log_test("Payment Transactions", False, f"HTTP {response.status_code}", response.text)
+                
+        except Exception as e:
+            self.log_test("Payment Transactions", False, f"Request failed: {str(e)}")
+
+    def test_orders_api(self):
+        """Test orders API endpoints"""
+        if not self.admin_token:
+            self.log_test("Orders API", False, "No admin token available")
+            return
+            
+        try:
+            headers = {"Authorization": f"Bearer {self.admin_token}"}
+            
+            # Test GET /api/orders/
+            response = self.session.get(
+                f"{self.base_url}/orders/",
+                headers=headers,
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                if isinstance(data, list):
+                    self.log_test("Orders API - List", True, f"Retrieved {len(data)} orders")
+                else:
+                    self.log_test("Orders API - List", False, f"Expected list, got {type(data)}", data)
+            else:
+                self.log_test("Orders API - List", False, f"HTTP {response.status_code}", response.text)
+                
+        except Exception as e:
+            self.log_test("Orders API", False, f"Request failed: {str(e)}")
+
+    def test_create_order(self):
+        """Test POST /api/orders/ - Create order"""
+        if not self.admin_token:
+            self.log_test("Create Order", False, "No admin token available")
+            return
+            
+        try:
+            # Sample order data
+            order_data = {
+                "items": [
+                    {
+                        "productId": TEST_PRODUCT_ID,
+                        "name": "Sac à Main Élégant Noir",
+                        "price": 89.99,
+                        "quantity": 1,
+                        "selectedColor": "Noir",
+                        "selectedSize": "Moyen",
+                        "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3"
+                    }
+                ],
+                "shippingAddress": {
+                    "firstName": "Admin",
+                    "lastName": "ChicBoutique",
+                    "address": "123 Test Street",
+                    "city": "Paris",
+                    "postalCode": "75001",
+                    "country": "France"
+                }
+            }
+            
+            headers = {
+                "Authorization": f"Bearer {self.admin_token}",
+                "Content-Type": "application/json"
+            }
+            
+            response = self.session.post(
+                f"{self.base_url}/orders/",
+                json=order_data,
+                headers=headers,
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                required_fields = ["id", "orderId", "items", "status", "total"]
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if missing_fields:
+                    self.log_test("Create Order", False, f"Missing fields: {missing_fields}", data)
+                else:
+                    self.log_test("Create Order", True, 
+                                f"Order created: {data['orderId']}, Status: {data['status']}, Total: {data['total']}€")
+            else:
+                self.log_test("Create Order", False, f"HTTP {response.status_code}", response.text)
+                
+        except Exception as e:
+            self.log_test("Create Order", False, f"Request failed: {str(e)}")
+
     def run_all_tests(self):
         """Run all backend tests"""
         print("=" * 60)
