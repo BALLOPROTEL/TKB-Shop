@@ -90,7 +90,7 @@ const ProductCard = ({ product }) => {
           </p>
 
           {/* Title */}
-          <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors duration-200 text-sm sm:text-base line-clamp-2 flex-1">
+          <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-200 text-sm sm:text-base line-clamp-2 flex-1">
             {product.name}
           </h3>
 
