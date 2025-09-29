@@ -65,9 +65,9 @@ const Header = () => {
               onMouseEnter={() => setShowSacsMenu(true)}
               onMouseLeave={() => setShowSacsMenu(false)}
             >
-              <button className="flex items-center space-x-1 text-gray-700 hover:text-pink-600 font-medium transition-colors duration-200 text-sm xl:text-base">
+              <button className="flex items-center space-x-1 text-gray-700 hover:text-orange-600 font-medium transition-colors duration-200 text-sm xl:text-base relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full">
                 <span>Sacs</span>
-                <ChevronDown className="h-4 w-4" />
+                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
               </button>
               {showSacsMenu && (
                 <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
