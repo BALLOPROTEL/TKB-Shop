@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, CreditCard, Truck, Shield, Check } from 'lucide-react';
+import { ArrowLeft, CreditCard, Truck, Shield, Check, Loader } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import { useToast } from '../hooks/use-toast';
+import { useToast } from '../components/Toast';
+import { useAuth } from '../context/AuthContext';
+import Button from '../components/ui/Button';
 
 const CheckoutPage = () => {
   const { items, getTotalPrice, clearCart } = useCart();
