@@ -12,6 +12,7 @@ import HomePage from './pages/HomePage';
 import ProductDetail from './pages/ProductDetail';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
+import CheckoutSuccessPage from './pages/CheckoutSuccessPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
