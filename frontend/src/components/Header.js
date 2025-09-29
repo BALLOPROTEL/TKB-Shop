@@ -157,11 +157,11 @@ const Header = () => {
             <Link 
               to="/cart"
               onClick={() => window.scrollTo(0, 0)}
-              className="relative p-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
+              className="relative p-2 text-gray-600 hover:text-orange-600 transition-all duration-200 hover:bg-orange-50 rounded-lg"
             >
               <ShoppingBag className="h-5 w-5 lg:h-6 lg:w-6" />
               {getTotalItems() > 0 && (
-                <span className="absolute -top-1 -right-1 bg-pink-500 text-white text-xs rounded-full h-4 w-4 lg:h-5 lg:w-5 flex items-center justify-center font-medium">
+                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs rounded-full h-4 w-4 lg:h-5 lg:w-5 flex items-center justify-center font-medium shadow-orange animate-bounce-in">
                   {getTotalItems()}
                 </span>
               )}
