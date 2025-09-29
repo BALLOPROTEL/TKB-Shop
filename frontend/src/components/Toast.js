@@ -92,7 +92,7 @@ const Toast = ({ message, type = 'success', isVisible, onClose, duration = 3000,
         {/* Progress bar */}
         <div className="h-1 bg-gray-200">
           <div 
-            className="h-full bg-gradient-to-r from-pink-500 to-rose-500 animate-progress-bar"
+            className="h-full bg-gradient-to-r from-orange-500 to-orange-600 animate-progress-bar"
             style={{ animation: `progress-bar ${duration}ms linear` }}
           />
         </div>
