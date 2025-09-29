@@ -58,13 +58,13 @@ const ProductCard = ({ product }) => {
                 e.stopPropagation();
                 toggleFavorite(product);
               }}
-              className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-all duration-200 hover:scale-110"
+              className="p-2 bg-white rounded-full shadow-md hover:bg-orange-50 transition-all duration-200 hover:scale-110 hover:shadow-orange"
             >
               <Heart 
                 className={`h-4 w-4 transition-colors duration-200 ${
                   isFavorite(product.id) 
-                    ? 'text-red-500 fill-current' 
-                    : 'text-gray-600 hover:text-red-500'
+                    ? 'text-orange-500 fill-current' 
+                    : 'text-gray-600 hover:text-orange-500'
                 }`} 
               />
             </button>
