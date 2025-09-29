@@ -189,7 +189,7 @@ async def stripe_webhook(request: Request):
             )
         
         # Get Stripe checkout
-        stripe_checkout = get_stripe_checkout()
+        stripe_checkout = get_stripe_checkout(request)
         
         # Handle webhook
         webhook_response = await stripe_checkout.handle_webhook(body, signature)
