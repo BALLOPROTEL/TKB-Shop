@@ -47,7 +47,7 @@ async def create_checkout_session(
     host_url = str(request.base_url).rstrip('/')
     
     # Initialize Stripe checkout
-    stripe_checkout = get_stripe_checkout()
+    stripe_checkout = get_stripe_checkout(request)
     
     # Build URLs
     success_url = f"{host_url}/#/checkout-success?session_id={{CHECKOUT_SESSION_ID}}"
