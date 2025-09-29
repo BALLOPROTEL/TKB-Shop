@@ -80,7 +80,7 @@ const Header = () => {
                       <Link
                         key={sub.id}
                         to={`/category/sacs/${sub.slug}`}
-                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200 border-l-3 border-transparent hover:border-orange-500"
+                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200 border-l-4 border-transparent hover:border-orange-500"
                         onClick={closeMenus}
                       >
                         {sub.name}
@@ -112,7 +112,7 @@ const Header = () => {
                       <Link
                         key={sub.id}
                         to={`/category/chaussures/${sub.slug}`}
-                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200 border-l-3 border-transparent hover:border-orange-500"
+                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200 border-l-4 border-transparent hover:border-orange-500"
                         onClick={closeMenus}
                       >
                         {sub.name}
