@@ -10,7 +10,7 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[500px] sm:min-h-[600px] py-8 sm:py-12 lg:py-20">
           {/* Content */}
           <div className="text-center lg:text-left space-y-6 sm:space-y-8 order-2 lg:order-1">
-            <div className="inline-flex items-center space-x-2 bg-pink-100 text-pink-700 px-3 sm:px-4 py-2 rounded-full text-sm font-medium">
+            <div className="inline-flex items-center space-x-2 bg-orange-100 text-orange-700 px-3 sm:px-4 py-2 rounded-full text-sm font-medium shadow-card hover:shadow-card-hover transition-all duration-300">
               <Sparkles className="h-4 w-4" />
               <span>Nouvelle Collection Automne</span>
             </div>
