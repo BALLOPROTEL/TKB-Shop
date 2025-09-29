@@ -276,7 +276,7 @@ const CheckoutPage = () => {
               {/* Payment Method */}
               <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                 <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-                  <div className="w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">3</div>
+                  <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 shadow-orange">3</div>
                   Méthode de paiement
                 </h2>
                 
