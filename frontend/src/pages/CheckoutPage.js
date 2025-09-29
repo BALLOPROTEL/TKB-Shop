@@ -34,21 +34,105 @@ const CheckoutPage = () => {
     }));
   };
 
+  const validateForm = () => {
+    const errors = {};
+    
+    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = 'Email valide requis';
+    }
+    
+    if (!formData.firstName.trim()) {
+      errors.firstName = 'Prénom requis';
+    }
+    
+    if (!formData.lastName.trim()) {
+      errors.lastName = 'Nom requis';
+    }
+    
+    if (!formData.address.trim()) {
+      errors.address = 'Adresse requise';
+    }
+    
+    if (!formData.city.trim()) {
+      errors.city = 'Ville requise';
+    }
+    
+    if (!formData.postalCode.trim()) {
+      errors.postalCode = 'Code postal requis';
+    }
+    
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      addToast('Veuillez corriger les erreurs dans le formulaire', 'error');
+      return;
+    }
+    
     setIsProcessing(true);
 
-    // Simulate payment processing
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      // Prepare checkout data
+      const checkoutData = {
+        items: items.map(item => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          image: item.image,
+          selectedColor: item.selectedColor,
+          selectedSize: item.selectedSize,
+          quantity: item.quantity
+        })),
+        shippingAddress: {
+          email: formData.email,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          address: formData.address,
+          city: formData.city,
+          postalCode: formData.postalCode,
+          country: formData.country,
+          phone: formData.phone
+        }
+      };
 
-    toast({
-      title: "Commande confirmée !",
-      description: "Votre commande a été traitée avec succès. Vous recevrez un email de confirmation.",
-    });
+      // Get current origin for success/cancel URLs
+      const currentOrigin = window.location.origin;
+      
+      // Add origin to request headers
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/payments/checkout/session`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Origin': currentOrigin,
+          ...(isAuthenticated ? {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          } : {})
+        },
+        body: JSON.stringify(checkoutData)
+      });
 
-    clearCart();
-    setIsProcessing(false);
-    navigate('/');
+      if (!response.ok) {
+        throw new Error(`Erreur ${response.status}: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      
+      // Redirect to Stripe checkout
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error('URL de paiement non reçue');
+      }
+      
+    } catch (error) {
+      console.error('Erreur lors du paiement:', error);
+      addToast(error.message || 'Erreur lors de l\'initialisation du paiement', 'error');
+      setIsProcessing(false);
+    }
   };
 
   if (items.length === 0) {
