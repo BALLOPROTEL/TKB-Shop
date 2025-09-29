@@ -34,7 +34,7 @@ const Toast = ({ message, type = 'success', isVisible, onClose, duration = 3000,
       case 'error':
         return 'bg-red-50 border-red-200';
       case 'cart':
-        return 'bg-pink-50 border-pink-200';
+        return 'bg-orange-50 border-orange-200';
       default:
         return 'bg-green-50 border-green-200';
     }
