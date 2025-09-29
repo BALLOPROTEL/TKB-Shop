@@ -452,9 +452,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Backend Authentication Integration"
-    - "Product Detail Backend Integration"
-    - "General API Routes Testing"
+    - "API Paiement Stripe - New Integration"
+    - "API Produits - Homepage Loading"
+    - "API Authentification - Admin System"
+    - "API Commandes - Order System"
   stuck_tasks: []
   test_all: true
   test_priority: "high_first"
