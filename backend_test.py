@@ -264,11 +264,11 @@ class APITester:
             return
             
         try:
-            # Sample checkout data
+            # Sample checkout data with correct structure
             checkout_data = {
                 "items": [
                     {
-                        "productId": TEST_PRODUCT_ID,
+                        "id": TEST_PRODUCT_ID,
                         "name": "Sac à Main Élégant Noir",
                         "price": 89.99,
                         "quantity": 1,
@@ -276,7 +276,15 @@ class APITester:
                         "selectedSize": "Moyen",
                         "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3"
                     }
-                ]
+                ],
+                "shippingAddress": {
+                    "firstName": "Admin",
+                    "lastName": "ChicBoutique",
+                    "address": "123 Test Street",
+                    "city": "Paris",
+                    "postalCode": "75001",
+                    "country": "France"
+                }
             }
             
             headers = {
