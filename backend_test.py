@@ -476,7 +476,7 @@ class APITester:
     def run_all_tests(self):
         """Run all backend tests"""
         print("=" * 60)
-        print("TKB'Shop Backend API Testing")
+        print("TKB'Shop Backend API Testing - Stripe Integration Focus")
         print("=" * 60)
         print(f"Base URL: {self.base_url}")
         print(f"Admin Email: {ADMIN_EMAIL}")
@@ -484,11 +484,23 @@ class APITester:
         print("=" * 60)
         print()
 
-        # Core API tests
+        # Core API tests (Priority 1 - Homepage)
         self.test_health_endpoint()
-        self.test_admin_authentication()
         self.test_products_list()
         self.test_product_detail()
+        
+        # Authentication tests (Priority 2)
+        self.test_admin_authentication()
+        
+        # Stripe Payment Integration tests (Priority 3 - New Integration)
+        self.test_stripe_checkout_session()
+        self.test_stripe_checkout_status()
+        self.test_stripe_webhook_endpoint()
+        self.test_payment_transactions_collection()
+        
+        # Orders API tests (Priority 4)
+        self.test_orders_api()
+        self.test_create_order()
         
         # Additional validation tests
         self.test_invalid_product_id()
