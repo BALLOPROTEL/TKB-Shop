@@ -16,6 +16,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 security = HTTPBearer()
+oauth2_scheme_optional = HTTPBearer(auto_error=False)  # Optional authentication
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """Verify password against hash"""
