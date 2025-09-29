@@ -104,8 +104,39 @@ async def create_checkout_session(
             detail=f"Failed to create checkout session: {str(e)}"
         )
 
+async def create_order_from_payment(transaction: dict, webhook_response):
+    """Create order from successful payment transaction"""
+    try:
+        orders = await get_orders_collection()
+        
+        # Extract items from metadata (stored as JSON string)
+        metadata = transaction.get("metadata", {})
+        
+        # Generate order ID
+        order_id = f"CMD{str(uuid.uuid4())[:8].upper()}"
+        
+        # Create order from transaction data
+        order_dict = {
+            "userId": transaction["userId"],
+            "orderId": order_id,
+            "items": [],  # Items would be stored in metadata in production
+            "status": "paid",
+            "total": transaction["amount"],
+            "subtotal": float(metadata.get("subtotal", 0)),
+            "shipping": float(metadata.get("shipping", 0)),
+            "shippingAddress": {},  # Would be stored in metadata
+            "paymentSessionId": transaction["sessionId"],
+            "createdAt": datetime.utcnow(),
+            "updatedAt": datetime.utcnow()
+        }
+        
+        await orders.insert_one(order_dict)
+        
+    except Exception as e:
+        print(f"Error creating order from payment: {e}")
+
 @router.get("/checkout/status/{session_id}", response_model=dict)
-async def get_checkout_status(session_id: str):
+async def get_checkout_status(session_id: str, request: Request):
     """Get checkout session status"""
     
     try:
