@@ -154,7 +154,7 @@ const ProductCard = ({ product }) => {
           {product.inStock && (
             <button
               onClick={handleQuickAdd}
-              className="sm:hidden w-full mt-3 bg-pink-600 text-white py-2 rounded-lg font-medium hover:bg-pink-700 transition-colors duration-200 flex items-center justify-center space-x-2 text-sm"
+              className="sm:hidden w-full mt-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-lg font-medium hover:from-orange-600 hover:to-orange-700 transition-all duration-200 flex items-center justify-center space-x-2 text-sm shadow-orange"
             >
               <ShoppingBag className="h-4 w-4" />
               <span>Ajouter au panier</span>
