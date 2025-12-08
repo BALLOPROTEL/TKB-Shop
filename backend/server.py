@@ -67,4 +67,4 @@ async def startup_db_client():
 async def shutdown_db_client():
     """Close database connection on shutdown"""
     await close_mongo_connection()
-    logger.info("ChicBoutique API shutdown complete")
+    logger.info("TKB'Shop API shutdown complete")
