@@ -24,10 +24,10 @@ const ProductCard = ({ product }) => {
     Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
 
   return (
-    <Link to={`/product/${product.id}`} className="group block w-full">
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 group-hover:shadow-lg group-hover:-translate-y-1 h-full flex flex-col">
+    <Link to={`/product/${product.id}`} className="block">
+      <div className="group relative bg-white overflow-hidden transition-all duration-300 hover:shadow-elegant">
         {/* Image Container */}
-        <div className="relative overflow-hidden bg-gray-50 aspect-square">
+        <div className="relative aspect-square overflow-hidden bg-gray-50">
           <Image
             src={product.image}
             alt={product.name}
@@ -35,52 +35,39 @@ const ProductCard = ({ product }) => {
             loading="lazy"
           />
           
-          {/* Overlay Actions */}
-          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300" />
-          
-          {/* Discount Badge */}
-          {discount > 0 && (
-            <div className="absolute top-2 sm:top-3 left-2 sm:left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-              -{discount}%
-            </div>
-          )}
+          {/* Wishlist Button - Top right */}
+          <button 
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              toggleFavorite(product);
+            }}
+            className="absolute top-4 right-4 p-2 bg-white shadow-luxury opacity-0 group-hover:opacity-100 transition-all duration-200 hover:shadow-elegant"
+          >
+            <Heart 
+              className={`h-5 w-5 transition-colors duration-200 ${
+                isFavorite(product.id) 
+                  ? 'text-primary-900 fill-current' 
+                  : 'text-primary-600 hover:text-primary-900'
+              }`} 
+            />
+          </button>
 
-          {/* Stock Status */}
-          {!product.inStock && (
-            <div className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-gray-800 text-white text-xs font-medium px-2 py-1 rounded-full">
-              Rupture de stock
-            </div>
-          )}
-
-          {/* Quick Actions - Desktop only */}
-          <div className="hidden sm:flex absolute top-2 sm:top-3 right-2 sm:right-3 flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-            <button 
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                toggleFavorite(product);
-              }}
-              className="p-2 bg-white rounded-full shadow-md hover:bg-orange-50 transition-all duration-200 hover:scale-110 hover:shadow-orange"
-            >
-              <Heart 
-                className={`h-4 w-4 transition-colors duration-200 ${
-                  isFavorite(product.id) 
-                    ? 'text-orange-500 fill-current' 
-                    : 'text-gray-600 hover:text-orange-500'
-                }`} 
-              />
-            </button>
-          </div>
-
-          {/* Quick Add Button - Desktop only */}
+          {/* Quick Add Button - Desktop hover */}
           {product.inStock && (
             <button
               onClick={handleQuickAdd}
-              className="hidden sm:flex absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-lg font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 hover:from-orange-600 hover:to-orange-700 items-center justify-center space-x-2 text-sm shadow-orange"
+              className="absolute bottom-4 left-4 right-4 bg-primary-900 text-white py-3 font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 hover:bg-primary-800 text-sm uppercase tracking-wider"
             >
-              <ShoppingBag className="h-4 w-4" />
-              <span>Ajout rapide</span>
+              Ajouter au panier
             </button>
+          )}
+
+          {/* New Badge */}
+          {product.isNew && (
+            <div className="absolute top-4 left-4 bg-accent-500 text-white text-xs font-medium px-3 py-1 uppercase tracking-wider">
+              Nouveau
+            </div>
           )}
         </div>
 
