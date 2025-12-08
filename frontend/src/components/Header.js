@@ -428,6 +428,25 @@ const Header = () => {
                       ))}
                     </div>
                   </div>
+
+                  {/* Mobile Chaîne Menu */}
+                  <div>
+                    <div className="py-3 px-2 text-lg text-gray-700 font-medium border-b border-gray-100">
+                      Chaîne
+                    </div>
+                    <div className="pl-4 space-y-2 mt-2">
+                      {categories.find(cat => cat.id === 'chaine')?.subcategories.map(sub => (
+                        <Link
+                          key={sub.id}
+                          to={`/category/chaine/${sub.slug}`}
+                          className="block py-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
+                          onClick={closeMenus}
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 </nav>
 
                 {/* Mobile Auth Links */}
