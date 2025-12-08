@@ -118,6 +118,37 @@ const Header = () => {
                 </div>
               )}
             </div>
+
+            {/* Chaîne Menu */}
+            <div 
+              className="relative group"
+              onMouseEnter={() => setShowChaineMenu(true)}
+              onMouseLeave={() => setShowChaineMenu(false)}
+            >
+              <button className="flex items-center space-x-1 text-primary-800 hover:text-accent-600 font-medium transition-colors duration-200 text-sm xl:text-base uppercase tracking-wide">
+                <span>Chaîne</span>
+                <ChevronDown className="h-3 w-3 transition-transform duration-200 group-hover:rotate-180" />
+              </button>
+              {showChaineMenu && (
+                <div className="absolute top-full left-0 mt-3 w-52 bg-white border border-gray-200 shadow-elegant z-50"
+                     onMouseEnter={() => setShowChaineMenu(true)}
+                     onMouseLeave={() => setShowChaineMenu(false)}
+                >
+                  <div className="py-4">
+                    {categories.find(cat => cat.id === 'chaine')?.subcategories.map(sub => (
+                      <Link
+                        key={sub.id}
+                        to={`/category/chaine/${sub.slug}`}
+                        className="block px-6 py-3 text-sm text-primary-700 hover:bg-gray-50 hover:text-accent-600 transition-colors duration-200 uppercase tracking-wide"
+                        onClick={closeMenus}
+                      >
+                        {sub.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Search Bar - Desktop */}
