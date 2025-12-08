@@ -25,7 +25,7 @@ const Hero = () => {
 
             {/* Description */}
             <p className="text-lg text-primary-700 mb-8 max-w-lg mx-auto lg:mx-0">
-              Découvrez l'excellence artisanale française à travers notre collection soigneusement sélectionnée de sacs, chaussures et accessoires de luxe.
+              Découvrez l&apos;excellence artisanale française à travers notre collection soigneusement sélectionnée de sacs, chaussures et accessoires de luxe.
             </p>
 
             {/* CTA Buttons */}
