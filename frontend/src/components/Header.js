@@ -219,16 +219,16 @@ const Header = () => {
                 )}
               </div>
             ) : (
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-6">
                 <Link
                   to="/login"
-                  className="px-3 lg:px-4 py-2 text-sm text-orange-600 hover:text-orange-700 font-medium transition-colors duration-200"
+                  className="text-sm text-primary-700 hover:text-accent-600 font-medium transition-colors duration-200 uppercase tracking-wide"
                 >
                   Connexion
                 </Link>
                 <Link
                   to="/register"
-                  className="px-3 lg:px-4 py-2 text-sm bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-orange hover:shadow-orange-lg transform hover:-translate-y-0.5"
+                  className="px-6 py-2 text-sm bg-primary-900 text-white hover:bg-primary-800 transition-colors duration-200 uppercase tracking-wide"
                 >
                   Inscription
                 </Link>
