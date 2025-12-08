@@ -184,38 +184,40 @@ html {
   }
 }
 
-/* Orange Shadow Utilities */
-.shadow-orange {
-  box-shadow: 0 4px 14px 0 rgba(255, 107, 53, 0.25);
+/* Luxury Shadow Utilities */
+.shadow-luxury {
+  box-shadow: 0 2px 8px 0 rgba(32, 33, 36, 0.1);
 }
 
-.shadow-orange-lg {
-  box-shadow: 0 10px 25px -3px rgba(255, 107, 53, 0.3);
+.shadow-luxury-lg {
+  box-shadow: 0 8px 25px -3px rgba(32, 33, 36, 0.15);
 }
 
-/* Button Hover Lift Effect */
-.btn-lift {
-  transform: translateY(0);
-  transition: all 0.2s ease;
+.shadow-elegant {
+  box-shadow: 0 20px 25px -5px rgba(32, 33, 36, 0.1), 0 10px 10px -5px rgba(32, 33, 36, 0.04);
 }
 
-.btn-lift:hover {
-  transform: translateY(-2px);
-}
-
-/* Card Hover Effects */
-.card-hover {
+/* Premium Button Effects */
+.btn-luxury {
   transition: all 0.3s ease;
 }
 
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px -3px rgba(0, 0, 0, 0.15);
+.btn-luxury:hover {
+  transform: translateY(-1px);
 }
 
-/* Orange Glow Effect */
-.glow-orange {
-  box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+/* Card Luxury Hover Effects */
+.card-luxury {
+  transition: all 0.3s ease;
+}
+
+.card-luxury:hover {
+  box-shadow: 0 20px 25px -5px rgba(32, 33, 36, 0.1), 0 10px 10px -5px rgba(32, 33, 36, 0.04);
+}
+
+/* Gold Accent Effects */
+.accent-glow {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
 }
 
 
