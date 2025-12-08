@@ -403,7 +403,7 @@ const Header = () => {
                         <Link
                           key={sub.id}
                           to={`/category/sacs/${sub.slug}`}
-                          className="block py-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
+                          className="block py-2 text-gray-600 hover:text-accent-600 transition-colors duration-200"
                           onClick={closeMenus}
                         >
                           {sub.name}
@@ -422,7 +422,7 @@ const Header = () => {
                         <Link
                           key={sub.id}
                           to={`/category/chaussures/${sub.slug}`}
-                          className="block py-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
+                          className="block py-2 text-gray-600 hover:text-accent-600 transition-colors duration-200"
                           onClick={closeMenus}
                         >
                           {sub.name}
@@ -441,7 +441,7 @@ const Header = () => {
                         <Link
                           key={sub.id}
                           to={`/category/chaine/${sub.slug}`}
-                          className="block py-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
+                          className="block py-2 text-gray-600 hover:text-accent-600 transition-colors duration-200"
                           onClick={closeMenus}
                         >
                           {sub.name}
