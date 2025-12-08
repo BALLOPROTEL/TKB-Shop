@@ -15,7 +15,7 @@ const Footer = () => {
               <div className="bg-gradient-to-r from-pink-500 to-rose-500 p-2 rounded-lg">
                 <ShoppingBag className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-bold">ChicBoutique</span>
+              <span className="text-2xl font-bold">TKB'SHOP</span>
             </Link>
             <p className="text-gray-300 mb-6 max-w-sm">
               Votre destination de choix pour les sacs à main et chaussures de qualité. 
