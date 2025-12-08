@@ -34,6 +34,7 @@ const Header = () => {
     setShowSacsMenu(false);
     setShowChaussuresMenu(false);
     setShowChaineMenu(false);
+    setShowChaineMenu(false);
   };
 
   return (
