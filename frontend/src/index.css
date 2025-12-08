@@ -292,3 +292,28 @@ html {
     @apply font-semibold;
   }
 }
+
+/* Fix for stacking context issues */
+.hero-section {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+.main-content {
+  position: relative;
+  z-index: 2;
+  background: white;
+}
+
+/* Prevent text bleeding */
+* {
+  box-sizing: border-box;
+}
+
+/* Clear floating elements */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
