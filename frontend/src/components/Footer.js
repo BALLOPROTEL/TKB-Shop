@@ -164,7 +164,7 @@ const Footer = () => {
           
           <div className="text-center md:text-right">
             <p className="text-gray-400 text-sm">
-              © {currentYear} ChicBoutique. Tous droits réservés.
+              © {currentYear} TKB'Shop. Tous droits réservés.
             </p>
             <p className="text-gray-500 text-xs mt-1">
               Développé avec ❤️ par ChicBoutique Team
