@@ -72,83 +72,44 @@ const ProductCard = ({ product }) => {
         </div>
 
         {/* Content */}
-        <div className="p-3 sm:p-4 flex-1 flex flex-col">
-          {/* Category */}
-          <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
-            {product.category.replace('-', ' ')}
-          </p>
-
+        <div className="p-6 text-center">
           {/* Title */}
-          <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-200 text-sm sm:text-base line-clamp-2 flex-1">
+          <h3 className="font-light text-primary-900 mb-2 text-lg tracking-wide">
             {product.name}
           </h3>
 
-          {/* Rating */}
-          <div className="flex items-center space-x-1 mb-3">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className={`h-3 w-3 sm:h-4 sm:w-4 ${
-                    i < Math.floor(product.rating) 
-                      ? 'text-yellow-400 fill-current' 
-                      : 'text-gray-300'
-                  }`}
-                />
-              ))}
-            </div>
-            <span className="text-xs sm:text-sm text-gray-600">({product.reviews})</span>
-          </div>
-
           {/* Price */}
-          <div className="flex items-center space-x-2 mb-3">
-            <span className="text-lg sm:text-xl font-bold text-gray-900">
+          <div className="mb-4">
+            <span className="text-xl font-light text-primary-900">
               {product.price.toFixed(2)}€
             </span>
             {product.originalPrice && (
-              <span className="text-sm text-gray-500 line-through">
+              <span className="text-sm text-primary-400 line-through ml-2">
                 {product.originalPrice.toFixed(2)}€
               </span>
             )}
           </div>
 
           {/* Colors Preview */}
-          <div className="flex items-center space-x-1">
-            <span className="text-xs text-gray-500">Couleurs:</span>
-            <div className="flex space-x-1">
-              {product.colors.slice(0, 3).map((color, index) => (
-                <div
-                  key={index}
-                  className="w-3 h-3 sm:w-4 sm:h-4 rounded-full border border-gray-200 shadow-sm"
-                  style={{ 
-                    backgroundColor: color === 'Noir' ? '#000' : 
-                                   color === 'Blanc' ? '#fff' :
-                                   color === 'Rose' ? '#f472b6' :
-                                   color === 'Marron' ? '#8b4513' :
-                                   color === 'Beige' ? '#f5f5dc' :
-                                   color === 'Rouge' ? '#ef4444' :
-                                   color === 'Nude' ? '#d2b48c' :
-                                   color === 'Doré' ? '#ffd700' :
-                                   '#gray'
-                  }}
-                />
-              ))}
-              {product.colors.length > 3 && (
-                <span className="text-xs text-gray-400">+{product.colors.length - 3}</span>
-              )}
-            </div>
+          <div className="flex justify-center space-x-2">
+            {product.colors.slice(0, 4).map((color, index) => (
+              <div
+                key={index}
+                className="w-4 h-4 border border-primary-200"
+                style={{ 
+                  backgroundColor: color === 'Noir' ? '#000' : 
+                                 color === 'Blanc' ? '#fff' :
+                                 color === 'Rose' ? '#f472b6' :
+                                 color === 'Marron' ? '#8b4513' :
+                                 color === 'Beige' ? '#f5f5dc' :
+                                 color === 'Rouge' ? '#ef4444' :
+                                 color === 'Nude' ? '#d2b48c' :
+                                 color === 'Doré' ? '#ffd700' :
+                                 '#gray'
+                }}
+              />
+            ))}
           </div>
-
-          {/* Mobile Quick Add */}
-          {product.inStock && (
-            <button
-              onClick={handleQuickAdd}
-              className="sm:hidden w-full mt-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-lg font-medium hover:from-orange-600 hover:to-orange-700 transition-all duration-200 flex items-center justify-center space-x-2 text-sm shadow-orange"
-            >
-              <ShoppingBag className="h-4 w-4" />
-              <span>Ajouter au panier</span>
-            </button>
-          )}
         </div>
       </div>
     </Link>
