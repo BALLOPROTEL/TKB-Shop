@@ -1,19 +1,19 @@
-// TKB'Shop - Charte Graphique Orange
-// Système de couleurs cohérent pour toute l'application
+// TKB'Shop - Nouvelle Charte Graphique Inspirée Michael Kors
+// Système de couleurs élégant et professionnel
 
 export const colors = {
-  // Orange Principal (couleurs primaires)
+  // Noir et Gris Principal (inspiration Michael Kors)
   primary: {
-    50: '#FFF7ED',    // Orange très clair pour les backgrounds
-    100: '#FFEDD5',   // Orange clair pour les accents
-    200: '#FED7AA',   // Orange doux
-    300: '#FDBA74',   // Orange moyen
-    400: '#FB923C',   // Orange accent (#FF9F43 equivalent)
-    500: '#FF8C42',   // Orange principal
-    600: '#FF6B35',   // Orange vif principal
-    700: '#EA580C',   // Orange foncé
-    800: '#C2410C',   // Orange très foncé
-    900: '#9A3412',   // Orange sombre
+    50: '#F8F9FA',    // Blanc cassé très doux
+    100: '#F1F3F4',   // Gris très clair
+    200: '#E8EAED',   // Gris clair
+    300: '#DADCE0',   // Gris moyen clair
+    400: '#BDC1C6',   // Gris moyen
+    500: '#9AA0A6',   // Gris
+    600: '#80868B',   // Gris foncé
+    700: '#5F6368',   // Gris très foncé
+    800: '#3C4043',   // Presque noir
+    900: '#202124',   // Noir principal
   },
 
   // Couleurs neutres (équilibrage)
