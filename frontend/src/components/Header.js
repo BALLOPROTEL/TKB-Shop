@@ -38,15 +38,11 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 flex-shrink-0" onClick={closeMenus}>
-            <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-2 rounded-lg shadow-orange transition-all duration-300 hover:shadow-orange-lg">
-              <ShoppingBag className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
-                TKB'Shop
+          <Link to="/" className="flex items-center space-x-3 flex-shrink-0" onClick={closeMenus}>
+            <div className="flex items-center">
+              <span className="text-2xl sm:text-3xl font-bold tracking-wider text-primary-900 hover:text-accent-600 transition-colors duration-300">
+                TKB'SHOP
               </span>
-              <span className="text-xs text-gray-500 hidden sm:block">Tanou Karidja Ballo</span>
             </div>
           </Link>
 
