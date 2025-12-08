@@ -167,7 +167,7 @@ const Footer = () => {
               © {currentYear} TKB'Shop. Tous droits réservés.
             </p>
             <p className="text-gray-500 text-xs mt-1">
-              Développé avec ❤️ par ChicBoutique Team
+              Développé avec ❤️ par TKB'Shop Team
             </p>
           </div>
         </div>
