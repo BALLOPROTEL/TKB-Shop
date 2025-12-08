@@ -54,7 +54,7 @@ const RegisterPage = () => {
     if (result.success) {
       toast({
         title: "Compte créé !",
-        description: "Bienvenue sur ChicBoutique ! Vous êtes maintenant connecté(e).",
+        description: "Bienvenue sur TKB'Shop ! Vous êtes maintenant connecté(e).",
       });
       navigate('/');
     } else {
