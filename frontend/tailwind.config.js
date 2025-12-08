@@ -6,45 +6,48 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Nouvelle charte graphique orange TKB'Shop
+        // Nouvelle charte graphique TKB'Shop - Inspiration Michael Kors
         primary: {
-          50: '#FFF7ED',
-          100: '#FFEDD5',
-          200: '#FED7AA',
-          300: '#FDBA74',
-          400: '#FB923C', // Orange accent
-          500: '#FF8C42', // Orange principal
-          600: '#FF6B35', // Orange vif principal
-          700: '#EA580C',
-          800: '#C2410C',
-          900: '#9A3412',
+          50: '#F8F9FA',
+          100: '#F1F3F4',
+          200: '#E8EAED', 
+          300: '#DADCE0',
+          400: '#BDC1C6',
+          500: '#9AA0A6',
+          600: '#80868B',
+          700: '#5F6368',
+          800: '#3C4043',
+          900: '#202124', // Noir principal
         },
-        // Alias pour compatibilité
-        orange: {
-          50: '#FFF7ED',
-          100: '#FFEDD5',
-          200: '#FED7AA',
-          300: '#FDBA74',
-          400: '#FB923C',
-          500: '#FF8C42',
-          600: '#FF6B35',
-          700: '#EA580C',
-          800: '#C2410C',
-          900: '#9A3412',
+        // Couleurs d'accent dorées/champagne
+        accent: {
+          50: '#FFFBEB',
+          100: '#FEF3C7',
+          200: '#FDE68A',
+          300: '#FCD34D',
+          400: '#FBBF24',
+          500: '#F59E0B', // Doré principal
+          600: '#D97706',
+          700: '#B45309',
+          800: '#92400E',
+          900: '#78350F',
         },
-        // Neutres améliorés
+        // Neutres raffinés
         gray: {
-          50: '#FAFAFA',
-          100: '#F5F5F5',
-          200: '#E5E5E5',
-          300: '#D4D4D4',
-          400: '#A3A3A3',
-          500: '#737373',
-          600: '#525252',
-          700: '#404040',
-          800: '#262626',
-          900: '#171717',
-        }
+          50: '#FEFEFE',
+          100: '#FDFDFD',
+          200: '#F8F8F8',
+          300: '#F0F0F0',
+          400: '#E0E0E0',
+          500: '#C0C0C0',
+          600: '#A0A0A0',
+          700: '#808080',
+          800: '#404040',
+          900: '#1A1A1A',
+        },
+        // Noir et blanc purs
+        black: '#202124',
+        white: '#FEFEFE',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
