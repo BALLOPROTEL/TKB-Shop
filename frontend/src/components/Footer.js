@@ -103,7 +103,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-pink-400" />
-                <span className="text-gray-300">contact@chicboutique.com</span>
+                <span className="text-gray-300">contact@tkbshop.com</span>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="h-4 w-4 text-pink-400 mt-0.5" />
