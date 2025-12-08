@@ -133,15 +133,15 @@ const Header = () => {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden sm:flex items-center space-x-2 lg:space-x-4">
+          <div className="hidden sm:flex items-center space-x-6">
             {/* Wishlist */}
             <Link 
               to="/favorites"
-              className="relative p-2 text-gray-600 hover:text-orange-600 transition-all duration-200 hover:bg-orange-50 rounded-lg"
+              className="relative p-2 text-primary-700 hover:text-accent-600 transition-all duration-200"
             >
-              <Heart className="h-5 w-5 lg:h-6 lg:w-6" />
+              <Heart className="h-6 w-6" />
               {getFavoritesCount() > 0 && (
-                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs rounded-full h-4 w-4 lg:h-5 lg:w-5 flex items-center justify-center font-medium shadow-orange animate-bounce-in">
+                <span className="absolute -top-1 -right-1 bg-primary-900 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
                   {getFavoritesCount()}
                 </span>
               )}
@@ -151,11 +151,11 @@ const Header = () => {
             <Link 
               to="/cart"
               onClick={() => window.scrollTo(0, 0)}
-              className="relative p-2 text-gray-600 hover:text-orange-600 transition-all duration-200 hover:bg-orange-50 rounded-lg"
+              className="relative p-2 text-primary-700 hover:text-accent-600 transition-all duration-200"
             >
-              <ShoppingBag className="h-5 w-5 lg:h-6 lg:w-6" />
+              <ShoppingBag className="h-6 w-6" />
               {getTotalItems() > 0 && (
-                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs rounded-full h-4 w-4 lg:h-5 lg:w-5 flex items-center justify-center font-medium shadow-orange animate-bounce-in">
+                <span className="absolute -top-1 -right-1 bg-primary-900 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
                   {getTotalItems()}
                 </span>
               )}
