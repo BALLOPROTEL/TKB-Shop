@@ -68,19 +68,7 @@ const Hero = () => {
               <ProductCarousel />
             </div>
             
-            {/* Subtle Decorative Elements */}
-            <div className="hidden lg:block absolute top-8 -right-8 w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full mix-blend-multiply filter blur-xl opacity-30" />
-            
-            {/* Service Cards - Minimal Design */}
-            <div className="hidden lg:block absolute -top-6 -left-6 bg-white p-4 shadow-luxury transform hover:shadow-elegant transition-all duration-300">
-              <div className="text-sm font-medium text-primary-900 uppercase tracking-wide">Livraison Express</div>
-              <div className="text-xs text-primary-600 mt-1">Gratuite dès 75€</div>
-            </div>
-            
-            <div className="hidden lg:block absolute -bottom-6 -right-6 bg-white p-4 shadow-luxury transform hover:shadow-elegant transition-all duration-300">
-              <div className="text-sm font-medium text-primary-900 uppercase tracking-wide">Retour 30 Jours</div>
-              <div className="text-xs text-primary-600 mt-1">Échange gratuit</div>
-            </div>
+            {/* Clean background - no distracting elements */}
           </div>
         </div>
       </div>
