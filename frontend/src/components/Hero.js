@@ -68,19 +68,18 @@ const Hero = () => {
               <ProductCarousel />
             </div>
             
-            {/* Decorative Elements - Hidden on mobile for performance */}
-            <div className="hidden sm:block absolute top-4 -right-4 w-48 sm:w-72 h-48 sm:h-72 bg-gradient-to-br from-orange-300 to-orange-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" />
-            <div className="hidden sm:block absolute -bottom-8 -left-8 w-48 sm:w-64 h-48 sm:h-64 bg-gradient-to-br from-orange-400 to-orange-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000" />
+            {/* Subtle Decorative Elements */}
+            <div className="hidden lg:block absolute top-8 -right-8 w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full mix-blend-multiply filter blur-xl opacity-30" />
             
-            {/* Floating Cards */}
-            <div className="hidden lg:block absolute -top-4 sm:-top-6 -left-4 sm:-left-6 bg-white p-3 sm:p-4 rounded-lg shadow-xl transform rotate-3 hover:rotate-6 transition-all duration-300 hover:shadow-2xl">
-              <div className="text-sm font-semibold text-gray-900">Livraison Gratuite</div>
-              <div className="text-xs text-gray-600">Dès 50€ d&apos;achat</div>
+            {/* Service Cards - Minimal Design */}
+            <div className="hidden lg:block absolute -top-6 -left-6 bg-white p-4 shadow-luxury transform hover:shadow-elegant transition-all duration-300">
+              <div className="text-sm font-medium text-primary-900 uppercase tracking-wide">Livraison Express</div>
+              <div className="text-xs text-primary-600 mt-1">Gratuite dès 75€</div>
             </div>
             
-            <div className="hidden lg:block absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 bg-white p-3 sm:p-4 rounded-lg shadow-xl transform -rotate-3 hover:-rotate-6 transition-all duration-300 hover:shadow-2xl">
-              <div className="text-sm font-semibold text-gray-900">Retour 30J</div>
-              <div className="text-xs text-gray-600">Satisfait ou remboursé</div>
+            <div className="hidden lg:block absolute -bottom-6 -right-6 bg-white p-4 shadow-luxury transform hover:shadow-elegant transition-all duration-300">
+              <div className="text-sm font-medium text-primary-900 uppercase tracking-wide">Retour 30 Jours</div>
+              <div className="text-xs text-primary-600 mt-1">Échange gratuit</div>
             </div>
           </div>
         </div>
