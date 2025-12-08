@@ -69,7 +69,9 @@ export const getColorClass = (color, shade = 500, type = 'bg') => {
   return `${type}-${color}-${shade}`;
 };
 
-export const primaryOrange = colors.primary[600]; // #FF6B35
-export const accentOrange = colors.primary[400];  // Orange doux
-export const lightOrange = colors.primary[100];   // Orange très clair
-export const darkOrange = colors.primary[700];    // Orange foncé
+// Couleurs principales TKB'Shop (style Michael Kors)
+export const primaryBlack = colors.primary[900];   // #202124
+export const primaryGray = colors.primary[500];    // #9AA0A6
+export const accentGold = colors.accent[500];      // #F59E0B
+export const lightGray = colors.primary[100];     // #F1F3F4
+export const pureWhite = colors.neutral[50];      // #FEFEFE
