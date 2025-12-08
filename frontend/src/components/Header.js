@@ -13,6 +13,7 @@ const Header = () => {
   const [showSacsMenu, setShowSacsMenu] = useState(false);
   const [showChaussuresMenu, setShowChaussuresMenu] = useState(false);
   const [showChaineMenu, setShowChaineMenu] = useState(false);
+  const [showChaineMenu, setShowChaineMenu] = useState(false);
   const { getTotalItems } = useCart();
   const { getFavoritesCount } = useFavorites();
   const { user, isAuthenticated, logout } = useAuth();
