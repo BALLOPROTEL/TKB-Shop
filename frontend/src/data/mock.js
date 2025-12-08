@@ -214,6 +214,17 @@ export const categories = [
       { id: "enfants", name: "Enfants", slug: "enfants" },
       { id: "bebe", name: "Bébé", slug: "bebe" }
     ]
+  },
+  { 
+    id: "chaine", 
+    name: "Chaîne", 
+    slug: "chaine",
+    subcategories: [
+      { id: "chaine-or", name: "Chaîne Or", slug: "chaine-or" },
+      { id: "chaine-argent", name: "Chaîne Argent", slug: "chaine-argent" },
+      { id: "chaine-fantaisie", name: "Chaîne Fantaisie", slug: "chaine-fantaisie" },
+      { id: "pendentifs", name: "Pendentifs", slug: "pendentifs" }
+    ]
   }
 ];
 
