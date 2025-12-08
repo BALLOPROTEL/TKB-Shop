@@ -9,40 +9,40 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[500px] sm:min-h-[600px] py-8 sm:py-12 lg:py-20">
           {/* Content */}
-          <div className="text-center lg:text-left space-y-6 sm:space-y-8 order-2 lg:order-1">
-            <div className="inline-flex items-center space-x-2 bg-orange-100 text-orange-700 px-3 sm:px-4 py-2 rounded-full text-sm font-medium shadow-card hover:shadow-card-hover transition-all duration-300">
+          <div className="relative z-10 order-2 lg:order-1 text-center lg:text-left">
+            {/* Badge */}
+            <div className="inline-flex items-center space-x-2 bg-gray-100 text-primary-800 px-4 py-2 text-sm font-medium uppercase tracking-wider mb-6">
               <Sparkles className="h-4 w-4" />
-              <span>Nouvelle Collection Automne</span>
+              <span>Nouvelle Collection</span>
             </div>
-            
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
-              Style &{' '}
-              <span className="bg-gradient-to-r from-orange-600 to-orange-700 bg-clip-text text-transparent">
-                Élégance
-              </span>
+
+            {/* Title */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-primary-900 leading-tight mb-6">
+              STYLE INTEMPOREL
               <br />
-              Pour Toutes
+              <span className="font-normal">& ÉLÉGANCE</span>
             </h1>
-            
-            <p className="text-lg sm:text-xl text-gray-600 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-              Découvrez notre collection exclusive de sacs à main et chaussures 
-              pour femmes et enfants. Qualité premium, style contemporain.
+
+            {/* Description */}
+            <p className="text-lg text-primary-700 mb-8 max-w-lg mx-auto lg:mx-0">
+              Découvrez l'excellence artisanale française à travers notre collection soigneusement sélectionnée de sacs, chaussures et accessoires de luxe.
             </p>
-            
+
+            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
                 to="/category/sacs-a-main"
-                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-orange-lg text-sm sm:text-base group"
+                className="inline-flex items-center justify-center px-8 py-4 bg-primary-900 text-white font-medium hover:bg-primary-800 transition-colors duration-300 text-sm uppercase tracking-wider"
               >
-                Découvrir la Collection
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                Explorer la Collection
+                <ArrowRight className="ml-3 h-4 w-4" />
               </Link>
               
               <Link
                 to="/category/chaussures-femmes"
-                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-orange-200 text-orange-700 font-semibold rounded-lg hover:bg-orange-50 hover:border-orange-300 transition-all duration-300 text-sm sm:text-base"
+                className="inline-flex items-center justify-center px-8 py-4 border border-primary-300 text-primary-800 font-medium hover:bg-primary-50 transition-colors duration-300 text-sm uppercase tracking-wider"
               >
-                Voir les Chaussures
+                Chaussures
               </Link>
             </div>
             
