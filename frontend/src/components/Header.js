@@ -118,18 +118,18 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* Desktop Search */}
-          <div className="hidden md:flex flex-1 max-w-xs xl:max-w-md mx-4 xl:mx-8">
-            <form onSubmit={handleSearch} className="w-full relative">
+          {/* Search Bar - Desktop */}
+          <div className="hidden md:flex flex-1 max-w-lg mx-12">
+            <div className="relative w-full">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
               <input
                 type="text"
-                placeholder="Rechercher..."
+                placeholder="Rechercher des produits..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 text-sm border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-300 transition-all duration-200 hover:border-orange-200"
+                className="w-full pl-12 pr-4 py-3 text-sm border-b-2 border-gray-300 focus:outline-none focus:border-accent-500 transition-all duration-300 bg-transparent"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            </form>
+            </div>
           </div>
 
           {/* Desktop Actions */}
