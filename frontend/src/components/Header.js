@@ -38,7 +38,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 flex-shrink-0" onClick={closeMenus}>
+          <Link to="/" className="flex items-center flex-shrink-0 mr-12" onClick={closeMenus}>
             <div className="flex items-center">
               <span className="text-2xl sm:text-3xl font-bold tracking-wider text-primary-900 hover:text-accent-600 transition-colors duration-300">
                 TKB'SHOP
