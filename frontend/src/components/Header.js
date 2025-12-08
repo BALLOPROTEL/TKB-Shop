@@ -92,22 +92,21 @@ const Header = () => {
               onMouseEnter={() => setShowChaussuresMenu(true)}
               onMouseLeave={() => setShowChaussuresMenu(false)}
             >
-              <button className="flex items-center space-x-1 text-gray-700 hover:text-orange-600 font-medium transition-colors duration-200 text-sm xl:text-base relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full">
+              <button className="flex items-center space-x-1 text-primary-800 hover:text-accent-600 font-medium transition-colors duration-200 text-sm xl:text-base uppercase tracking-wide">
                 <span>Chaussures</span>
-                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
+                <ChevronDown className="h-3 w-3 transition-transform duration-200 group-hover:rotate-180" />
               </button>
               {showChaussuresMenu && (
-                <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                     style={{ opacity: 1 }}
+                <div className="absolute top-full left-0 mt-3 w-52 bg-white border border-gray-200 shadow-elegant z-50"
                      onMouseEnter={() => setShowChaussuresMenu(true)}
                      onMouseLeave={() => setShowChaussuresMenu(false)}
                 >
-                  <div className="py-2">
+                  <div className="py-4">
                     {categories.find(cat => cat.id === 'chaussures')?.subcategories.map(sub => (
                       <Link
                         key={sub.id}
                         to={`/category/chaussures/${sub.slug}`}
-                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200 border-l-4 border-transparent hover:border-orange-500"
+                        className="block px-6 py-3 text-sm text-primary-700 hover:bg-gray-50 hover:text-accent-600 transition-colors duration-200 uppercase tracking-wide"
                         onClick={closeMenus}
                       >
                         {sub.name}
