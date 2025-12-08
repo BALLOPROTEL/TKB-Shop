@@ -63,7 +63,7 @@ const LoginPage = () => {
               <ShoppingBag className="h-8 w-8 text-white" />
             </div>
             <span className="text-3xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent">
-              ChicBoutique
+              TKB'SHOP
             </span>
           </Link>
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
