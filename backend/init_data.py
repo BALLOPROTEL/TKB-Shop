@@ -16,8 +16,8 @@ load_dotenv(ROOT_DIR / '.env')
 mock_users = [
     {
         "firstName": "Admin",
-        "lastName": "ChicBoutique",
-        "email": "admin@chicboutique.com",
+        "lastName": "TKB'Shop",
+        "email": "admin@tkbshop.com",
         "password": "admin123",
         "role": "admin",
         "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
