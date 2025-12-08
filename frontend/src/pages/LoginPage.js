@@ -45,7 +45,7 @@ const LoginPage = () => {
 
   // Demo accounts for easy testing
   const demoAccounts = [
-    { label: "Compte Admin", email: "admin@chicboutique.com", password: "admin123" },
+    { label: "Compte Admin", email: "admin@tkbshop.com", password: "admin123" },
     { label: "Compte Client", email: "marie@email.com", password: "marie123" }
   ];
 
