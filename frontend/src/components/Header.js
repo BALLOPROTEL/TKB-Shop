@@ -47,10 +47,10 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          <nav className="hidden lg:flex items-center space-x-8 xl:space-x-12">
             <Link
               to="/"
-              className="text-gray-700 hover:text-orange-600 font-medium transition-colors duration-200 text-sm xl:text-base relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-orange-500 after:transition-all after:duration-300 hover:after:w-full"
+              className="text-primary-800 hover:text-accent-600 font-medium transition-colors duration-200 text-sm xl:text-base uppercase tracking-wide"
             >
               Accueil
             </Link>
