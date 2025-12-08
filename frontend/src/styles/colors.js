@@ -16,25 +16,39 @@ export const colors = {
     900: '#202124',   // Noir principal
   },
 
-  // Couleurs neutres (équilibrage)
-  neutral: {
-    50: '#FAFAFA',    // Blanc cassé
-    100: '#F5F5F5',   // Gris très clair
-    200: '#E5E5E5',   // Gris clair
-    300: '#D4D4D4',   // Gris moyen clair
-    400: '#A3A3A3',   // Gris moyen
-    500: '#737373',   // Gris
-    600: '#525252',   // Gris foncé
-    700: '#404040',   // Gris très foncé
-    800: '#262626',   // Presque noir
-    900: '#171717',   // Noir
+  // Couleurs d'accent (inspiration luxe Michael Kors)
+  accent: {
+    50: '#FFFBEB',    // Champagne très clair
+    100: '#FEF3C7',   // Champagne clair
+    200: '#FDE68A',   // Doré clair
+    300: '#FCD34D',   // Doré
+    400: '#FBBF24',   // Doré moyen
+    500: '#F59E0B',   // Doré principal
+    600: '#D97706',   // Doré foncé
+    700: '#B45309',   // Bronze
+    800: '#92400E',   // Bronze foncé
+    900: '#78350F',   // Bronze sombre
   },
 
-  // Couleurs de statut (conservées mais harmonisées avec l'orange)
+  // Couleurs neutres raffinées
+  neutral: {
+    50: '#FEFEFE',    // Blanc pur
+    100: '#FDFDFD',   // Blanc cassé
+    200: '#F8F8F8',   // Gris très clair
+    300: '#F0F0F0',   // Gris clair
+    400: '#E0E0E0',   // Gris moyen clair
+    500: '#C0C0C0',   // Gris moyen
+    600: '#A0A0A0',   // Gris foncé
+    700: '#808080',   // Gris très foncé
+    800: '#404040',   // Presque noir
+    900: '#1A1A1A',   // Noir profond
+  },
+
+  // Couleurs de statut harmonisées
   success: {
-    50: '#ECFDF5',
-    500: '#10B981',
-    600: '#059669',
+    50: '#F0FDF4',
+    500: '#22C55E',
+    600: '#16A34A',
   },
   
   error: {
@@ -47,14 +61,6 @@ export const colors = {
     50: '#FFFBEB',
     500: '#F59E0B',
     600: '#D97706',
-  },
-
-  // Couleurs d'accent complémentaires (pour diversité visuelle)
-  accent: {
-    blue: '#3B82F6',
-    green: '#10B981',
-    purple: '#8B5CF6',
-    pink: '#EC4899',
   }
 };
 
