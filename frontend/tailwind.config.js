@@ -85,10 +85,13 @@ module.exports = {
         },
       },
       boxShadow: {
-        'orange': '0 4px 14px 0 rgba(255, 107, 53, 0.25)',
-        'orange-lg': '0 10px 25px -3px rgba(255, 107, 53, 0.3)',
-        'card': '0 2px 8px 0 rgba(0, 0, 0, 0.1)',
-        'card-hover': '0 8px 25px -3px rgba(0, 0, 0, 0.15)',
+        'luxury': '0 2px 8px 0 rgba(32, 33, 36, 0.1)',
+        'luxury-lg': '0 8px 25px -3px rgba(32, 33, 36, 0.15)',
+        'gold': '0 4px 14px 0 rgba(245, 158, 11, 0.25)',
+        'gold-lg': '0 10px 25px -3px rgba(245, 158, 11, 0.3)',
+        'card': '0 1px 3px 0 rgba(32, 33, 36, 0.08)',
+        'card-hover': '0 4px 12px -2px rgba(32, 33, 36, 0.12)',
+        'elegant': '0 20px 25px -5px rgba(32, 33, 36, 0.1), 0 10px 10px -5px rgba(32, 33, 36, 0.04)',
       },
       spacing: {
         '18': '4.5rem',
