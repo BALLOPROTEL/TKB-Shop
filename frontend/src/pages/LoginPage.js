@@ -31,7 +31,7 @@ const LoginPage = () => {
     if (result.success) {
       toast({
         title: "Connexion réussie !",
-        description: "Bienvenue sur ChicBoutique",
+        description: "Bienvenue sur TKB'Shop",
       });
       navigate(from, { replace: true });
     } else {
