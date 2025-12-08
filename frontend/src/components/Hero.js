@@ -75,7 +75,7 @@ const Hero = () => {
             {/* Floating Cards */}
             <div className="hidden lg:block absolute -top-4 sm:-top-6 -left-4 sm:-left-6 bg-white p-3 sm:p-4 rounded-lg shadow-xl transform rotate-3 hover:rotate-6 transition-all duration-300 hover:shadow-2xl">
               <div className="text-sm font-semibold text-gray-900">Livraison Gratuite</div>
-              <div className="text-xs text-gray-600">Dès 50€ d'achat</div>
+              <div className="text-xs text-gray-600">Dès 50€ d&apos;achat</div>
             </div>
             
             <div className="hidden lg:block absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 bg-white p-3 sm:p-4 rounded-lg shadow-xl transform -rotate-3 hover:-rotate-6 transition-all duration-300 hover:shadow-2xl">
