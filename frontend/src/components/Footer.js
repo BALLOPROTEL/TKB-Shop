@@ -6,30 +6,26 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-primary-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center space-x-2 mb-4">
-              <div className="bg-gradient-to-r from-pink-500 to-rose-500 p-2 rounded-lg">
-                <ShoppingBag className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-2xl font-bold">TKB'SHOP</span>
+            <Link to="/" className="inline-block mb-6">
+              <span className="text-3xl font-light tracking-wider text-white">TKB'SHOP</span>
             </Link>
-            <p className="text-gray-300 mb-6 max-w-sm">
-              Votre destination de choix pour les sacs à main et chaussures de qualité. 
-              Style, élégance et confort pour toute la famille.
+            <p className="text-gray-300 mb-8 max-w-sm leading-relaxed">
+              Maison française d'excellence dédiée à l'art de la maroquinerie et de la chaussure de luxe depuis 2023.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-pink-400 transition-colors duration-200">
-                <Facebook className="h-5 w-5" />
+            <div className="flex space-x-6">
+              <a href="#" className="text-gray-400 hover:text-accent-400 transition-colors duration-300" aria-label="Facebook">
+                <Facebook className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-pink-400 transition-colors duration-200">
-                <Instagram className="h-5 w-5" />
+              <a href="#" className="text-gray-400 hover:text-accent-400 transition-colors duration-300" aria-label="Instagram">
+                <Instagram className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-pink-400 transition-colors duration-200">
-                <Twitter className="h-5 w-5" />
+              <a href="#" className="text-gray-400 hover:text-accent-400 transition-colors duration-300" aria-label="Twitter">
+                <Twitter className="h-6 w-6" />
               </a>
             </div>
           </div>
