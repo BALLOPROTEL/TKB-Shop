@@ -25,6 +25,7 @@ const CheckoutPage = () => {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
+  const [enableBnpl, setEnableBnpl] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
