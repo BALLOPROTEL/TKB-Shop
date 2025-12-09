@@ -79,7 +79,8 @@ function AppContent() {
                 </AdminProvider>
               </ProtectedRoute>
             } />
-            <Route path="/category/:slug" element={<HomePage />} />
+            <Route path="/category/:slug" element={<CategoryPage />} />
+            <Route path="/category/:slug/:subcategory" element={<CategoryPage />} />
           </Routes>
         </main>
         <Footer />
