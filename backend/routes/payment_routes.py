@@ -20,6 +20,10 @@ router = APIRouter()
 stripe_api_key = os.environ.get('STRIPE_API_KEY')
 print(f"Stripe API Key loaded: {'Yes' if stripe_api_key else 'No'}")
 
+# Set Stripe API key
+if stripe_api_key:
+    stripe.api_key = stripe_api_key
+
 def get_stripe_checkout(request: Request):
     """Get Stripe checkout instance"""
     if not stripe_api_key:
@@ -30,6 +34,61 @@ def get_stripe_checkout(request: Request):
     host_url = str(request.base_url).rstrip('/')
     webhook_url = f"{host_url}/api/webhook/stripe" 
     return StripeCheckout(api_key=stripe_api_key, webhook_url=webhook_url)
+
+async def create_stripe_checkout_with_bnpl(
+    amount: float,
+    currency: str,
+    success_url: str,
+    cancel_url: str,
+    metadata: dict,
+    enable_bnpl: bool = False
+) -> dict:
+    """Create Stripe checkout session with optional BNPL support using native Stripe SDK"""
+    try:
+        # Calculate amount in cents
+        amount_cents = int(amount * 100)
+        
+        # Base payment method types
+        payment_method_types = ["card"]
+        
+        # Add BNPL providers if enabled
+        if enable_bnpl:
+            # Add popular BNPL providers (availability depends on region and Stripe account settings)
+            payment_method_types.extend(["klarna", "affirm", "afterpay_clearpay"])
+        
+        # Create checkout session using native Stripe SDK
+        session = stripe.checkout.Session.create(
+            payment_method_types=payment_method_types,
+            line_items=[
+                {
+                    "price_data": {
+                        "currency": currency,
+                        "unit_amount": amount_cents,
+                        "product_data": {
+                            "name": "Commande TKB'SHOP",
+                            "description": f"Commande de {metadata.get('items_count', '0')} article(s)"
+                        }
+                    },
+                    "quantity": 1
+                }
+            ],
+            mode="payment",
+            success_url=success_url,
+            cancel_url=cancel_url,
+            metadata=metadata,
+            customer_email=metadata.get("user_email") if metadata.get("user_email") else None
+        )
+        
+        return {
+            "session_id": session.id,
+            "url": session.url
+        }
+        
+    except stripe.error.StripeError as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Stripe error: {str(e)}"
+        )
 
 @router.post("/checkout/session", response_model=dict)
 async def create_checkout_session(
