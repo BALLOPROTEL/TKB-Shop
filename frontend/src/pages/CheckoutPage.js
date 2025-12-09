@@ -103,14 +103,17 @@ const CheckoutPage = () => {
       // Get current origin for success/cancel URLs
       const currentOrigin = window.location.origin;
       
+      // Add BNPL parameter to URL
+      const url = `${process.env.REACT_APP_BACKEND_URL}/api/payments/checkout/session${enableBnpl ? '?enable_bnpl=true' : ''}`;
+      
       // Add origin to request headers
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/payments/checkout/session`, {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Origin': currentOrigin,
           ...(isAuthenticated ? {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': `Bearer ${localStorage.getItem('chicboutique_token')}`
           } : {})
         },
         body: JSON.stringify(checkoutData)
