@@ -142,23 +142,6 @@ const LoginPage = () => {
             <p className="text-primary-600">Accédez à votre espace personnel</p>
           </div>
 
-          {/* Demo Accounts - Development */}
-          <div className="mb-6 p-4 bg-gray-50 rounded border-l-4 border-accent-500">
-            <p className="text-sm text-primary-700 mb-3 font-medium">Comptes de démonstration :</p>
-            <div className="space-y-2">
-              {demoAccounts.map((account, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  onClick={() => fillDemoAccount(account)}
-                  className="text-xs text-accent-600 hover:text-accent-700 block hover:underline transition-colors duration-200"
-                >
-                  {account.label} - {account.email}
-                </button>
-              ))}
-            </div>
-          </div>
-
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <Input
