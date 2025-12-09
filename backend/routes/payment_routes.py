@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionResponse, CheckoutStatusResponse, CheckoutSessionRequest
 from bson import ObjectId
 import uuid
+import stripe
 
 # Load environment variables
 load_dotenv()
