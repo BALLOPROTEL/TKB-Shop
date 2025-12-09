@@ -22,7 +22,11 @@ async def check_and_fix_admin():
     print(f"\n📊 Total users in DB: {len(all_users)}")
     print("=" * 60)
     for user in all_users:
-        print(f"  ✉️  {user.get('email'):30} | Role: {user.get('role'):10} | {user.get('firstName')} {user.get('lastName')}")
+        email = user.get('email', 'N/A')
+        role = user.get('role', 'N/A')
+        firstName = user.get('firstName', '')
+        lastName = user.get('lastName', '')
+        print(f"  ✉️  {email:30} | Role: {role:10} | {firstName} {lastName}")
     print("=" * 60)
     
     # Find admin user
