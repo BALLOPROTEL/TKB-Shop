@@ -77,6 +77,7 @@ const ProfilePage = () => {
       delivered: 'Livré',
       shipped: 'Expédié',
       processing: 'En cours',
+      paid: 'Payé',
       cancelled: 'Annulé'
     };
     return statusMap[status] || status;
