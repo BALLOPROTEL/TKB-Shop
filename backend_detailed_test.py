@@ -9,7 +9,7 @@ import json
 import sys
 
 # Configuration
-BASE_URL = "https://tkbshop-market.preview.emergentagent.com/api"
+BASE_URL = "https://orange-kors-theme.preview.emergentagent.com/api"
 ADMIN_EMAIL = "admin@chicboutique.com"
 ADMIN_PASSWORD = "admin123"
 TEST_PRODUCT_ID = "68d59c8326f2400d13ac6122"
