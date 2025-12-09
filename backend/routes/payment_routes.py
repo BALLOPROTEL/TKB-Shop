@@ -94,9 +94,10 @@ async def create_stripe_checkout_with_bnpl(
 async def create_checkout_session(
     request: Request,
     checkout_data: CheckoutRequest,
-    current_user: Optional[UserResponse] = Depends(get_current_user)
+    current_user: Optional[UserResponse] = Depends(get_current_user),
+    enable_bnpl: bool = False  # New parameter to enable BNPL options
 ):
-    """Create Stripe checkout session"""
+    """Create Stripe checkout session with optional BNPL support"""
     
     # Calculate totals
     subtotal = sum(item.price * item.quantity for item in checkout_data.items)
@@ -105,9 +106,6 @@ async def create_checkout_session(
     
     # Get host URL from request
     host_url = str(request.base_url).rstrip('/')
-    
-    # Initialize Stripe checkout
-    stripe_checkout = get_stripe_checkout(request)
     
     # Build URLs (get frontend URL from request header or use default)
     frontend_url = request.headers.get("Origin") or host_url
@@ -126,21 +124,20 @@ async def create_checkout_session(
         "lastName": checkout_data.shippingAddress.get("lastName", "")
     }
     
-    checkout_request = CheckoutSessionRequest(
-        amount=total,
-        currency="eur",
-        success_url=success_url,
-        cancel_url=cancel_url,
-        metadata=metadata
-    )
-    
     try:
-        # Create checkout session
-        session = await stripe_checkout.create_checkout_session(checkout_request)
+        # Create checkout session with BNPL support using native Stripe SDK
+        session_data = await create_stripe_checkout_with_bnpl(
+            amount=total,
+            currency="eur",
+            success_url=success_url.replace("{CHECKOUT_SESSION_ID}", "{CHECKOUT_SESSION_ID}"),
+            cancel_url=cancel_url,
+            metadata=metadata,
+            enable_bnpl=enable_bnpl
+        )
         
         # Save payment transaction to database with full order data
         transaction_dict = {
-            "sessionId": session.session_id,
+            "sessionId": session_data["session_id"],
             "userId": current_user.id if current_user else None,
             "email": current_user.email if current_user else checkout_data.shippingAddress.get("email"),
             "amount": total,
@@ -154,6 +151,7 @@ async def create_checkout_session(
                 "subtotal": subtotal,
                 "shipping": shipping
             },
+            "enableBnpl": enable_bnpl,
             "createdAt": datetime.utcnow(),
             "updatedAt": datetime.utcnow()
         }
@@ -162,9 +160,9 @@ async def create_checkout_session(
         await transactions.insert_one(transaction_dict)
         
         return {
-            "url": session.url,
-            "session_id": session.session_id,
-            "message": "Checkout session created successfully"
+            "url": session_data["url"],
+            "session_id": session_data["session_id"],
+            "message": "Checkout session created successfully" + (" with BNPL options" if enable_bnpl else "")
         }
         
     except Exception as e:
