@@ -78,22 +78,28 @@ async def create_checkout_session(
         # Create checkout session
         session = await stripe_checkout.create_checkout_session(checkout_request)
         
-        # Save payment transaction to database
-        payment_transaction = PaymentTransaction(
-            sessionId=session.session_id,
-            userId=current_user.id if current_user else None,
-            email=current_user.email if current_user else None,
-            amount=total,
-            currency="eur",
-            paymentStatus="initiated",
-            status="active",
-            metadata=metadata,
-            createdAt=datetime.utcnow(),
-            updatedAt=datetime.utcnow()
-        )
+        # Save payment transaction to database with full order data
+        transaction_dict = {
+            "sessionId": session.session_id,
+            "userId": current_user.id if current_user else None,
+            "email": current_user.email if current_user else checkout_data.shippingAddress.get("email"),
+            "amount": total,
+            "currency": "eur",
+            "paymentStatus": "initiated",
+            "status": "active",
+            "metadata": metadata,
+            "orderData": {
+                "items": [item.dict() for item in checkout_data.items],
+                "shippingAddress": checkout_data.shippingAddress,
+                "subtotal": subtotal,
+                "shipping": shipping
+            },
+            "createdAt": datetime.utcnow(),
+            "updatedAt": datetime.utcnow()
+        }
         
         transactions = await get_payment_transactions_collection()
-        await transactions.insert_one(payment_transaction.dict(exclude={'id'}))
+        await transactions.insert_one(transaction_dict)
         
         return {
             "url": session.url,
