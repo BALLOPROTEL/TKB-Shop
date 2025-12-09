@@ -188,6 +188,98 @@ export const mockProducts = [
     inStock: true,
     rating: 4.6,
     reviews: 123
+  },
+
+  // Chaînes et bijoux
+  {
+    id: "13",
+    name: "Chaîne Or 18 Carats",
+    category: "bijoux",
+    subcategory: "chaine-or",
+    price: 299.99,
+    originalPrice: 399.00,
+    image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHw1fHxqZXdlbHJ5fGVufDB8fHx8MTc1ODg3OTYyNXww&ixlib=rb-4.1.0&q=85",
+    description: "Chaîne en or 18 carats, maille forçat, longueur 50 cm. Bijou d'exception.",
+    colors: ["Or"],
+    sizes: ["50cm", "55cm", "60cm"],
+    inStock: true,
+    rating: 4.9,
+    reviews: 87
+  },
+  {
+    id: "14",
+    name: "Chaîne Argent Élégante",
+    category: "bijoux",
+    subcategory: "chaine-argent",
+    price: 89.99,
+    originalPrice: 120.00,
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&h=500&fit=crop",
+    description: "Chaîne en argent 925 rhodié, brillance et élégance.",
+    colors: ["Argent"],
+    sizes: ["45cm", "50cm", "55cm"],
+    inStock: true,
+    rating: 4.7,
+    reviews: 124
+  },
+  {
+    id: "15",
+    name: "Pendentif Coeur Diamant",
+    category: "bijoux",
+    subcategory: "pendentifs",
+    price: 199.99,
+    originalPrice: 250.00,
+    image: "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=500&h=500&fit=crop",
+    description: "Pendentif en forme de cœur serti de diamants, or blanc 18 carats.",
+    colors: ["Or Blanc", "Or Jaune"],
+    sizes: ["Unique"],
+    inStock: true,
+    rating: 4.8,
+    reviews: 156
+  },
+  {
+    id: "16",
+    name: "Chaîne Fantaisie Dorée",
+    category: "bijoux",
+    subcategory: "chaine-fantaisie",
+    price: 45.99,
+    originalPrice: 65.00,
+    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&h=500&fit=crop",
+    description: "Chaîne fantaisie dorée avec pendentif étoile, style moderne.",
+    colors: ["Doré", "Argenté"],
+    sizes: ["Unique"],
+    inStock: true,
+    rating: 4.5,
+    reviews: 89
+  },
+  {
+    id: "17",
+    name: "Bracelet Chaîne Or Rose",
+    category: "bijoux",
+    subcategory: "chaine-or",
+    price: 159.99,
+    originalPrice: 200.00,
+    image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&h=500&fit=crop",
+    description: "Bracelet chaîne en or rose 14 carats, maille gourmette fine.",
+    colors: ["Or Rose"],
+    sizes: ["17cm", "19cm", "21cm"],
+    inStock: true,
+    rating: 4.6,
+    reviews: 72
+  },
+  {
+    id: "18",
+    name: "Collier Perles et Chaîne",
+    category: "bijoux",
+    subcategory: "pendentifs",
+    price: 129.99,
+    originalPrice: 170.00,
+    image: "https://images.unsplash.com/photo-1589674781759-c0c8e5fc3067?w=500&h=500&fit=crop",
+    description: "Collier élégant combinant perles d'eau douce et chaîne en or.",
+    colors: ["Or", "Argent"],
+    sizes: ["45cm", "50cm"],
+    inStock: true,
+    rating: 4.7,
+    reviews: 98
   }
 ];
 
