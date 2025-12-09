@@ -245,15 +245,17 @@ async def stripe_webhook(request: Request):
             # Get transaction details
             transaction = await transactions.find_one({"sessionId": webhook_response.session_id})
             
-            if transaction and transaction.get("userId"):
+            if transaction:
                 # Create order from successful payment
-                await create_order_from_payment(transaction, webhook_response)
+                order_id = await create_order_from_payment(transaction, webhook_response)
                 
-                # Mark order as created in transaction
-                await transactions.update_one(
-                    {"sessionId": webhook_response.session_id},
-                    {"$set": {"orderId": f"CMD{str(uuid.uuid4())[:8].upper()}"}}
-                )
+                if order_id:
+                    # Mark order as created in transaction
+                    await transactions.update_one(
+                        {"sessionId": webhook_response.session_id},
+                        {"$set": {"orderId": order_id, "orderCreated": True}}
+                    )
+                    print(f"✅ Order {order_id} linked to transaction {webhook_response.session_id}")
         
         return {"received": True}
         
