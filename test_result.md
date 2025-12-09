@@ -491,7 +491,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "HomePage Michael Kors Design - Complete Testing"
+    - "TKB'SHOP Navigation System - Complete Testing After Bug Fix"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
