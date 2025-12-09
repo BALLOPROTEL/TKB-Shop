@@ -277,9 +277,9 @@ const ProfilePage = () => {
                     <div key={order.id} className="border border-gray-200 rounded-lg p-4">
                       <div className="flex items-center justify-between mb-3">
                         <div>
-                          <h4 className="font-semibold text-gray-900">Commande {order.id}</h4>
+                          <h4 className="font-semibold text-gray-900">Commande {order.orderId || order.id}</h4>
                           <p className="text-sm text-gray-600">
-                            {new Date(order.date).toLocaleDateString('fr-FR')}
+                            {new Date(order.createdAt || order.date).toLocaleDateString('fr-FR')}
                           </p>
                         </div>
                         <div className="text-right">
@@ -293,14 +293,18 @@ const ProfilePage = () => {
                       </div>
                       
                       <div className="space-y-2">
-                        {order.items.map((item, index) => (
-                          <div key={index} className="flex justify-between text-sm">
-                            <span className="text-gray-600">
-                              {item.name} x{item.quantity}
-                            </span>
-                            <span className="text-gray-900">{item.price.toFixed(2)}€</span>
-                          </div>
-                        ))}
+                        {order.items && order.items.length > 0 ? (
+                          order.items.map((item, index) => (
+                            <div key={index} className="flex justify-between text-sm">
+                              <span className="text-gray-600">
+                                {item.name} x{item.quantity}
+                              </span>
+                              <span className="text-gray-900">{item.price.toFixed(2)}€</span>
+                            </div>
+                          ))
+                        ) : (
+                          <p className="text-sm text-gray-500 italic">Détails des articles non disponibles</p>
+                        )}
                       </div>
                     </div>
                   ))}
