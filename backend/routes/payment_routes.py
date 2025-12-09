@@ -55,12 +55,15 @@ async def create_checkout_session(
     cancel_url = f"{frontend_url}/checkout"
     
     # Create checkout session request
+    # Store order data in metadata (Stripe metadata has character limit, so we'll store in transaction)
     metadata = {
         "user_id": current_user.id if current_user else "",
-        "user_email": current_user.email if current_user else "",
+        "user_email": current_user.email if current_user else checkout_data.shippingAddress.get("email", ""),
         "items_count": str(len(checkout_data.items)),
         "subtotal": str(subtotal),
-        "shipping": str(shipping)
+        "shipping": str(shipping),
+        "firstName": checkout_data.shippingAddress.get("firstName", ""),
+        "lastName": checkout_data.shippingAddress.get("lastName", "")
     }
     
     checkout_request = CheckoutSessionRequest(
