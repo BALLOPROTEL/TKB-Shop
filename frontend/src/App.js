@@ -9,6 +9,7 @@ import { ToastProvider } from './components/Toast';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
+import CategoryPage from './pages/CategoryPage';
 import ProductDetail from './pages/ProductDetail';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
