@@ -299,6 +299,27 @@ const CheckoutPage = () => {
                       </div>
                     </div>
                   </div>
+                  
+                  {/* BNPL Option */}
+                  <div className="border border-gray-200 rounded-lg p-4 bg-white hover:bg-gray-50 transition-colors duration-200">
+                    <label className="flex items-start cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={enableBnpl}
+                        onChange={(e) => setEnableBnpl(e.target.checked)}
+                        className="mt-1 h-5 w-5 text-orange-600 border-gray-300 rounded focus:ring-orange-500"
+                      />
+                      <div className="ml-3">
+                        <p className="font-semibold text-gray-900">Paiement en plusieurs fois</p>
+                        <p className="text-sm text-gray-600 mt-1">
+                          Payez en 3x ou 4x sans frais via Klarna, Affirm ou Afterpay
+                        </p>
+                        <p className="text-xs text-gray-500 mt-2">
+                          ℹ️ Les options de paiement fractionné seront disponibles sur la page Stripe selon votre éligibilité
+                        </p>
+                      </div>
+                    </label>
+                  </div>
                 </div>
               </div>
 
