@@ -118,31 +118,54 @@ async def create_order_from_payment(transaction: dict, webhook_response):
     try:
         orders = await get_orders_collection()
         
-        # Extract items from metadata (stored as JSON string)
+        # Extract order data from transaction
+        order_data = transaction.get("orderData", {})
+        items = order_data.get("items", [])
+        shipping_address = order_data.get("shippingAddress", {})
         metadata = transaction.get("metadata", {})
         
         # Generate order ID
         order_id = f"CMD{str(uuid.uuid4())[:8].upper()}"
         
-        # Create order from transaction data
+        # Convert items to proper format with ObjectId for productId
+        order_items = []
+        for item in items:
+            order_item = {
+                "productId": item.get("id"),
+                "name": item.get("name"),
+                "price": item.get("price"),
+                "quantity": item.get("quantity"),
+                "selectedColor": item.get("selectedColor"),
+                "selectedSize": item.get("selectedSize"),
+                "image": item.get("image")
+            }
+            order_items.append(order_item)
+        
+        # Create complete order
         order_dict = {
-            "userId": transaction["userId"],
+            "userId": ObjectId(transaction["userId"]) if transaction.get("userId") else None,
             "orderId": order_id,
-            "items": [],  # Items would be stored in metadata in production
+            "items": order_items,
             "status": "paid",
             "total": transaction["amount"],
-            "subtotal": float(metadata.get("subtotal", 0)),
-            "shipping": float(metadata.get("shipping", 0)),
-            "shippingAddress": {},  # Would be stored in metadata
+            "subtotal": float(order_data.get("subtotal", 0)),
+            "shipping": float(order_data.get("shipping", 0)),
+            "shippingAddress": shipping_address,
             "paymentSessionId": transaction["sessionId"],
             "createdAt": datetime.utcnow(),
             "updatedAt": datetime.utcnow()
         }
         
-        await orders.insert_one(order_dict)
+        result = await orders.insert_one(order_dict)
+        print(f"✅ Order created successfully: {order_id} (MongoDB ID: {result.inserted_id})")
+        
+        return order_id
         
     except Exception as e:
-        print(f"Error creating order from payment: {e}")
+        print(f"❌ Error creating order from payment: {e}")
+        import traceback
+        traceback.print_exc()
+        return None
 
 @router.get("/checkout/status/{session_id}", response_model=dict)
 async def get_checkout_status(session_id: str, request: Request):
