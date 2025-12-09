@@ -479,12 +479,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "API Paiement Stripe - New Integration"
-    - "API Produits - Homepage Loading"
-    - "API Authentification - Admin System"
-    - "API Commandes - Order System"
+    - "HomePage Michael Kors Design - Complete Testing"
   stuck_tasks: []
-  test_all: true
+  test_all: false
   test_priority: "high_first"
 
 agent_communication:
