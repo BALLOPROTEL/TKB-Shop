@@ -72,8 +72,12 @@ logger = logging.getLogger(__name__)
 @app.on_event("startup")
 async def startup_db_client():
     """Initialize database connection on startup"""
+    # Validate security settings
+    from auth import validate_secret_key
+    validate_secret_key()
+    
     await connect_to_mongo()
-    logger.info("ChicBoutique API started successfully")
+    logger.info("TKB'Shop API started successfully")
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
