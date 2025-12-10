@@ -211,7 +211,7 @@ const HomePage = () => {
                 </select>
 
                 <Button
-                  onClick={() => setSelectedCategory('tous')}
+                  onClick={() => handleCategoryFilter('tous')}
                   variant={selectedCategory === 'tous' ? 'primary' : 'outline'}
                   className="uppercase tracking-wide"
                 >
