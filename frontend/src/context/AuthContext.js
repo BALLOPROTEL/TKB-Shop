@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import { authAPI } from '../services/api';
+import { STORAGE_KEYS, migrateOldStorageKeys } from '../constants/storage';
 
 const AuthContext = createContext();
 
