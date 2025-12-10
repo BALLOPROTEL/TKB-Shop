@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import CategoryPage from './pages/CategoryPage';
 import ProductDetail from './pages/ProductDetail';
+import NotFoundPage from './pages/NotFoundPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import CheckoutSuccessPage from './pages/CheckoutSuccessPage';
