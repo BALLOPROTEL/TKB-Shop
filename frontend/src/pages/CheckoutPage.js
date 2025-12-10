@@ -4,6 +4,7 @@ import { ArrowLeft, CreditCard, Truck, Shield, Check, Loader } from 'lucide-reac
 import { useCart } from '../context/CartContext';
 import { useToast } from '../components/Toast';
 import { useAuth } from '../context/AuthContext';
+import { STORAGE_KEYS } from '../constants/storage';
 import Button from '../components/ui/Button';
 
 const CheckoutPage = () => {
