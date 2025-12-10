@@ -102,17 +102,20 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
         isActive=user.isActive
     )
 
-async def get_current_user_optional(token: Optional[str] = Depends(oauth2_scheme_optional)) -> Optional[UserResponse]:
+async def get_current_user_optional(credentials: Optional[HTTPAuthorizationCredentials] = Depends(oauth2_scheme_optional)) -> Optional[UserResponse]:
     """Get current user if authenticated, otherwise return None"""
-    if not token:
+    if not credentials:
         return None
     
     try:
+        token = credentials.credentials
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         user_id: str = payload.get("sub")
         if user_id is None:
             return None
     except JWTError:
+        return None
+    except AttributeError:
         return None
     
     user = await get_user_by_id(user_id)
