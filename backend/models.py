@@ -42,7 +42,7 @@ class User(BaseModel):
 class UserCreate(BaseModel):
     firstName: str
     lastName: str
-    email: str
+    email: EmailStr  # Email validation
     password: str
     phone: Optional[str] = None
     address: Optional[str] = None
