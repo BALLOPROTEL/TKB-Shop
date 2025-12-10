@@ -70,7 +70,7 @@ export const CartProvider = ({ children }) => {
 
   // Load cart from localStorage on mount
   useEffect(() => {
-    const savedCart = localStorage.getItem('fashionCart');
+    const savedCart = localStorage.getItem(STORAGE_KEYS.CART_ITEMS);
     if (savedCart) {
       dispatch({ type: 'LOAD_CART', payload: JSON.parse(savedCart) });
     }
