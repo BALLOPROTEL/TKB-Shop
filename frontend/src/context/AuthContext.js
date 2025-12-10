@@ -45,8 +45,11 @@ export const AuthProvider = ({ children }) => {
   // Load user from localStorage and verify with backend on mount
   useEffect(() => {
     const checkAuthStatus = async () => {
-      const savedToken = localStorage.getItem('chicboutique_token');
-      const savedUser = localStorage.getItem('chicboutique_user');
+      // Migrate old storage keys to new ones
+      migrateOldStorageKeys();
+      
+      const savedToken = localStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
+      const savedUser = localStorage.getItem(STORAGE_KEYS.AUTH_USER);
       
       if (savedToken && savedUser) {
         try {
