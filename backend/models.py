@@ -59,7 +59,7 @@ class UserResponse(BaseModel):
     id: str
     firstName: str
     lastName: str
-    email: str
+    email: EmailStr  # Email validation
     role: str
     phone: Optional[str] = None
     address: Optional[str] = None
