@@ -50,7 +50,7 @@ class UserCreate(BaseModel):
 class UserUpdate(BaseModel):
     firstName: Optional[str] = None
     lastName: Optional[str] = None
-    email: Optional[str] = None
+    email: Optional[EmailStr] = None  # Email validation
     phone: Optional[str] = None
     address: Optional[str] = None
     avatar: Optional[str] = None
