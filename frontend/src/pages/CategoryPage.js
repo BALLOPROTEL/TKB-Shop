@@ -51,6 +51,21 @@ const CategoryPage = () => {
     }
   });
 
+  // Pagination (12 products per page)
+  const {
+    currentPage,
+    totalPages,
+    currentItems: paginatedProducts,
+    itemsPerPage,
+    totalItems,
+    goToPage,
+  } = usePagination(sortedProducts, 12);
+
+  // Reset to page 1 when category or sort changes
+  useEffect(() => {
+    goToPage(1);
+  }, [slug, sortBy]);
+
   if (loading && products.length === 0) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
