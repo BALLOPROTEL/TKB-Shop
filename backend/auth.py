@@ -10,11 +10,14 @@ from bson import ObjectId
 import os
 
 # Security setup
-SECRET_KEY = os.environ.get("SECRET_KEY")
-if not SECRET_KEY:
-    raise ValueError("❌ CRITICAL: SECRET_KEY environment variable must be set for security")
+SECRET_KEY = os.environ.get("SECRET_KEY", "")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
+# Validate SECRET_KEY at runtime (after .env is loaded)
+def validate_secret_key():
+    if not SECRET_KEY or SECRET_KEY == "":
+        raise ValueError("❌ CRITICAL: SECRET_KEY environment variable must be set for security")
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 security = HTTPBearer()
