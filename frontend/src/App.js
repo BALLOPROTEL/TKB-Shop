@@ -92,17 +92,19 @@ function AppContent() {
 
 function App() {
   return (
-    <AuthProvider>
-      <ProductsProvider>
-        <ToastProvider>
-          <FavoritesProvider>
-            <CartProvider>
-              <AppContent />
-            </CartProvider>
-          </FavoritesProvider>
-        </ToastProvider>
-      </ProductsProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <ProductsProvider>
+          <ToastProvider>
+            <FavoritesProvider>
+              <CartProvider>
+                <AppContent />
+              </CartProvider>
+            </FavoritesProvider>
+          </ToastProvider>
+        </ProductsProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 
