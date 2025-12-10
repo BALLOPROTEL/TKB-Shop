@@ -226,7 +226,7 @@ const HomePage = () => {
               {categoriesWithCount.map((category) => (
                 <button
                   key={category.id}
-                  onClick={() => category.id === 'tous' ? setSelectedCategory('tous') : handleCategoryClick(category.slug)}
+                  onClick={() => handleCategoryFilter(category.id)}
                   className={`px-6 py-3 border-2 text-sm font-medium uppercase tracking-wide transition-all duration-300 hover:shadow-card ${
                     selectedCategory === category.id
                       ? 'border-primary-900 bg-primary-900 text-white'
@@ -239,6 +239,9 @@ const HomePage = () => {
               ))}
             </div>
           </div>
+          
+          {/* Products Section with ID for scrolling */}
+          <div id="products-section">
 
           {/* Products Grid */}
           {selectedCategory === 'tous' ? (
