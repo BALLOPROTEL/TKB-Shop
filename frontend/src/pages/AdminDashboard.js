@@ -8,6 +8,8 @@ import { useAuth } from '../context/AuthContext';
 import { useAdmin } from '../context/AdminContext';
 import { useProducts } from '../context/ProductsContext';
 import { useToast } from '../hooks/use-toast';
+import { usePagination } from '../hooks/usePagination';
+import Pagination from '../components/Pagination';
 import ProductModal from '../components/admin/ProductModal';
 import UserModal from '../components/admin/UserModal';
 import DeleteConfirmModal from '../components/admin/DeleteConfirmModal';
