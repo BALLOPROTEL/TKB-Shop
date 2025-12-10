@@ -118,17 +118,29 @@ const Header = () => {
             {/* Chaussures Menu */}
             <div 
               className="relative group"
-              onMouseEnter={() => setShowChaussuresMenu(true)}
-              onMouseLeave={() => setShowChaussuresMenu(false)}
+              onMouseEnter={() => {
+                if (chaussuresTimer) clearTimeout(chaussuresTimer);
+                setShowChaussuresMenu(true);
+              }}
+              onMouseLeave={() => {
+                const timer = setTimeout(() => setShowChaussuresMenu(false), 200);
+                setChaussuresTimer(timer);
+              }}
             >
               <button className="flex items-center space-x-1 text-primary-800 hover:text-accent-600 font-medium transition-colors duration-200 text-sm xl:text-base uppercase tracking-wide">
                 <span>Chaussures</span>
                 <ChevronDown className="h-3 w-3 transition-transform duration-200 group-hover:rotate-180" />
               </button>
               {showChaussuresMenu && (
-                <div className="absolute top-full left-0 mt-3 w-52 bg-white border border-gray-200 shadow-elegant z-50"
-                     onMouseEnter={() => setShowChaussuresMenu(true)}
-                     onMouseLeave={() => setShowChaussuresMenu(false)}
+                <div className="absolute top-full left-0 mt-1 w-52 bg-white border border-gray-200 shadow-elegant z-50"
+                     onMouseEnter={() => {
+                       if (chaussuresTimer) clearTimeout(chaussuresTimer);
+                       setShowChaussuresMenu(true);
+                     }}
+                     onMouseLeave={() => {
+                       const timer = setTimeout(() => setShowChaussuresMenu(false), 200);
+                       setChaussuresTimer(timer);
+                     }}
                 >
                   <div className="py-4">
                     {categories.find(cat => cat.id === 'chaussures')?.subcategories.map(sub => (
