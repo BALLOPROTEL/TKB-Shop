@@ -10,7 +10,9 @@ from bson import ObjectId
 import os
 
 # Security setup
-SECRET_KEY = os.environ.get("SECRET_KEY", "chicboutique-secret-key-change-in-production")
+SECRET_KEY = os.environ.get("SECRET_KEY")
+if not SECRET_KEY:
+    raise ValueError("❌ CRITICAL: SECRET_KEY environment variable must be set for security")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
