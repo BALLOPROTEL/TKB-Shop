@@ -75,17 +75,29 @@ const Header = () => {
             {/* Sacs Menu */}
             <div 
               className="relative group"
-              onMouseEnter={() => setShowSacsMenu(true)}
-              onMouseLeave={() => setShowSacsMenu(false)}
+              onMouseEnter={() => {
+                if (sacsTimer) clearTimeout(sacsTimer);
+                setShowSacsMenu(true);
+              }}
+              onMouseLeave={() => {
+                const timer = setTimeout(() => setShowSacsMenu(false), 200);
+                setSacsTimer(timer);
+              }}
             >
               <button className="flex items-center space-x-1 text-primary-800 hover:text-accent-600 font-medium transition-colors duration-200 text-sm xl:text-base uppercase tracking-wide">
                 <span>Sacs</span>
                 <ChevronDown className="h-3 w-3 transition-transform duration-200 group-hover:rotate-180" />
               </button>
               {showSacsMenu && (
-                <div className="absolute top-full left-0 mt-3 w-52 bg-white border border-gray-200 shadow-elegant z-50"
-                     onMouseEnter={() => setShowSacsMenu(true)}
-                     onMouseLeave={() => setShowSacsMenu(false)}
+                <div className="absolute top-full left-0 mt-1 w-52 bg-white border border-gray-200 shadow-elegant z-50"
+                     onMouseEnter={() => {
+                       if (sacsTimer) clearTimeout(sacsTimer);
+                       setShowSacsMenu(true);
+                     }}
+                     onMouseLeave={() => {
+                       const timer = setTimeout(() => setShowSacsMenu(false), 200);
+                       setSacsTimer(timer);
+                     }}
                 >
                   <div className="py-4">
                     {categories.find(cat => cat.id === 'sacs')?.subcategories.map(sub => (
