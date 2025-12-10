@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }) => {
       const { access_token, user } = response.data;
       
       // Save to localStorage
-      localStorage.setItem('chicboutique_token', access_token);
+      localStorage.setItem(STORAGE_KEYS.AUTH_TOKEN, access_token);
       localStorage.setItem('chicboutique_user', JSON.stringify(user));
       
       dispatch({ type: 'LOGIN', payload: { user } });
@@ -100,7 +100,7 @@ export const AuthProvider = ({ children }) => {
       const { access_token, user } = response.data;
       
       // Save to localStorage
-      localStorage.setItem('chicboutique_token', access_token);
+      localStorage.setItem(STORAGE_KEYS.AUTH_TOKEN, access_token);
       localStorage.setItem('chicboutique_user', JSON.stringify(user));
       
       dispatch({ type: 'LOGIN', payload: { user } });
