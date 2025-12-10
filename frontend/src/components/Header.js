@@ -18,6 +18,20 @@ const Header = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
+  // Timers for delayed menu closing
+  const [sacsTimer, setSacsTimer] = useState(null);
+  const [chaussuresTimer, setChaussuresTimer] = useState(null);
+  const [chaineTimer, setChaineTimer] = useState(null);
+
+  // Cleanup timers on unmount
+  React.useEffect(() => {
+    return () => {
+      if (sacsTimer) clearTimeout(sacsTimer);
+      if (chaussuresTimer) clearTimeout(chaussuresTimer);
+      if (chaineTimer) clearTimeout(chaineTimer);
+    };
+  }, [sacsTimer, chaussuresTimer, chaineTimer]);
+
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
