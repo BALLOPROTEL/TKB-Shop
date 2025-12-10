@@ -42,11 +42,15 @@ async def root():
 # Include the router in the main app
 app.include_router(api_router)
 
+# CORS Configuration - Restrict origins for security
+allowed_origins = os.environ.get("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+allowed_origins = [origin.strip() for origin in allowed_origins]  # Clean whitespace
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=["*"],
-    allow_methods=["*"],
+    allow_origins=allowed_origins,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH"],
     allow_headers=["*"],
 )
 
