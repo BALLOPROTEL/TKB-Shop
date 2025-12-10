@@ -31,7 +31,7 @@ class User(BaseModel):
     phone: Optional[str] = None
     address: Optional[str] = None
     avatar: Optional[str] = None
-    joinDate: datetime = Field(default_factory=datetime.utcnow)
+    joinDate: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     isActive: bool = True
 
     class Config:
