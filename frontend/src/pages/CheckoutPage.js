@@ -113,7 +113,7 @@ const CheckoutPage = () => {
           'Content-Type': 'application/json',
           'Origin': currentOrigin,
           ...(isAuthenticated ? {
-            'Authorization': `Bearer ${localStorage.getItem('chicboutique_token')}`
+            'Authorization': `Bearer ${localStorage.getItem(STORAGE_KEYS.AUTH_TOKEN)}`
           } : {})
         },
         body: JSON.stringify(checkoutData)
