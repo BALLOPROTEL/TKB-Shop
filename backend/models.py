@@ -172,7 +172,7 @@ class Token(BaseModel):
     user: UserResponse
 
 class LoginRequest(BaseModel):
-    email: str
+    email: EmailStr  # Email validation
     password: str
 
 # Cart Models (for checkout)
