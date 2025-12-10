@@ -10,22 +10,29 @@ router = APIRouter()
 
 @router.get("/", response_model=List[dict])
 async def get_products(
-    category: Optional[str] = None,
-    search: Optional[str] = None,
+    category: Optional[str] = Query(None, max_length=100),
+    search: Optional[str] = Query(None, max_length=200),
     skip: int = Query(0, ge=0),
     limit: int = Query(100, le=100)
 ):
     """Get all products with optional filtering"""
     products = await get_products_collection()
     
-    # Build query
+    # Build query with sanitized inputs
     query = {}
     if category and category != "tous":
-        query["category"] = category
+        # Sanitize category - only allow alphanumeric and hyphens
+        sanitized_category = ''.join(c for c in category if c.isalnum() or c in ['-', '_'])
+        if sanitized_category:
+            query["category"] = sanitized_category
+    
     if search:
+        # Sanitize search - escape special regex characters
+        import re
+        sanitized_search = re.escape(search)
         query["$or"] = [
-            {"name": {"$regex": search, "$options": "i"}},
-            {"description": {"$regex": search, "$options": "i"}}
+            {"name": {"$regex": sanitized_search, "$options": "i"}},
+            {"description": {"$regex": sanitized_search, "$options": "i"}}
         ]
     
     # Execute query
