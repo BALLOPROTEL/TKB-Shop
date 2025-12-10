@@ -125,7 +125,7 @@ export const AuthProvider = ({ children }) => {
       const response = await authAPI.updateProfile(updates);
       const updatedUser = response.data;
       
-      localStorage.setItem('chicboutique_user', JSON.stringify(updatedUser));
+      localStorage.setItem(STORAGE_KEYS.AUTH_USER, JSON.stringify(updatedUser));
       dispatch({ type: 'UPDATE_PROFILE', payload: updates });
       return { success: true };
     } catch (error) {
