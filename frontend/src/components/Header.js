@@ -161,17 +161,29 @@ const Header = () => {
             {/* Chaîne Menu */}
             <div 
               className="relative group"
-              onMouseEnter={() => setShowChaineMenu(true)}
-              onMouseLeave={() => setShowChaineMenu(false)}
+              onMouseEnter={() => {
+                if (chaineTimer) clearTimeout(chaineTimer);
+                setShowChaineMenu(true);
+              }}
+              onMouseLeave={() => {
+                const timer = setTimeout(() => setShowChaineMenu(false), 200);
+                setChaineTimer(timer);
+              }}
             >
               <button className="flex items-center space-x-1 text-primary-800 hover:text-accent-600 font-medium transition-colors duration-200 text-sm xl:text-base uppercase tracking-wide">
                 <span>Chaîne</span>
                 <ChevronDown className="h-3 w-3 transition-transform duration-200 group-hover:rotate-180" />
               </button>
               {showChaineMenu && (
-                <div className="absolute top-full left-0 mt-3 w-52 bg-white border border-gray-200 shadow-elegant z-50"
-                     onMouseEnter={() => setShowChaineMenu(true)}
-                     onMouseLeave={() => setShowChaineMenu(false)}
+                <div className="absolute top-full left-0 mt-1 w-52 bg-white border border-gray-200 shadow-elegant z-50"
+                     onMouseEnter={() => {
+                       if (chaineTimer) clearTimeout(chaineTimer);
+                       setShowChaineMenu(true);
+                     }}
+                     onMouseLeave={() => {
+                       const timer = setTimeout(() => setShowChaineMenu(false), 200);
+                       setChaineTimer(timer);
+                     }}
                 >
                   <div className="py-4">
                     {categories.find(cat => cat.id === 'chaine')?.subcategories.map(sub => (
