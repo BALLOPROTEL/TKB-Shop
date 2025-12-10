@@ -4,7 +4,7 @@ from models import Product, ProductCreate, ProductUpdate, UserResponse
 from auth import get_current_admin_user, get_current_user
 from database import get_products_collection
 from bson import ObjectId
-from datetime import datetime
+from datetime import datetime, timezone
 
 router = APIRouter()
 

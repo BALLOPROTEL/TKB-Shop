@@ -3,7 +3,7 @@ from typing import List, Dict, Any, Optional
 from models import PaymentTransaction, CheckoutRequest, UserResponse, OrderCreate, OrderItem
 from auth import get_current_user, get_current_user_optional
 from database import get_payment_transactions_collection, get_orders_collection
-from datetime import datetime
+from datetime import datetime, timezone
 import os
 from dotenv import load_dotenv
 from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionResponse, CheckoutStatusResponse, CheckoutSessionRequest

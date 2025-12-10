@@ -5,7 +5,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from database import connect_to_mongo, get_users_collection, get_products_collection, get_orders_collection
 from auth import get_password_hash
-from datetime import datetime
+from datetime import datetime, timezone
 from bson import ObjectId
 
 # Load environment variables

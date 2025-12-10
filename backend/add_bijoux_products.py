@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from database import connect_to_mongo, get_products_collection
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Load environment variables
 ROOT_DIR = Path(__file__).parent

@@ -4,7 +4,7 @@ from models import Order, OrderCreate, OrderItem, UserResponse
 from auth import get_current_user
 from database import get_orders_collection, get_products_collection
 from bson import ObjectId
-from datetime import datetime
+from datetime import datetime, timezone
 import string
 import random
 
