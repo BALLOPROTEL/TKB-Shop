@@ -25,7 +25,7 @@ class User(BaseModel):
     id: Optional[str] = Field(default=None, alias="_id")
     firstName: str
     lastName: str
-    email: str
+    email: EmailStr  # Email validation
     password: str  # Will be hashed
     role: str = "customer"  # customer or admin
     phone: Optional[str] = None
