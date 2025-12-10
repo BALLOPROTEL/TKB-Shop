@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Grid, Loader } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
+import Pagination from '../components/Pagination';
 import { useProducts } from '../context/ProductsContext';
+import { usePagination } from '../hooks/usePagination';
 import Button from '../components/ui/Button';
 
 const CategoryPage = () => {
