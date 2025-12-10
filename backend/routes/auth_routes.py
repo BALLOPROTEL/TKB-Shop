@@ -15,7 +15,8 @@ router = APIRouter()
 limiter = Limiter(key_func=get_remote_address)
 
 @router.post("/login", response_model=Token)
-async def login(user_credentials: LoginRequest):
+@limiter.limit("5/minute")  # Rate limit: 5 login attempts per minute
+async def login(request: Request, user_credentials: LoginRequest):
     """Authenticate user and return JWT token"""
     user = await authenticate_user(user_credentials.email, user_credentials.password)
     if not user:
