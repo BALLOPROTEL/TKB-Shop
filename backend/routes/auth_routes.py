@@ -116,9 +116,10 @@ async def update_profile(
             {"$set": update_data}
         )
         
-        # Return updated user data
-        updated_user = await users.find_one({"_id": ObjectId(current_user.id)})
+        # Return updated user data (without password)
+        updated_user = await users.find_one({"_id": ObjectId(current_user.id)}, {"password": 0})
         updated_user["id"] = str(updated_user["_id"])
+        del updated_user["_id"]
         return UserResponse(**updated_user)
     
     return current_user
