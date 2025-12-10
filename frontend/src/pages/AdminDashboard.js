@@ -70,6 +70,15 @@ const AdminDashboard = () => {
   const allOrders = orders || [];
   const allProducts = products || [];
 
+  // Pagination for users (10 per page)
+  const usersPagination = usePagination(allUsers, 10);
+  
+  // Pagination for orders (10 per page)
+  const ordersPagination = usePagination(allOrders, 10);
+  
+  // Pagination for products (12 per page)
+  const productsPagination = usePagination(allProducts, 12);
+
   // CRUD Functions
   const handleSaveProduct = async (productData) => {
     try {
