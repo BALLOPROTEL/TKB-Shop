@@ -60,7 +60,7 @@ async def create_user(
     user_dict = user_data.dict()
     user_dict["password"] = hashed_password
     user_dict["avatar"] = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
-    user_dict["joinDate"] = datetime.utcnow()
+    user_dict["joinDate"] = datetime.now(timezone.utc)
     user_dict["isActive"] = True
     
     result = await users.insert_one(user_dict)
@@ -215,7 +215,7 @@ async def update_order_status(
     
     result = await orders.update_one(
         {"_id": order_obj_id},
-        {"$set": {"status": status, "updatedAt": datetime.utcnow()}}
+        {"$set": {"status": status, "updatedAt": datetime.now(timezone.utc)}}
     )
     
     if result.matched_count == 0:

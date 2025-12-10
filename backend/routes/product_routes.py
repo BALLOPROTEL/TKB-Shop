@@ -71,8 +71,8 @@ async def create_product(
     products = await get_products_collection()
     
     product_dict = product.dict()
-    product_dict["createdAt"] = datetime.utcnow()
-    product_dict["updatedAt"] = datetime.utcnow()
+    product_dict["createdAt"] = datetime.now(timezone.utc)
+    product_dict["updatedAt"] = datetime.now(timezone.utc)
     
     result = await products.insert_one(product_dict)
     
@@ -115,7 +115,7 @@ async def update_product(
             update_data[field] = value
     
     if update_data:
-        update_data["updatedAt"] = datetime.utcnow()
+        update_data["updatedAt"] = datetime.now(timezone.utc)
         await products.update_one(
             {"_id": product_obj_id},
             {"$set": update_data}

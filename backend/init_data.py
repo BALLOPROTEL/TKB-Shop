@@ -65,8 +65,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.8,
         "reviews": 124,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Sac Bandoulière Rose",
@@ -80,8 +80,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.6,
         "reviews": 89,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Sac Tote Minimaliste",
@@ -95,8 +95,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.4,
         "reviews": 67,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Pochette de Soirée Dorée",
@@ -110,8 +110,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.7,
         "reviews": 92,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     # Chaussures femmes
     {
@@ -126,8 +126,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.5,
         "reviews": 156,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Baskets Blanches Tendance",
@@ -141,8 +141,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.6,
         "reviews": 201,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Bottes à Talons Marron",
@@ -156,8 +156,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.7,
         "reviews": 134,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Sandales à Talons Nude",
@@ -171,8 +171,8 @@ mock_products = [
         "inStock": False,
         "rating": 4.3,
         "reviews": 78,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     # Chaussures enfants
     {
@@ -187,8 +187,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.8,
         "reviews": 245,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Chaussures École Noires",
@@ -202,8 +202,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.4,
         "reviews": 167,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Sandales Enfant Été",
@@ -217,8 +217,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.2,
         "reviews": 89,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Bottes de Pluie Rigolotes",
@@ -232,8 +232,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.6,
         "reviews": 123,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     
     # Chaînes et bijoux
@@ -249,8 +249,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.9,
         "reviews": 87,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Chaîne Argent Élégante",
@@ -264,8 +264,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.7,
         "reviews": 124,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Pendentif Coeur Diamant",
@@ -279,8 +279,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.8,
         "reviews": 156,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Chaîne Fantaisie Dorée",
@@ -294,8 +294,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.5,
         "reviews": 89,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Bracelet Chaîne Or Rose",
@@ -309,8 +309,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.6,
         "reviews": 72,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Collier Perles et Chaîne",
@@ -324,8 +324,8 @@ mock_products = [
         "inStock": True,
         "rating": 4.7,
         "reviews": 98,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     }
 ]
 

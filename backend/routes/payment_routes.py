@@ -152,8 +152,8 @@ async def create_checkout_session(
                 "shipping": shipping
             },
             "enableBnpl": enable_bnpl,
-            "createdAt": datetime.utcnow(),
-            "updatedAt": datetime.utcnow()
+            "createdAt": datetime.now(timezone.utc),
+            "updatedAt": datetime.now(timezone.utc)
         }
         
         transactions = await get_payment_transactions_collection()
@@ -210,8 +210,8 @@ async def create_order_from_payment(transaction: dict, webhook_response):
             "shipping": float(order_data.get("shipping", 0)),
             "shippingAddress": shipping_address,
             "paymentSessionId": transaction["sessionId"],
-            "createdAt": datetime.utcnow(),
-            "updatedAt": datetime.utcnow()
+            "createdAt": datetime.now(timezone.utc),
+            "updatedAt": datetime.now(timezone.utc)
         }
         
         result = await orders.insert_one(order_dict)
@@ -244,7 +244,7 @@ async def get_checkout_status(session_id: str, request: Request):
                 "$set": {
                     "paymentStatus": checkout_status.payment_status,
                     "status": checkout_status.status,
-                    "updatedAt": datetime.utcnow()
+                    "updatedAt": datetime.now(timezone.utc)
                 }
             }
         )
@@ -293,7 +293,7 @@ async def stripe_webhook(request: Request):
                 "$set": {
                     "paymentStatus": webhook_response.payment_status,
                     "paymentId": webhook_response.event_id,
-                    "updatedAt": datetime.utcnow()
+                    "updatedAt": datetime.now(timezone.utc)
                 }
             }
         )

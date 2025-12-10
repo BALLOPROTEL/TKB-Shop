@@ -79,8 +79,8 @@ async def create_order(
         "shipping": shipping,
         "shippingAddress": order_data.shippingAddress,
         "paymentSessionId": None,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     }
     
     result = await orders.insert_one(order_dict)
@@ -179,7 +179,7 @@ async def cancel_order(
     # Update order status
     await orders.update_one(
         {"_id": order_obj_id},
-        {"$set": {"status": "cancelled", "updatedAt": datetime.utcnow()}}
+        {"$set": {"status": "cancelled", "updatedAt": datetime.now(timezone.utc)}}
     )
     
     return {"message": "Order cancelled successfully"}

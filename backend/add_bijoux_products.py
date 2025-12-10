@@ -23,8 +23,8 @@ bijoux_products = [
         "inStock": True,
         "rating": 4.9,
         "reviews": 87,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Chaîne Argent Élégante",
@@ -38,8 +38,8 @@ bijoux_products = [
         "inStock": True,
         "rating": 4.7,
         "reviews": 124,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Pendentif Coeur Diamant",
@@ -53,8 +53,8 @@ bijoux_products = [
         "inStock": True,
         "rating": 4.8,
         "reviews": 156,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Chaîne Fantaisie Dorée",
@@ -68,8 +68,8 @@ bijoux_products = [
         "inStock": True,
         "rating": 4.5,
         "reviews": 89,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Bracelet Chaîne Or Rose",
@@ -83,8 +83,8 @@ bijoux_products = [
         "inStock": True,
         "rating": 4.6,
         "reviews": 72,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     },
     {
         "name": "Collier Perles et Chaîne",
@@ -98,8 +98,8 @@ bijoux_products = [
         "inStock": True,
         "rating": 4.7,
         "reviews": 98,
-        "createdAt": datetime.utcnow(),
-        "updatedAt": datetime.utcnow()
+        "createdAt": datetime.now(timezone.utc),
+        "updatedAt": datetime.now(timezone.utc)
     }
 ]
 
