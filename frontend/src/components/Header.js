@@ -303,18 +303,29 @@ const Header = () => {
                 )}
               </div>
             ) : (
-              <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-4">
+                {/* Login Icon */}
                 <Link
                   to="/login"
-                  className="text-sm text-primary-700 hover:text-accent-600 font-medium transition-colors duration-200 uppercase tracking-wide"
+                  className="relative p-2 text-primary-700 hover:text-accent-600 transition-all duration-200 group"
+                  title="Connexion"
                 >
-                  Connexion
+                  <LogIn className="h-6 w-6" />
+                  <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    Connexion
+                  </span>
                 </Link>
+                
+                {/* Register Icon */}
                 <Link
                   to="/register"
-                  className="px-6 py-2 text-sm bg-primary-900 text-white hover:bg-primary-800 transition-colors duration-200 uppercase tracking-wide"
+                  className="relative p-2 text-primary-700 hover:text-accent-600 transition-all duration-200 group"
+                  title="Inscription"
                 >
-                  Inscription
+                  <UserPlus className="h-6 w-6" />
+                  <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    Inscription
+                  </span>
                 </Link>
               </div>
             )}
