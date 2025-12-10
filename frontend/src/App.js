@@ -83,6 +83,8 @@ function AppContent() {
             } />
             <Route path="/category/:slug" element={<CategoryPage />} />
             <Route path="/category/:slug/:subcategory" element={<CategoryPage />} />
+            {/* 404 - Catch all */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
         <Footer />
