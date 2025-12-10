@@ -4,7 +4,7 @@ from models import User, UserCreate, UserUpdate, UserResponse, Order
 from auth import get_current_admin_user, get_password_hash, user_to_response
 from database import get_users_collection, get_orders_collection
 from bson import ObjectId
-from datetime import datetime
+from datetime import datetime, timezone
 
 router = APIRouter()
 
