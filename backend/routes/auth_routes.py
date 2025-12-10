@@ -1,5 +1,5 @@
-from fastapi import APIRouter, HTTPException, status, Depends
-from datetime import timedelta
+from fastapi import APIRouter, HTTPException, status, Depends, Request
+from datetime import timedelta, timezone
 from models import LoginRequest, UserCreate, Token, UserResponse, UserUpdate
 from auth import (
     authenticate_user, create_access_token, get_password_hash, 
@@ -7,9 +7,12 @@ from auth import (
 )
 from database import get_users_collection
 from bson import ObjectId
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 import os
 
 router = APIRouter()
+limiter = Limiter(key_func=get_remote_address)
 
 @router.post("/login", response_model=Token)
 async def login(user_credentials: LoginRequest):
