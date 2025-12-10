@@ -66,21 +66,20 @@ const HomePage = () => {
     chaines: products.filter(p => p.category?.includes('chaine') || p.category === 'bijoux').slice(0, 4)
   };
 
-  // Handle category navigation
-  const handleCategoryClick = (categorySlug) => {
-    switch (categorySlug) {
-      case 'sacs':
-        navigate('/category/sacs');
-        break;
-      case 'chaussures':
-        navigate('/category/chaussures');
-        break;
-      case 'chaines':
-        navigate('/category/chaine');
-        break;
-      default:
-        setSelectedCategory(categorySlug);
+  // Handle category filter on homepage
+  const handleCategoryFilter = (categoryId) => {
+    setSelectedCategory(categoryId);
+    // Scroll to products section smoothly
+    const productsSection = document.getElementById('products-section');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  };
+
+  // Handle navigation to category pages
+  const handleCategoryNavigation = (categorySlug) => {
+    navigate(`/category/${categorySlug}`);
+    window.scrollTo(0, 0);
   };
 
   if (loading && products.length === 0) {
