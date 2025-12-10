@@ -19,8 +19,13 @@ from routes.payment_routes import router as payment_router
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
+# Initialize rate limiter
+limiter = Limiter(key_func=get_remote_address, default_limits=["100/minute"])
+
 # Create the main app
-app = FastAPI(title="ChicBoutique API", version="1.0.0")
+app = FastAPI(title="TKB'Shop API", version="1.0.0")
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
