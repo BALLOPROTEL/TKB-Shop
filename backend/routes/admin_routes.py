@@ -11,7 +11,7 @@ router = APIRouter()
 # User Management
 @router.get("/users", response_model=List[dict])
 async def get_all_users(
-    search: Optional[str] = None,
+    search: Optional[str] = Query(None, max_length=200),
     skip: int = Query(0, ge=0),
     limit: int = Query(100, le=100),
     current_admin: UserResponse = Depends(get_current_admin_user)
@@ -19,13 +19,16 @@ async def get_all_users(
     """Get all users (admin only)"""
     users = await get_users_collection()
     
-    # Build query
+    # Build query with sanitized input
     query = {}
     if search:
+        # Sanitize search - escape special regex characters
+        import re
+        sanitized_search = re.escape(search)
         query["$or"] = [
-            {"firstName": {"$regex": search, "$options": "i"}},
-            {"lastName": {"$regex": search, "$options": "i"}},
-            {"email": {"$regex": search, "$options": "i"}}
+            {"firstName": {"$regex": sanitized_search, "$options": "i"}},
+            {"lastName": {"$regex": sanitized_search, "$options": "i"}},
+            {"email": {"$regex": sanitized_search, "$options": "i"}}
         ]
     
     # Execute query
