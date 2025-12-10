@@ -115,8 +115,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem('chicboutique_token');
-    localStorage.removeItem('chicboutique_user');
+    localStorage.removeItem(STORAGE_KEYS.AUTH_TOKEN);
+    localStorage.removeItem(STORAGE_KEYS.AUTH_USER);
     dispatch({ type: 'LOGOUT' });
   };
 
