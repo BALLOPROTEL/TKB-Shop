@@ -37,7 +37,8 @@ async def login(request: Request, user_credentials: LoginRequest):
     )
 
 @router.post("/register", response_model=Token)
-async def register(user_data: UserCreate):
+@limiter.limit("3/minute")  # Rate limit: 3 registration attempts per minute
+async def register(request: Request, user_data: UserCreate):
     """Register new user"""
     users = await get_users_collection()
     
