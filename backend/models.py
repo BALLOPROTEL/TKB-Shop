@@ -157,8 +157,8 @@ class PaymentTransaction(BaseModel):
     paymentStatus: str = "initiated"  # initiated, pending, paid, failed, expired
     status: str = "active"  # active, expired, complete
     metadata: Optional[Dict[str, str]] = None
-    createdAt: datetime = Field(default_factory=datetime.utcnow)
-    updatedAt: datetime = Field(default_factory=datetime.utcnow)
+    createdAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updatedAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
     class Config:
         populate_by_name = True
