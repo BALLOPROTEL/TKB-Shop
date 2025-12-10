@@ -78,7 +78,7 @@ export const CartProvider = ({ children }) => {
 
   // Save cart to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('fashionCart', JSON.stringify(state.items));
+    localStorage.setItem(STORAGE_KEYS.CART_ITEMS, JSON.stringify(state.items));
   }, [state.items]);
 
   const addToCart = (product, selectedColor, selectedSize, quantity = 1) => {
